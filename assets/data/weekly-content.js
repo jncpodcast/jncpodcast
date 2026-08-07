@@ -10,9 +10,9 @@ window.JNC_WEEKLY_CONTENT = {
   highlights: {
     heading: "Inside the latest show",
     items: [
-      { label: "Main Event", value: "UK Adventures & Whisky Tasting" },
-      { label: "Whisky Tasting", value: "5 Expressions from Lerwick Distillery" },
-      { label: "Game Time", value: "Name That Tune" },
+      { label: "Main Event", value: "Shock Collar Trivia" },
+      { label: "Topic", value: "We're putting our useless knowledge to the test to avoid getting shocked!" },
+      { label: "Shot of the Week", value: "Oyster Shooter" },
       { label: "Pop Culture", value: "The Jordy Files" }
     ]
   },
@@ -22,10 +22,10 @@ window.JNC_WEEKLY_CONTENT = {
     youtubePlaylistId: "PL7o7ahWewyl6YlFqU5EVkbrUlz8Hzz66d",
     playerTitle: "JNC Now Playing YouTube playlist",
     playlistUrl: "https://www.youtube.com/playlist?list=PL7o7ahWewyl6YlFqU5EVkbrUlz8Hzz66d",
-    title: "Our UK Adventure Stories &",
-    accent: "a Special Scotch Tasting",
-    meta: ["Season 12", "Whisky Tasting", "Full Episode"],
-    description: "Season 12 of Jams 'N' Cocktails kicks off with an exciting premiere as Brad, Jordyn, Derek, and Elly reunite to preview the new season, sample a surprisingly delicious watermelon cocktail, and share hilarious stories from Brad and Jordyn's unforgettable British Isles adventure. From Amsterdam and Dublin to Scotland and beyond, the crew recounts memorable travel experiences, local encounters, and laugh-out-loud mishaps before wrapping up with a Scottish whisky tasting inspired by their trip.",
+    title: "Shock Collar Trivia",
+    accent: "& Oyster Shooters",
+    meta: ["Season 12", "Ep 2", "Game Night"],
+    description: "Shock Collar Trivia is BACK! ⚡🧠 For the first time in a long time, we’re strapping in and putting our useless knowledge—and pain tolerance—to the test. Every wrong answer could come with a shocking consequence! We’re also celebrating National Oyster Day with an Oyster Shooter as our Shot of the Week. Will it go down smoothly, or will it prove harder to swallow than the trivia?",
     watchButtonLabel: "Open playlist",
     showNotesUrl: "https://www.jamsncocktails.com/blog",
     showNotesButtonLabel: "Read show notes"
@@ -38,11 +38,11 @@ window.JNC_WEEKLY_CONTENT = {
     profileUrl: "https://www.instagram.com/jamsncocktails/",
     profileButtonLabel: "Follow @jamsncocktails",
     posts: [
-      "https://www.instagram.com/p/DblBs3pCbZg/",
-      "https://www.instagram.com/p/DbgSkWDkgEC/",
-      "https://www.instagram.com/p/Dbdii9mjOnR/",
-      "https://www.instagram.com/p/Dba_MabAT2d/",
-      "https://www.instagram.com/p/DbYLsLSDK81/"
+      "https://www.instagram.com/p/DbtYiCITO65/",
+      "https://www.instagram.com/p/Dbs3KIEDyjA/",
+      "https://www.instagram.com/p/DbqGB29CK9S/",
+      "https://www.instagram.com/p/DbnhLsoCsxr/",
+      "https://www.instagram.com/p/DblBs3pCbZg/"
     ]
   }
 };
