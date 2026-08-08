@@ -963,6 +963,38 @@
     .arcade-workshop strong{color:var(--muted);font:900 .61rem/1 monospace;text-transform:uppercase;letter-spacing:.1em;margin-right:4px}
     .arcade-chip{padding:8px 10px;border:1px solid rgba(255,255,255,.13);border-radius:999px;background:rgba(255,255,255,.04);color:#d5d7e3;font:800 .61rem/1 monospace;text-transform:uppercase}
 
+    .merch{
+      position:relative;overflow:hidden;
+      background:
+        radial-gradient(circle at 86% 16%,rgba(244,241,0,.13),transparent 26rem),
+        radial-gradient(circle at 12% 90%,rgba(136,49,255,.15),transparent 28rem),
+        linear-gradient(145deg,#090a12,#11101a 58%,#08080d);
+    }
+    .merch::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.25;
+      background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,.025) 4px);
+    }
+    .merch-shell{
+      position:relative;isolation:isolate;overflow:hidden;
+      display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.75fr);align-items:stretch;
+      border:1px solid rgba(255,255,255,.14);border-radius:32px;
+      background:linear-gradient(135deg,rgba(18,18,27,.96),rgba(7,8,13,.98));
+      box-shadow:0 30px 90px rgba(0,0,0,.45),0 0 42px rgba(244,241,0,.06);
+    }
+    .merch-visual{position:relative;min-height:440px;overflow:hidden;background:#080807}
+    .merch-visual::after{content:"";position:absolute;inset:0;box-shadow:inset -80px 0 90px rgba(7,8,13,.72);pointer-events:none}
+    .merch-visual img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s ease,filter .5s ease}
+    .merch-shell:hover .merch-visual img{transform:scale(1.018);filter:saturate(1.06)}
+    .merch-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:48px 42px 44px}
+    .merch-copy::before{content:"JNC";position:absolute;right:-12px;bottom:-34px;z-index:-1;color:rgba(244,241,0,.035);font-family:var(--font-display);font-size:12rem;line-height:1;transform:rotate(-7deg)}
+    .merch-kicker{display:flex;align-items:center;gap:10px;margin-bottom:14px;color:var(--yellow);font:950 .68rem/1 monospace;letter-spacing:.14em;text-transform:uppercase}
+    .merch-kicker::before{content:"";width:24px;height:2px;background:currentColor;box-shadow:0 0 12px currentColor}
+    .merch-copy h2{font-size:clamp(4.1rem,6.4vw,7rem);line-height:.78;margin-bottom:22px}
+    .merch-copy .lead{max-width:400px;color:#d7d8e1;font-size:.91rem;line-height:1.65}
+    .merch-tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 28px}
+    .merch-tag{padding:8px 11px;border:1px solid rgba(255,255,255,.17);border-radius:999px;background:rgba(255,255,255,.04);color:#d8dae5;font:850 .58rem/1 monospace;letter-spacing:.08em;text-transform:uppercase}
+    .merch-copy .btn{align-self:flex-start;min-width:210px}
+
     .support-grid{
       display:grid;grid-template-columns:1fr 1fr;gap:28px;
     }
@@ -1196,6 +1228,10 @@
       .arcade-game:first-child{display:flex;grid-column:auto}
       .arcade-game:first-child .arcade-game-art{aspect-ratio:1/1;min-height:0}
       .arcade-workshop{padding:0 15px 24px}
+      .merch-shell{grid-template-columns:1fr}
+      .merch-visual{min-height:0;aspect-ratio:16/9}
+      .merch-visual::after{box-shadow:inset 0 -70px 80px rgba(7,8,13,.7)}
+      .merch-copy{padding:34px 28px 38px}
       .support-card{padding:30px 26px;min-height:430px;border-radius:24px}
       .support-title{font-size:clamp(3.25rem,15vw,4.6rem);margin-bottom:24px}
       .support-mark{right:12px;top:14px}
@@ -1554,6 +1590,27 @@
       .arcade .arcade-game-copy p{display:none}
       .arcade .arcade-game-meta{gap:5px;font-size:.47rem;letter-spacing:.04em}
       .arcade .arcade-workshop{display:none}
+
+      .site-track .merch{overflow-y:hidden}
+      .site-track .merch > .container{
+        height:100%;min-height:0;display:flex;align-items:center;justify-content:center;margin-block:0;
+      }
+      .merch .merch-shell{
+        width:100%;max-height:640px;display:grid;grid-template-rows:auto 1fr;
+        border-radius:22px;
+      }
+      .merch .merch-visual{aspect-ratio:16/9;min-height:0}
+      .merch .merch-visual::after{box-shadow:inset 0 -34px 38px rgba(7,8,13,.45)}
+      .merch .merch-visual img{object-fit:contain;transform:none}
+      .merch .merch-copy{min-height:0;justify-content:center;padding:18px 20px 20px;text-align:center}
+      .merch .merch-copy::before{right:-5px;bottom:-20px;font-size:7rem}
+      .merch .merch-kicker{justify-content:center;margin-bottom:8px;font-size:.54rem}
+      .merch .merch-kicker::before{width:16px}
+      .merch .merch-copy h2{margin-bottom:10px;font-size:clamp(2.6rem,13vw,3.7rem);line-height:.8}
+      .merch .merch-copy .lead{margin-inline:auto;font-size:.65rem;line-height:1.35}
+      .merch .merch-tags{justify-content:center;gap:5px;margin:12px 0 14px}
+      .merch .merch-tag{padding:6px 8px;font-size:.45rem}
+      .merch .merch-copy .btn{align-self:center;min-width:190px;min-height:42px;padding:9px 16px;font-size:.6rem}
     }
     @media (max-width:600px) and (max-height:680px){
       .site-track .hero{padding-top:max(6px,env(safe-area-inset-top))}
@@ -1608,6 +1665,7 @@
         <a href="#watch">Watch + Listen</a>
         <a href="shot_of_the_week.html">Cocktails</a>
         <a href="#arcade">Arcade</a>
+        <a href="#merch">Merch</a>
         <a href="#support">Support</a>
       </nav>
 
@@ -1626,6 +1684,7 @@
     <a href="#watch">Watch + Listen</a>
     <a href="shot_of_the_week.html">Cocktails</a>
     <a href="#arcade">Arcade</a>
+    <a href="#merch">Merch</a>
     <a href="#support">Support</a>
     <a href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">Watch Live ↗</a>
   </nav>
@@ -1839,6 +1898,27 @@
             <span class="arcade-chip">Cake Hole Adventure</span>
             <span class="arcade-chip">Ant Wars</span>
             <span class="arcade-chip">Shock Collar Trivia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section merch" id="merch">
+      <div class="container">
+        <div class="merch-shell reveal">
+          <div class="merch-visual">
+            <img src="assets/images/merch/jnc-merch-collection.png" alt="Jams 'N' Cocktails shirts, hats, sunglasses, and official merchandise" width="1680" height="941" loading="lazy">
+          </div>
+          <div class="merch-copy">
+            <p class="merch-kicker">Official JNC Merch</p>
+            <h2>Wear the <span class="yellow">Chaos.</span></h2>
+            <p class="lead">Rep the lounge with original JNC shirts, hats, accessories, and gear built for fans who are always ready for one more round.</p>
+            <div class="merch-tags" aria-label="Merchandise categories">
+              <span class="merch-tag">Shirts</span>
+              <span class="merch-tag">Hats</span>
+              <span class="merch-tag">Accessories</span>
+            </div>
+            <a class="btn btn-primary" href="https://jamsncocktails.threadless.com/designs/" target="_blank" rel="noopener">Shop the Collection ↗</a>
           </div>
         </div>
       </div>
