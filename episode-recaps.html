@@ -1,19 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="jnc-universe-entered">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Jams 'N' Cocktails — Official Site</title>
-  <meta name="description" content="Jams 'N' Cocktails: music, cocktails, games, pop culture and live entertainment every Wednesday.">
+  <title>Episode Recaps & Show Notes | Jams 'N' Cocktails</title>
+  <meta name="description" content="Browse episode recaps, show notes, guests, cocktails, games, and memorable moments from Jams 'N' Cocktails.">
   <link rel="icon" href="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/favicon.svg" type="image/svg+xml">
-  <script>
-    try {
-      if (sessionStorage.getItem('jnc-universe-entered') === 'yes') {
-        document.documentElement.classList.add('jnc-universe-entered');
-      }
-    } catch (error) {}
-  </script>
   <style>
+
     :root{
       --navy:#06084f;
       --navy-2:#0a0d71;
@@ -1636,38 +1630,82 @@
       *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
       .reveal{opacity:1;transform:none}
     }
+  
+    html.jnc-universe-entered,html.jnc-universe-entered body{overflow-x:hidden;overflow-y:auto}
+    .recap-page{min-height:100%;background:radial-gradient(circle at 84% 7%,rgba(129,46,255,.2),transparent 28rem),radial-gradient(circle at 7% 20%,rgba(0,217,255,.1),transparent 30rem),#070811}
+    .recap-page .site-header{position:sticky;top:0}
+    .recap-main{position:relative;min-height:80vh;padding:84px 0 110px}
+    .recap-main::before{content:"";position:fixed;inset:0;z-index:-1;opacity:.22;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,.026) 4px)}
+    .recap-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.72fr);gap:56px;align-items:end;margin-bottom:52px}
+    .recap-eyebrow{display:flex;align-items:center;gap:11px;margin-bottom:15px;color:var(--yellow);font:950 .7rem/1 monospace;letter-spacing:.15em;text-transform:uppercase}
+    .recap-eyebrow::before{content:"";width:26px;height:2px;background:currentColor;box-shadow:0 0 12px currentColor}
+    .recap-hero h1{max-width:820px;font-size:clamp(4.8rem,10vw,9.5rem);line-height:.76;margin-bottom:24px}
+    .recap-hero .lead{max-width:690px;color:#c4c7d4;font-size:1rem;line-height:1.7}
+    .recap-console{position:relative;overflow:hidden;padding:26px;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:linear-gradient(145deg,#141727,#090b14);box-shadow:var(--shadow)}
+    .recap-console::before{content:"ARCHIVE ONLINE";display:block;margin-bottom:17px;color:var(--yellow);font:950 .59rem/1 monospace;letter-spacing:.14em}
+    .recap-stat{display:flex;align-items:end;justify-content:space-between;gap:18px;padding:15px 0;border-top:1px solid rgba(255,255,255,.1)}
+    .recap-stat strong{font-family:var(--font-display);font-size:2.6rem;line-height:1;color:white}
+    .recap-stat span{color:var(--muted);font:800 .61rem/1.2 monospace;text-transform:uppercase;text-align:right}
+    .recap-tools{position:sticky;top:78px;z-index:20;display:grid;grid-template-columns:1fr auto;gap:12px;margin-bottom:28px;padding:12px;border:1px solid rgba(255,255,255,.13);border-radius:20px;background:rgba(9,10,18,.88);backdrop-filter:blur(16px);box-shadow:0 18px 45px rgba(0,0,0,.3)}
+    .recap-search{width:100%;min-height:50px;padding:0 18px;border:1px solid rgba(255,255,255,.14);border-radius:13px;outline:none;background:#121522;color:white}
+    .recap-search:focus{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(244,241,0,.08)}
+    .recap-filter{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none}
+    .recap-filter::-webkit-scrollbar{display:none}
+    .year-button{min-height:50px;padding:0 15px;border:1px solid rgba(255,255,255,.14);border-radius:13px;background:#121522;color:#c9cbd5;font:900 .61rem/1 monospace;letter-spacing:.08em;cursor:pointer}
+    .year-button.active{border-color:var(--yellow);background:var(--yellow);color:var(--ink)}
+    .recap-results{margin:0 0 18px;color:var(--muted);font:850 .65rem/1 monospace;letter-spacing:.1em;text-transform:uppercase}
+    .recap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .recap-card{min-width:0;overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.13);border-radius:22px;background:linear-gradient(180deg,#151827,#0b0d16);box-shadow:0 18px 45px rgba(0,0,0,.28);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+    .recap-card:hover{transform:translateY(-6px);border-color:rgba(244,241,0,.5);box-shadow:0 25px 65px rgba(0,0,0,.42),0 0 26px rgba(244,241,0,.06)}
+    .recap-card-image{aspect-ratio:16/9;overflow:hidden;background:#05060a}
+    .recap-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+    .recap-card:hover img{transform:scale(1.035)}
+    .recap-card-copy{display:flex;flex:1;flex-direction:column;padding:20px}
+    .recap-date{margin-bottom:11px;color:var(--yellow);font:900 .59rem/1 monospace;letter-spacing:.1em;text-transform:uppercase}
+    .recap-card h2{font-family:var(--font-body);font-size:1.08rem;line-height:1.25;letter-spacing:-.02em;text-transform:none;margin-bottom:12px}
+    .recap-card p{display:-webkit-box;overflow:hidden;-webkit-line-clamp:3;-webkit-box-orient:vertical;color:#aeb2c1;font-size:.76rem;line-height:1.55}
+    .recap-open{align-self:flex-start;margin-top:auto;padding-top:18px;border:0;background:none;color:var(--yellow);font:950 .62rem/1 monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+    .recap-open::after{content:"\2192";display:inline-block;margin-left:.45em;letter-spacing:0;transition:transform .2s ease}
+    .recap-open:hover::after,.recap-open:focus-visible::after{transform:translateX(3px)}
+    .recap-empty{grid-column:1/-1;padding:70px 20px;border:1px dashed rgba(255,255,255,.18);border-radius:22px;color:var(--muted);text-align:center}
+    .recap-dialog{width:min(920px,calc(100% - 28px));max-height:min(88vh,900px);padding:0;border:1px solid rgba(255,255,255,.18);border-radius:25px;background:#0c0e18;color:white;box-shadow:0 30px 120px rgba(0,0,0,.72)}
+    .recap-dialog::backdrop{background:rgba(1,2,8,.84);backdrop-filter:blur(8px)}
+    .recap-dialog-close{position:sticky;z-index:5;top:12px;float:right;width:44px;height:44px;margin:12px 12px -56px 0;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:rgba(7,8,14,.88);color:white;cursor:pointer}
+    .recap-dialog-close::before,.recap-dialog-close::after{content:"";position:absolute;left:50%;top:50%;width:18px;height:2px;border-radius:2px;background:currentColor;transform:translate(-50%,-50%) rotate(45deg)}
+    .recap-dialog-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+    .recap-dialog-close:hover,.recap-dialog-close:focus-visible{border-color:var(--yellow);color:var(--yellow);outline:none}
+    .recap-dialog-hero{position:relative;aspect-ratio:16/7;overflow:hidden;background:#05060a}
+    .recap-dialog-hero::after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,#0c0e18)}
+    .recap-dialog-hero img{width:100%;height:100%;object-fit:cover}
+    .recap-article{padding:0 54px 56px}
+    .recap-article header{position:relative;margin:-58px 0 34px}
+    .recap-article h1{max-width:780px;font-size:clamp(2.7rem,6vw,5rem);line-height:.86}
+    .recap-article-date{margin-bottom:12px;color:var(--yellow);font:900 .62rem/1 monospace;letter-spacing:.11em;text-transform:uppercase}
+    .recap-body{color:#d7d9e3;font-size:.98rem;line-height:1.82}
+    .recap-body h2,.recap-body h3{margin:38px 0 14px;color:white;font-family:var(--font-body);font-size:1.45rem;line-height:1.2;text-transform:none;letter-spacing:-.02em}
+    .recap-body p{margin:0 0 18px}.recap-body ul{margin:0 0 22px;padding-left:24px}.recap-body blockquote{margin:24px 0;padding:18px 20px;border-left:4px solid var(--yellow);background:rgba(244,241,0,.05)}
+    .recap-body img,.recap-body iframe,.recap-body video{max-width:100%;height:auto}.recap-source{display:inline-block;margin-top:30px;color:var(--yellow);font-weight:850}
+    .recap-source::after{content:"\2197";display:inline-block;margin-left:.35em}
+    @media(max-width:980px){.recap-hero{grid-template-columns:1fr}.recap-console{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.recap-console::before{grid-column:1/-1}.recap-stat{display:block}.recap-stat span{display:block;margin-top:5px;text-align:left}.recap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:600px){html,.recap-page{height:auto!important;overflow-x:hidden!important;overflow-y:auto!important}.recap-page .site-header{display:block!important;position:sticky}.recap-page .mobile-menu{display:none!important;inset:68px 0 0}.recap-page.menu-open .mobile-menu{display:block!important}.recap-page .nav{min-height:68px}.recap-page .header-brand-logo{width:142px;max-height:50px}.recap-main{padding:46px 0 80px}.recap-hero{gap:28px;margin-bottom:30px}.recap-hero h1{font-size:clamp(3.8rem,20vw,5.7rem)}.recap-hero .lead{font-size:.84rem}.recap-console{grid-template-columns:repeat(3,1fr);padding:18px}.recap-stat strong{font-size:1.8rem}.recap-stat span{font-size:.47rem}.recap-tools{top:74px;grid-template-columns:1fr;padding:9px}.recap-filter{padding-bottom:1px}.recap-grid{grid-template-columns:1fr;gap:15px}.recap-card{display:grid;grid-template-columns:112px 1fr;border-radius:17px}.recap-card-image{height:100%;min-height:154px;aspect-ratio:auto}.recap-card-copy{padding:15px}.recap-card h2{font-size:.9rem}.recap-card p{display:none}.recap-open{padding-top:10px}.recap-dialog{width:100%;max-height:100dvh;border:0;border-radius:0}.recap-dialog-hero{aspect-ratio:16/9}.recap-article{padding:0 20px 44px}.recap-article header{margin:-25px 0 28px}.recap-article h1{font-size:2.5rem}.recap-body{font-size:.9rem;line-height:1.7}.recap-page footer{height:auto;min-height:0;overflow:visible;padding:48px 0 28px}.recap-page .footer-grid{grid-template-columns:1fr 1fr}.recap-page .footer-brand{grid-column:1/-1}}
   </style>
-  <link rel="stylesheet" href="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/css/jnc-site-chrome.css">
 </head>
-<body>
-  <div class="universe-gate" id="universeGate" role="dialog" aria-modal="true" aria-labelledby="universeTitle" aria-describedby="universeCopy">
-    <div class="universe-orbit" aria-hidden="true"></div>
-    <div class="universe-panel">
-      <img class="universe-logo" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="Jams 'N' Cocktails">
-      <div class="universe-signal">Broadcast portal online</div>
-      <h1 class="universe-title" id="universeTitle">Tap to Enter <span>The JNC Universe</span></h1>
-      <p class="universe-copy" id="universeCopy">Live music, cocktails, games, stories and beautifully organized chaos await.</p>
-      <button class="universe-enter" id="universeEnter" type="button">Enter the Lounge&nbsp; &#9654;</button>
-      <span class="universe-hint" id="universeHint">Tap to launch immersive mode</span>
-    </div>
-  </div>
-
+<body class="recap-page">
   <div class="noise" aria-hidden="true"></div>
-
-  <header class="site-header">
+<header class="site-header">
     <div class="container nav">
-      <a class="brand" href="#home" aria-label="Jams 'N' Cocktails home">
+      <a class="brand" href="index.html#home" aria-label="Jams 'N' Cocktails home">
         <img class="header-brand-logo" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="Jams 'N' Cocktails">
       </a>
 
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#home" class="active">Home</a>
-        <a href="#watch">Watch + Listen</a>
-        <a href="episode-recaps.html">Recaps</a>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#watch">Watch + Listen</a>
+        <a href="episode-recaps.html" class="active" aria-current="page">Recaps</a>
         <a href="shot_of_the_week.html">Cocktails</a>
-        <a href="#arcade">Arcade</a>
-        <a href="#merch">Merch</a>
-        <a href="#support">Support</a>
+        <a href="index.html#arcade">Arcade</a>
+        <a href="index.html#merch">Merch</a>
+        <a href="index.html#support">Support</a>
       </nav>
 
       <div class="nav-actions">
@@ -1681,316 +1719,43 @@
   </header>
 
   <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-    <a href="#home">Home</a>
-    <a href="#watch">Watch + Listen</a>
-    <a href="episode-recaps.html">Recaps</a>
+    <a href="index.html#home">Home</a>
+    <a href="index.html#watch">Watch + Listen</a>
+    <a href="episode-recaps.html" class="active" aria-current="page">Recaps</a>
     <a href="shot_of_the_week.html">Cocktails</a>
-    <a href="#arcade">Arcade</a>
-    <a href="#merch">Merch</a>
-    <a href="#support">Support</a>
+    <a href="index.html#arcade">Arcade</a>
+    <a href="index.html#merch">Merch</a>
+    <a href="index.html#support">Support</a>
     <a href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">Watch Live ↗</a>
   </nav>
-
-  <div class="site-track" id="siteTrack">
-  <main>
-    <section class="hero" id="home">
-      <span class="scroll-note">Scroll for the good stuff</span>
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <div class="live-pill"><span class="live-dot"></span> Live Wednesdays • 8 PM ET</div>
-          <h1>
-            <span>Music.</span>
-            <span class="outline">Cocktails.</span>
-            <span class="chaos">Chaos.</span>
-          </h1>
-          <p class="lead">A live weekly variety show packed with entertainment news, ridiculous games, killer guests, cocktail experiments, live performances—and whatever else goes wrong in the legendary JNC Lounge.</p>
-          <div class="button-row">
-            <a class="btn btn-primary" href="#watch" data-open-media="video">Watch the latest episode <span aria-hidden="true">▶</span></a>
-            <a class="btn btn-ghost" href="#watch" data-open-media="audio">Listen in the lounge <span aria-hidden="true">♫</span></a>
-          </div>
+  <main class="recap-main" id="recaps">
+    <div class="container">
+      <section class="recap-hero" aria-labelledby="recapTitle">
+        <div>
+          <p class="recap-eyebrow">From inside the JNC Lounge</p>
+          <h1 id="recapTitle">Episode <span class="yellow">Recaps.</span></h1>
+          <p class="lead">The stories behind the chaos: complete show notes, guests, cocktails, games, music, and everything worth remembering after last call.</p>
         </div>
-
-        <div class="hero-media reveal">
-          <div class="hero-frame">
-            <div class="hero-image-wrap">
-              <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-crew-hero.jpg" alt="The Jams 'N' Cocktails crew charging through an explosive music-and-cocktails scene" width="1024" height="1024" decoding="async" fetchpriority="high">
-            </div>
-            <div class="hero-sticker">Live<br>Every<br>Wednesday</div>
-          </div>
-          <div class="next-show">
-            <div class="calendar-box">W</div>
-            <div>
-              <strong>Next live show</strong>
-              <small>Wednesday • 8 PM Eastern</small>
-            </div>
-            <div class="countdown" id="countdown">Calculating…</div>
-          </div>
-        </div>
+        <aside class="recap-console" aria-label="Archive overview">
+          <div class="recap-stat"><strong>82</strong><span>Archived recaps</span></div>
+          <div class="recap-stat"><strong>2026</strong><span>Latest season</span></div>
+          <div class="recap-stat"><strong>JNC</strong><span>Beautifully organized chaos</span></div>
+        </aside>
+      </section>
+      <div class="recap-tools">
+        <label class="sr-only" for="recapSearch">Search episode recaps</label>
+        <input class="recap-search" id="recapSearch" type="search" placeholder="Search guests, topics, cocktails, games..." autocomplete="off">
+        <div class="recap-filter" id="recapFilters" aria-label="Filter recaps by year"></div>
       </div>
-    </section>
-
-    <section class="show-strip" id="highlights" aria-label="Latest episode highlights" data-mobile-slide="false">
-      <div class="container show-strip-grid">
-        <div class="strip-title"><span id="weeklyHighlightHeading">Inside the latest show</span> <span aria-hidden="true">→</span></div>
-        <div class="strip-item" data-weekly-highlight><span>Main Event</span><strong>Sonic Seasoning</strong></div>
-        <div class="strip-item" data-weekly-highlight><span>The Experiment</span><strong>Can sound change taste?</strong></div>
-        <div class="strip-item" data-weekly-highlight><span>Game Time</span><strong>Name That Tune</strong></div>
-        <div class="strip-item" data-weekly-highlight><span>Pop Culture</span><strong>The Jordy Files</strong></div>
-      </div>
-    </section>
-
-    <section class="section media-lounge" id="watch">
-      <div class="container">
-        <div class="hifi-deck reveal">
-          <div class="hifi-receiver">
-            <div class="hifi-brand">JNC Hi-Fi <span>Model 8PM · Stereo Lounge</span></div>
-            <div class="hifi-display" aria-live="polite">
-              <div class="hifi-display-top"><span>Signal locked</span><strong id="hifiDisplayMode">Video deck</strong></div>
-              <div class="hifi-meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            </div>
-            <div class="hifi-source-switch" role="tablist" aria-label="Choose a media source">
-              <button class="hifi-source" id="hifiVideoTab" type="button" role="tab" aria-selected="true" aria-controls="hifiVideoPanel" data-media-mode="video">Watch</button>
-              <button class="hifi-source" id="hifiAudioTab" type="button" role="tab" aria-selected="false" aria-controls="hifiAudioPanel" data-media-mode="audio">Listen</button>
-            </div>
-          </div>
-
-          <div class="hifi-stage">
-            <div class="hifi-panel hifi-video" id="hifiVideoPanel" role="tabpanel" aria-labelledby="hifiVideoTab">
-              <p class="eyebrow hifi-mobile-now" data-weekly-episode-eyebrow>Now playing</p>
-              <div class="episode-grid">
-        <div class="video-card reveal">
-          <iframe id="weeklyEpisodePlayer" src="https://www.youtube-nocookie.com/embed/videoseries?list=PL7o7ahWewyl6YlFqU5EVkbrUlz8Hzz66d&amp;enablejsapi=1&amp;playsinline=1" title="JNC Now Playing YouTube playlist" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-
-        <div class="episode-copy reveal">
-          <p class="eyebrow" id="weeklyEpisodeEyebrow" data-weekly-episode-eyebrow>Now playing</p>
-          <h2 id="weeklyEpisodeTitle">Can Sound <span class="yellow">Change Flavor?</span></h2>
-          <div class="episode-meta" id="weeklyEpisodeMeta"><span>Season 11</span><span>•</span><span>Experiment</span><span>•</span><span>Full Episode</span></div>
-          <p id="weeklyEpisodeDescription">Brad and the crew put sonic seasoning to the test by pairing cocktails with specially chosen sounds and music. Does what you hear actually influence what you taste—or is it all in their heads?</p>
-          <div class="button-row">
-            <a class="btn btn-primary" id="weeklyEpisodeWatch" href="https://www.youtube.com/playlist?list=PL7o7ahWewyl6YlFqU5EVkbrUlz8Hzz66d" target="_blank" rel="noopener">Open playlist</a>
-            <a class="btn btn-ghost" id="weeklyEpisodeNotes" href="episode-recaps.html">Read show notes</a>
-          </div>
-          <div class="platforms" aria-label="Watch and listen platforms">
-            <a class="platform" href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener"><span class="platform-dot"></span>YouTube</a>
-            <a class="platform" href="https://podcasts.apple.com/us/podcast/jams-n-cocktails/id1498239152" target="_blank" rel="noopener"><span class="platform-dot"></span>Apple Podcasts</a>
-            <a class="platform" href="https://www.iheart.com/podcast/269-jams-n-cocktails-96540907/" target="_blank" rel="noopener"><span class="platform-dot"></span>iHeart</a>
-            <a class="platform" href="https://www.facebook.com/jncpodcast" target="_blank" rel="noopener"><span class="platform-dot"></span>Facebook</a>
-          </div>
-        </div>
-              </div>
-            </div>
-
-            <div class="hifi-panel hifi-audio" id="hifiAudioPanel" role="tabpanel" aria-labelledby="hifiAudioTab" hidden>
-              <div class="podcast-shell" id="podcastPlayer" data-podcast-id="96540907">
-          <div class="podcast-now">
-            <div class="podcast-art">
-              <img id="podcastArtwork" src="https://i.iheart.com/v3/catalog/podcast/96540907?ops=ratio%281%2C1%29%2Cfit%28720%2C0%29&cacheable=true" data-fallback="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="Jams 'N' Cocktails podcast artwork">
-              <span class="podcast-live-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-            </div>
-            <div class="podcast-now-copy">
-              <div class="podcast-now-top">
-                <span class="podcast-status" id="podcastStatus">Loading the latest drop…</span>
-                <a class="podcast-source" href="https://www.iheart.com/podcast/269-jams-n-cocktails-96540907/" target="_blank" rel="noopener">Full show on iHeart ↗</a>
-              </div>
-              <h3 id="podcastTitle">Tuning into the JNC feed…</h3>
-              <p class="podcast-meta" id="podcastMeta">Fetching the newest episode</p>
-              <p class="podcast-description" id="podcastDescription">The latest JNC episodes will appear here automatically.</p>
-              <a class="btn btn-ghost" id="podcastOpenEpisode" href="https://www.iheart.com/podcast/269-jams-n-cocktails-96540907/" target="_blank" rel="noopener">Episode details on iHeart</a>
-            </div>
-          </div>
-
-          <div class="podcast-controls" aria-label="Podcast playback controls">
-            <button class="podcast-control" id="podcastRewind" type="button" aria-label="Rewind 15 seconds">−15</button>
-            <button class="podcast-control podcast-play" id="podcastPlay" type="button" aria-label="Play episode"><span aria-hidden="true">▶</span></button>
-            <button class="podcast-control" id="podcastForward" type="button" aria-label="Forward 30 seconds">+30</button>
-            <div class="podcast-timeline">
-              <label class="sr-only" for="podcastProgress">Episode progress</label>
-              <input class="podcast-progress" id="podcastProgress" type="range" min="0" max="1" value="0" step="1">
-              <div class="podcast-time"><span id="podcastElapsed">0:00</span><span id="podcastRemaining">−0:00</span></div>
-            </div>
-            <button class="podcast-control" id="podcastSpeed" type="button" aria-label="Change playback speed">1×</button>
-            <button class="podcast-control" id="podcastMute" type="button" aria-label="Mute audio">Sound</button>
-            <audio id="podcastAudio" preload="metadata"></audio>
-          </div>
-
-          <div class="podcast-queue">
-            <div class="podcast-queue-head"><h3>Latest drops</h3><span>Choose an episode</span></div>
-            <div class="podcast-episode-list" id="podcastEpisodeList" role="list" aria-live="polite">
-              <span class="podcast-skeleton"></span><span class="podcast-skeleton"></span><span class="podcast-skeleton"></span>
-            </div>
-          </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="hifi-footer" aria-hidden="true">
-            <span>Jams 'N' Cocktails · High Fidelity Entertainment</span>
-            <div class="hifi-knob"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section arcade" id="arcade">
-      <div class="container">
-        <div class="arcade-shell reveal">
-          <div class="arcade-marquee">
-            <div>
-              <span class="pixel-label">Player 1 · Select game</span>
-              <h2>The Lounge Has an <span class="yellow">Arcade</span></h2>
-              <p class="lead">Play original JNC games starring the crew, unruly cocktails, undead fruit, angry pretzels, and the kind of decisions that only make sense after 8 PM.</p>
-            </div>
-            <div class="arcade-logo-panel">
-              <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-arcade.png" alt="JNC Arcade" width="1244" height="1244" loading="lazy">
-            </div>
-          </div>
-
-          <div class="arcade-console-bar">
-            <div class="arcade-status">
-              <span><i></i>3 games online</span>
-              <span>Keyboard · Touch · Controller</span>
-            </div>
-            <a class="btn btn-primary" href="https://jncpodcast.github.io/jncarcade/" target="_blank" rel="noopener">Enter the full arcade</a>
-          </div>
-
-          <div class="arcade-mobile-hint" aria-hidden="true"><span>3 games loaded</span></div>
-
-          <div class="arcade-games">
-            <a class="arcade-game" href="https://jncpodcast.github.io/jnc_happy_hour/" target="_blank" rel="noopener">
-              <span class="arcade-game-art">
-                <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-happy-hour.png" alt="JNC's Happy Hour game artwork" width="1244" height="1244" loading="lazy">
-                <span class="arcade-game-badge">Featured</span>
-              </span>
-              <span class="arcade-game-copy">
-                <h3>JNC'S HAPPY HOUR</h3>
-                <p>Choose your character and survive the wildest happy hour in the JNC Lounge.</p>
-                <span class="arcade-game-meta"><span>Arcade maze</span><span>Play →</span></span>
-              </span>
-            </a>
-            <a class="arcade-game" href="https://jncpodcast.github.io/jnc_lounge_crush/" target="_blank" rel="noopener">
-              <span class="arcade-game-art">
-                <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-lounge-crush.png" alt="JNC Lounge Crush game artwork" width="1254" height="1254" loading="lazy">
-                <span class="arcade-game-badge">Play now</span>
-              </span>
-              <span class="arcade-game-copy">
-                <h3>JNC LOUNGE CRUSH</h3>
-                <p>Mix, match, and make some noise before your moves run out in the JNC Lounge.</p>
-                <span class="arcade-game-meta"><span>Match-3 puzzle</span><span>Play →</span></span>
-              </span>
-            </a>
-            <a class="arcade-game" href="https://jncpodcast.github.io/ellys-flip-cup/" target="_blank" rel="noopener">
-              <span class="arcade-game-art">
-                <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/ellys-flip-cup-challenge.png" alt="Elly's Flip Cup Challenge game artwork" width="1254" height="1254" loading="lazy">
-                <span class="arcade-game-badge">Play now</span>
-              </span>
-              <span class="arcade-game-copy">
-                <h3>ELLY'S FLIP CUP CHALLENGE</h3>
-                <p>Find your rhythm, nail the flip, and help Elly rule the table one cup at a time.</p>
-                <span class="arcade-game-meta"><span>Timing challenge</span><span>Play →</span></span>
-              </span>
-            </a>
-          </div>
-
-          <div class="arcade-workshop" aria-label="More JNC games in development">
-            <strong>Also in the cabinet:</strong>
-            <span class="arcade-chip">Dunk Jordy</span>
-            <span class="arcade-chip">Zombied Strawberries</span>
-            <span class="arcade-chip">Brocktoberfest: Das Boot</span>
-            <span class="arcade-chip">Cake Hole Adventure</span>
-            <span class="arcade-chip">Ant Wars</span>
-            <span class="arcade-chip">Shock Collar Trivia</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section merch" id="merch">
-      <div class="container">
-        <div class="merch-shell reveal">
-          <div class="merch-visual">
-            <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/merch/jnc-merch-collection.png" alt="Jams 'N' Cocktails shirts, hats, sunglasses, and official merchandise" width="1680" height="941" loading="lazy">
-          </div>
-          <div class="merch-copy">
-            <p class="merch-kicker">Official JNC Merch</p>
-            <h2>Wear the <span class="yellow">Chaos.</span></h2>
-            <p class="lead">Rep the lounge with original JNC shirts, hats, accessories, and gear built for fans who are always ready for one more round.</p>
-            <div class="merch-tags" aria-label="Merchandise categories">
-              <span class="merch-tag">Shirts</span>
-              <span class="merch-tag">Hats</span>
-              <span class="merch-tag">Accessories</span>
-            </div>
-            <a class="btn btn-primary" href="https://jamsncocktails.threadless.com/designs/" target="_blank" rel="noopener">Shop the Collection ↗</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="support">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div>
-            <p class="eyebrow">Keep the lights on</p>
-            <h2>Support the <span class="yellow">Shenanigans</span></h2>
-          </div>
-          <p>Help JNC keep producing live shows, original games, music, cocktail experiments, interviews, and independent entertainment.</p>
-        </div>
-
-        <div class="support-grid">
-          <article class="support-card patreon reveal">
-            <img class="support-mark patreon-mark" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/patreon-logo-watermark.png" alt="" width="320" height="320" aria-hidden="true">
-            <p class="support-kicker">Join the inner circle</p>
-            <h2 class="support-title">Become a <span class="yellow">Patron</span></h2>
-            <p class="support-body">Support the show directly and unlock bonus posts, behind-the-scenes updates, and a closer seat to the weekly chaos.</p>
-            <div class="button-row">
-              <a class="btn btn-primary" href="https://www.patreon.com/jncpodcast" target="_blank" rel="noopener">Join on Patreon</a>
-            </div>
-          </article>
-
-          <article class="support-card sponsors reveal">
-            <img class="support-mark keg-mark" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/92980afb-dc3f-4770-b72a-cd8185d5f53d.png" alt="" width="542" height="783" aria-hidden="true">
-            <p class="support-kicker">Put your brand in the lounge</p>
-            <h2 class="support-title">Be a JNC <span class="yellow">Keg Sponsor</span></h2>
-            <p class="support-body">Reach an engaged audience through episode sponsorships, live reads, visual placement, social promotion, and the legendary JNC keg sponsorship.</p>
-            <div class="sponsor-list">
-              <span class="sponsor-chip">Live show placement</span>
-              <span class="sponsor-chip">Social mentions</span>
-              <span class="sponsor-chip">Episode integrations</span>
-            </div>
-            <div class="button-row">
-              <a class="btn btn-ghost" href="mailto:jnctvlive@gmail.com?subject=JNC%20Sponsorship%20Inquiry">Request the sponsor kit</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="newsletter" id="subscribe">
-      <div class="container newsletter-grid">
-        <div class="reveal">
-          <p class="eyebrow">Never miss a disaster</p>
-          <h2>Get the <span class="gradient-text">JNC Weekly</span></h2>
-          <p class="lead">Guest announcements, new episodes, cocktail recipes, games, music stories, and reminders before the next live show.</p>
-        </div>
-
-        <form class="signup reveal" id="signupForm">
-          <label for="email">Your email address</label>
-          <div class="signup-row">
-            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@somewhere.com" required>
-            <button class="btn btn-primary" type="submit">Subscribe</button>
-          </div>
-          <small>This mockup form demonstrates the design only. Connect it to Wix Contacts, Mailchimp, ConvertKit, or your preferred email platform.</small>
-          <div class="success-message" role="status">Cheers! The mockup form works.</div>
-        </form>
-      </div>
-    </section>
+      <p class="recap-results" id="recapResults" aria-live="polite"></p>
+      <div class="recap-grid" id="recapGrid"></div>
+    </div>
   </main>
-
-  <footer id="connect">
+<footer id="connect">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="brand" href="#home" aria-label="Jams 'N' Cocktails home">
+          <a class="brand" href="index.html#home" aria-label="Jams 'N' Cocktails home">
             <img class="header-brand-logo" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="Jams 'N' Cocktails">
           </a>
           <p style="margin-top:18px">Talk radio, pop culture, music, games, cocktails, and live entertainment from the Treasure Coast of Florida.</p>
@@ -2003,7 +1768,7 @@
         </div>
         <div class="footer-col">
           <h3>Watch & Listen</h3>
-          <a href="#watch">Latest episode</a>
+          <a href="index.html#watch">Latest episode</a>
           <a href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">YouTube</a>
           <a href="https://podcasts.apple.com/us/podcast/jams-n-cocktails/id1498239152" target="_blank" rel="noopener">Apple Podcasts</a>
           <a href="https://www.iheart.com/podcast/269-jams-n-cocktails-96540907/" target="_blank" rel="noopener">iHeartRadio</a>
@@ -2012,12 +1777,12 @@
           <h3>Explore</h3>
           <a href="episode-recaps.html">Recap blog</a>
           <a href="shot_of_the_week.html">Cocktail recipes</a>
-          <a href="#arcade">JNC Arcade</a>
-          <a href="#merch">Merch</a>
+          <a href="index.html#arcade">JNC Arcade</a>
+          <a href="index.html#merch">Merch</a>
         </div>
         <div class="footer-col">
           <h3>Connect</h3>
-          <a href="#subscribe">Newsletter</a>
+          <a href="index.html#subscribe">Newsletter</a>
           <a href="https://www.patreon.com/jncpodcast" target="_blank" rel="noopener">Patreon</a>
           <a href="mailto:jnctvlive@gmail.com">Contact</a>
           <a href="mailto:jnctvlive@gmail.com?subject=JNC%20Sponsorship%20Inquiry">Sponsor JNC</a>
@@ -2030,311 +1795,83 @@
       </div>
     </div>
   </footer>
-  </div>
-
-  <nav class="carousel-controls" aria-label="Page sections">
-    <button class="carousel-button" id="carouselPrev" type="button" aria-label="Previous section">←</button>
-    <div class="carousel-status" aria-live="polite">
-      <span class="carousel-kicker" id="carouselCount">01 / 09 · Swipe</span>
-      <span class="carousel-title" id="carouselTitle">Home</span>
-      <span class="carousel-dots" id="carouselDots" aria-hidden="true"></span>
-    </div>
-    <button class="carousel-button" id="carouselNext" type="button" aria-label="Next section">→</button>
-  </nav>
-
-  <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/weekly-content.js"></script>
+  <dialog class="recap-dialog" id="recapDialog">
+    <button class="recap-dialog-close" id="recapDialogClose" type="button" aria-label="Close show notes"></button>
+    <div class="recap-dialog-hero"><img id="recapDialogImage" alt=""></div>
+    <article class="recap-article">
+      <header><p class="recap-article-date" id="recapDialogDate"></p><h1 id="recapDialogTitle"></h1></header>
+      <div class="recap-body" id="recapDialogBody"></div>
+      <a class="recap-source" id="recapDialogSource" href="#" target="_blank" rel="noopener">View original post</a>
+    </article>
+  </dialog>
+  <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/recap-posts.js"></script>
   <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/js/jnc-site-chrome.js"></script>
-  <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/js/jnc-podcast-player.js"></script>
   <script>
     (() => {
-      const body = document.body;
-      const universeGate = document.getElementById('universeGate');
-      const universeEnter = document.getElementById('universeEnter');
-      const universeHint = document.getElementById('universeHint');
+      const assetBase = 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/';
+      const toAssetUrl = value => String(value || '').startsWith('assets/') ? assetBase + String(value).slice(7) : value;
+      const resolveBodyAssets = html => String(html || '').replace(/src=(["'])assets\//g, (match, quote) => 'src=' + quote + assetBase);
+      const rawPosts = Array.isArray(window.JNC_RECAP_POSTS) ? window.JNC_RECAP_POSTS : [];
+      const posts = rawPosts.map(post => ({ ...post, image: toAssetUrl(post.image), body: resolveBodyAssets(post.body) }));
+      const grid = document.getElementById('recapGrid');
+      const search = document.getElementById('recapSearch');
+      const filters = document.getElementById('recapFilters');
+      const results = document.getElementById('recapResults');
+      const dialog = document.getElementById('recapDialog');
+      const dialogImage = document.getElementById('recapDialogImage');
+      const dialogTitle = document.getElementById('recapDialogTitle');
+      const dialogDate = document.getElementById('recapDialogDate');
+      const dialogBody = document.getElementById('recapDialogBody');
+      const dialogSource = document.getElementById('recapDialogSource');
+      const years = [...new Set(posts.map(post => post.date.slice(0, 4)))];
+      let activeYear = 'all';
 
-      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-      const canRequestFullscreen = Boolean(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
-      if (isStandalone) universeHint.textContent = 'App mode ready';
-      else if (!canRequestFullscreen) universeHint.textContent = 'Tap to begin the experience';
+      const formatDate = value => new Intl.DateTimeFormat('en-US',{year:'numeric',month:'long',day:'numeric'}).format(new Date(value + 'T12:00:00'));
+      const escapeText = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
-      const requestImmersiveFullscreen = () => {
-        if (isStandalone || document.fullscreenElement || document.webkitFullscreenElement) return;
-        const root = document.documentElement;
-        const requestFullscreen = root.requestFullscreen || root.webkitRequestFullscreen;
-        if (!requestFullscreen) return;
-        try {
-          const fullscreenAttempt = requestFullscreen.call(root);
-          if (fullscreenAttempt?.catch) fullscreenAttempt.catch(() => {});
-        } catch (error) {}
+      const openPost = post => {
+        dialog.scrollTop = 0;
+        dialogImage.src = post.image;
+        dialogImage.alt = post.title;
+        dialogTitle.textContent = post.title;
+        dialogDate.textContent = formatDate(post.date);
+        dialogBody.innerHTML = post.body;
+        dialogSource.href = post.source;
+        dialog.showModal();
+        dialog.scrollTop = 0;
+        requestAnimationFrame(() => { dialog.scrollTop = 0; });
+        history.replaceState(null, '', '#' + post.slug);
       };
 
-      universeEnter.addEventListener('click', () => {
-        universeEnter.disabled = true;
-        universeEnter.textContent = 'Opening the portal...';
-        universeGate.classList.add('is-launching');
-
-        requestImmersiveFullscreen();
-
-        try { sessionStorage.setItem('jnc-universe-entered','yes'); } catch (error) {}
-        window.setTimeout(() => {
-          document.documentElement.classList.add('jnc-universe-entered');
-          universeGate.setAttribute('aria-hidden','true');
-          universeEnter.disabled = false;
-          document.getElementById('home')?.focus({ preventScroll:true });
-        }, 420);
-      });
-
-      const weekly = window.JNC_WEEKLY_CONTENT;
-      if (weekly) {
-        const highlightHeading = document.getElementById('weeklyHighlightHeading');
-        const highlightItems = [...document.querySelectorAll('[data-weekly-highlight]')];
-        if (weekly.highlights) {
-          if (weekly.highlights.heading) highlightHeading.textContent = weekly.highlights.heading;
-          highlightItems.forEach((element, index) => {
-            const item = weekly.highlights.items?.[index];
-            if (!item) return;
-            element.querySelector('span').textContent = item.label || '';
-            element.querySelector('strong').textContent = item.value || '';
-          });
+      const render = () => {
+        const query = search.value.trim().toLowerCase();
+        const filtered = posts.filter(post => (activeYear === 'all' || post.date.startsWith(activeYear)) && (!query || (post.title + ' ' + post.excerpt).toLowerCase().includes(query)));
+        results.textContent = filtered.length + (filtered.length === 1 ? ' recap loaded' : ' recaps loaded');
+        grid.replaceChildren();
+        if (!filtered.length) {
+          const empty = document.createElement('p'); empty.className = 'recap-empty'; empty.textContent = 'No recaps found. Try another search or year.'; grid.append(empty); return;
         }
-
-        if (weekly.episode) {
-          const episode = weekly.episode;
-          const episodePlayer = document.getElementById('weeklyEpisodePlayer');
-          const episodeTitle = document.getElementById('weeklyEpisodeTitle');
-          const episodeMeta = document.getElementById('weeklyEpisodeMeta');
-          const episodeNotes = document.getElementById('weeklyEpisodeNotes');
-          document.querySelectorAll('[data-weekly-episode-eyebrow]').forEach(element => {
-            element.textContent = episode.eyebrow || '';
-          });
-          document.getElementById('weeklyEpisodeDescription').textContent = episode.description || '';
-          if (episode.youtubePlaylistId) {
-            episodePlayer.src = `https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(episode.youtubePlaylistId)}&enablejsapi=1&playsinline=1`;
-          }
-          if (episode.playerTitle) episodePlayer.title = episode.playerTitle;
-          const watchButton = document.getElementById('weeklyEpisodeWatch');
-          if (episode.playlistUrl) watchButton.href = episode.playlistUrl;
-          watchButton.textContent = episode.watchButtonLabel || 'Open playlist';
-          episodeNotes.hidden = !episode.showNotesUrl;
-          if (episode.showNotesUrl) episodeNotes.href = episode.showNotesUrl;
-          episodeNotes.textContent = episode.showNotesButtonLabel || 'Read show notes';
-          episodeTitle.replaceChildren(document.createTextNode((episode.title || '') + ' '));
-          const accent = document.createElement('span');
-          accent.className = 'yellow';
-          accent.textContent = episode.accent || '';
-          episodeTitle.appendChild(accent);
-          episodeMeta.replaceChildren();
-          (episode.meta || []).forEach((item, index) => {
-            if (index) {
-              const divider = document.createElement('span');
-              divider.textContent = '•';
-              episodeMeta.appendChild(divider);
-            }
-            const value = document.createElement('span');
-            value.textContent = item;
-            episodeMeta.appendChild(value);
-          });
-        }
-
-      }
-
-      const hifiTabs = [...document.querySelectorAll('[data-media-mode]')];
-      const hifiVideoPanel = document.getElementById('hifiVideoPanel');
-      const hifiAudioPanel = document.getElementById('hifiAudioPanel');
-      const hifiDisplayMode = document.getElementById('hifiDisplayMode');
-      const podcastAudio = document.getElementById('podcastAudio');
-      const weeklyEpisodePlayer = document.getElementById('weeklyEpisodePlayer');
-
-      const setMediaMode = (mode, remember = true) => {
-        const nextMode = mode === 'audio' ? 'audio' : 'video';
-        const isAudio = nextMode === 'audio';
-        hifiVideoPanel.hidden = isAudio;
-        hifiAudioPanel.hidden = !isAudio;
-        hifiDisplayMode.textContent = isAudio ? 'Audio lounge' : 'Video deck';
-        hifiTabs.forEach(tab => {
-          const selected = tab.dataset.mediaMode === nextMode;
-          tab.setAttribute('aria-selected', selected ? 'true' : 'false');
-          tab.tabIndex = selected ? 0 : -1;
+        filtered.forEach(post => {
+          const article = document.createElement('article'); article.className = 'recap-card';
+          article.innerHTML = '<div class="recap-card-image"><img src="' + escapeText(post.image) + '" alt="" loading="lazy"></div><div class="recap-card-copy"><time class="recap-date" datetime="' + post.date + '">' + formatDate(post.date) + '</time><h2>' + escapeText(post.title) + '</h2><p>' + escapeText(post.excerpt) + '</p><button class="recap-open" type="button">Open show notes</button></div>';
+          article.querySelector('button').addEventListener('click', () => openPost(post));
+          grid.append(article);
         });
-
-        if (isAudio) {
-          weeklyEpisodePlayer.contentWindow?.postMessage(JSON.stringify({ event:'command', func:'pauseVideo', args:[] }), '*');
-        } else if (podcastAudio && !podcastAudio.paused) {
-          podcastAudio.pause();
-        }
-
-        if (remember) {
-          try { localStorage.setItem('jnc-media-mode',nextMode); } catch (error) {}
-        }
       };
 
-      hifiTabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => setMediaMode(tab.dataset.mediaMode));
-        tab.addEventListener('keydown', event => {
-          if (!['ArrowLeft','ArrowRight'].includes(event.key)) return;
-          event.preventDefault();
-          const nextIndex = event.key === 'ArrowRight' ? (index + 1) % hifiTabs.length : (index - 1 + hifiTabs.length) % hifiTabs.length;
-          hifiTabs[nextIndex].focus();
-          setMediaMode(hifiTabs[nextIndex].dataset.mediaMode);
-        });
+      [{value:'all',label:'All'},...years.map(year => ({value:year,label:year}))].forEach(item => {
+        const button = document.createElement('button'); button.type = 'button'; button.className = 'year-button' + (item.value === 'all' ? ' active' : ''); button.textContent = item.label;
+        button.addEventListener('click', () => { activeYear = item.value; filters.querySelectorAll('button').forEach(candidate => candidate.classList.toggle('active', candidate === button)); render(); });
+        filters.append(button);
       });
-      document.querySelectorAll('[data-open-media]').forEach(link => link.addEventListener('click', () => setMediaMode(link.dataset.openMedia)));
-      try { setMediaMode(localStorage.getItem('jnc-media-mode') || 'video',false); }
-      catch (error) { setMediaMode('video',false); }
-
-      const reveals = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: .12 });
-        reveals.forEach(el => observer.observe(el));
-      } else {
-        reveals.forEach(el => el.classList.add('visible'));
-      }
-
-      const sectionLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
-      const sections = sectionLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-      const siteTrack = document.getElementById('siteTrack');
-      const carouselSlides = [...document.querySelectorAll('main > section:not([data-mobile-slide="false"])'), document.getElementById('connect')].filter(Boolean);
-      const carouselPrev = document.getElementById('carouselPrev');
-      const carouselNext = document.getElementById('carouselNext');
-      const carouselCount = document.getElementById('carouselCount');
-      const carouselTitle = document.getElementById('carouselTitle');
-      const carouselDots = document.getElementById('carouselDots');
-      const carouselMedia = window.matchMedia('(max-width:600px)');
-      const slideTitles = {
-        home:'Home', highlights:'Inside the Show', watch:'JNC Hi-Fi',
-        arcade:'JNC Arcade', support:'Support JNC', subscribe:'JNC Weekly', connect:'Connect'
-      };
-      let currentSlide = 0;
-      let carouselFrame;
-
-      carouselSlides.forEach(() => carouselDots.insertAdjacentHTML('beforeend', '<span class="carousel-dot"></span>'));
-      const carouselDotItems = [...carouselDots.children];
-
-      const updateDesktopActive = () => {
-        if (carouselMedia.matches) return;
-        const point = window.scrollY + 160;
-        let active = sections[0];
-        sections.forEach(section => { if (section.offsetTop <= point) active = section; });
-        sectionLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + active.id));
-      };
-
-      const updateCarouselStatus = index => {
-        currentSlide = Math.max(0, Math.min(index, carouselSlides.length - 1));
-        const active = carouselSlides[currentSlide];
-        carouselCount.textContent = `${String(currentSlide + 1).padStart(2,'0')} / ${String(carouselSlides.length).padStart(2,'0')} · Swipe`;
-        carouselTitle.textContent = slideTitles[active.id] || active.getAttribute('aria-label') || 'Explore';
-        carouselPrev.disabled = currentSlide === 0;
-        carouselNext.disabled = currentSlide === carouselSlides.length - 1;
-        carouselDotItems.forEach((dot, index) => dot.classList.toggle('active', index === currentSlide));
-        sectionLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + active.id));
-      };
-
-      const goToSlide = (index, behavior = 'smooth') => {
-        if (!carouselMedia.matches) return;
-        const next = Math.max(0, Math.min(index, carouselSlides.length - 1));
-        siteTrack.scrollTo({ left:next * siteTrack.clientWidth, behavior });
-        updateCarouselStatus(next);
-      };
-
-      carouselPrev.addEventListener('click', () => {
-        if (carouselMedia.matches) requestImmersiveFullscreen();
-        goToSlide(currentSlide - 1);
-      });
-      carouselNext.addEventListener('click', () => {
-        if (carouselMedia.matches) requestImmersiveFullscreen();
-        goToSlide(currentSlide + 1);
-      });
-      siteTrack.addEventListener('scroll', () => {
-        if (!carouselMedia.matches) return;
-        cancelAnimationFrame(carouselFrame);
-        carouselFrame = requestAnimationFrame(() => updateCarouselStatus(Math.round(siteTrack.scrollLeft / siteTrack.clientWidth)));
-      }, { passive:true });
-
-      document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', event => {
-        if (!carouselMedia.matches) return;
-        const href = link.getAttribute('href');
-        if (!href || href === '#') return;
-        const target = document.querySelector(href);
-        const index = carouselSlides.indexOf(target);
-        if (index < 0) return;
-        event.preventDefault();
-        goToSlide(index);
-      }));
-
-      window.addEventListener('keydown', event => {
-        if (!carouselMedia.matches || body.classList.contains('menu-open') || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)) return;
-        if (event.key === 'ArrowLeft') goToSlide(currentSlide - 1);
-        if (event.key === 'ArrowRight') goToSlide(currentSlide + 1);
-      });
-
-      const syncLayout = () => {
-        if (carouselMedia.matches) goToSlide(currentSlide, 'auto');
-        else updateDesktopActive();
-      };
-      window.addEventListener('scroll', updateDesktopActive, { passive:true });
-      window.addEventListener('resize', syncLayout, { passive:true });
-      window.visualViewport?.addEventListener('resize', syncLayout, { passive:true });
-      const syncFullscreenLayout = () => {
-        requestAnimationFrame(syncLayout);
-        window.setTimeout(syncLayout,180);
-      };
-      document.addEventListener('fullscreenchange', syncFullscreenLayout);
-      document.addEventListener('webkitfullscreenchange', syncFullscreenLayout);
-      updateCarouselStatus(0);
-      syncLayout();
-
-      const countdown = document.getElementById('countdown');
-      const liveText = document.getElementById('watchLiveText');
-
-      function easternParts(date = new Date()) {
-        const parts = new Intl.DateTimeFormat('en-US', {
-          timeZone:'America/New_York',
-          weekday:'short', year:'numeric', month:'2-digit', day:'2-digit',
-          hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
-        }).formatToParts(date);
-        return Object.fromEntries(parts.filter(p => p.type !== 'literal').map(p => [p.type,p.value]));
-      }
-
-      function updateCountdown() {
-        const p = easternParts();
-        const weekdays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        const dayIndex = weekdays.indexOf(p.weekday);
-        const nowPseudo = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second);
-        const hour = +p.hour;
-        const isLive = dayIndex === 3 && hour >= 20 && hour < 23;
-
-        if (isLive) {
-          countdown.textContent = 'LIVE NOW';
-          liveText.textContent = 'Live Now';
-          return;
-        }
-
-        let daysAhead = (3 - dayIndex + 7) % 7;
-        if (daysAhead === 0 && hour >= 20) daysAhead = 7;
-        const targetPseudo = Date.UTC(+p.year, +p.month - 1, +p.day + daysAhead, 20, 0, 0);
-        let diff = Math.max(0, targetPseudo - nowPseudo);
-        const days = Math.floor(diff / 86400000); diff %= 86400000;
-        const hours = Math.floor(diff / 3600000); diff %= 3600000;
-        const mins = Math.floor(diff / 60000);
-        countdown.textContent = `${days}d ${hours}h ${mins}m`;
-        liveText.textContent = 'Watch Live';
-      }
-      updateCountdown();
-      setInterval(updateCountdown, 30000);
-
-      const signup = document.getElementById('signupForm');
-      signup.addEventListener('submit', event => {
-        event.preventDefault();
-        signup.classList.add('sent');
-        signup.querySelector('button').textContent = 'Subscribed';
-      });
+      search.addEventListener('input', render);
+      document.getElementById('recapDialogClose').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+      dialog.addEventListener('close', () => history.replaceState(null, '', location.pathname));
+      render();
+      const requested = decodeURIComponent(location.hash.slice(1));
+      const requestedPost = posts.find(post => post.slug === requested);
+      if (requestedPost) openPost(requestedPost);
     })();
   </script>
 </body>
