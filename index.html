@@ -1129,6 +1129,19 @@
       html,body{height:100%;overflow:hidden}
       body{overscroll-behavior:none}
       .site-header,.mobile-menu{display:none!important}
+      body.mobile-home-active .site-header{
+        display:block!important;
+        position:fixed;
+        inset:0 0 auto;
+      }
+      body.mobile-home-active .site-header .nav{
+        min-height:calc(68px + env(safe-area-inset-top));
+        padding-top:env(safe-area-inset-top);
+      }
+      body.mobile-home-active.menu-open .mobile-menu{
+        display:block!important;
+        inset:calc(68px + env(safe-area-inset-top)) 0 0;
+      }
       .container{width:min(100% - 26px,var(--max))}
       .nav{min-height:68px}.mobile-menu{inset:68px 0 0}
       .header-brand-logo{width:142px;max-height:50px}
@@ -1334,6 +1347,9 @@
         padding-top:max(10px,env(safe-area-inset-top));
         padding-left:max(10px,env(safe-area-inset-left));
         padding-right:max(10px,env(safe-area-inset-right));
+      }
+      body.mobile-home-active .site-track .hero{
+        padding-top:max(78px,calc(68px + env(safe-area-inset-top)));
       }
       .hero .container{
         width:min(100%,430px);
@@ -1639,7 +1655,7 @@
   </style>
   <link rel="stylesheet" href="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/css/jnc-site-chrome.css">
 </head>
-<body>
+<body class="mobile-home-active">
   <div class="universe-gate" id="universeGate" role="dialog" aria-modal="true" aria-labelledby="universeTitle" aria-describedby="universeCopy">
     <div class="universe-orbit" aria-hidden="true"></div>
     <div class="universe-panel">
@@ -2228,6 +2244,7 @@
       const updateCarouselStatus = index => {
         currentSlide = Math.max(0, Math.min(index, carouselSlides.length - 1));
         const active = carouselSlides[currentSlide];
+        body.classList.toggle('mobile-home-active', carouselMedia.matches && active.id === 'home');
         carouselCount.textContent = `${String(currentSlide + 1).padStart(2,'0')} / ${String(carouselSlides.length).padStart(2,'0')} · Swipe`;
         carouselTitle.textContent = slideTitles[active.id] || active.getAttribute('aria-label') || 'Explore';
         carouselPrev.disabled = currentSlide === 0;
@@ -2276,7 +2293,10 @@
 
       const syncLayout = () => {
         if (carouselMedia.matches) goToSlide(currentSlide, 'auto');
-        else updateDesktopActive();
+        else {
+          body.classList.remove('mobile-home-active');
+          updateDesktopActive();
+        }
       };
       window.addEventListener('scroll', updateDesktopActive, { passive:true });
       window.addEventListener('resize', syncLayout, { passive:true });

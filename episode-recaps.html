@@ -1123,6 +1123,19 @@
       html,body{height:100%;overflow:hidden}
       body{overscroll-behavior:none}
       .site-header,.mobile-menu{display:none!important}
+      body.mobile-home-active .site-header{
+        display:block!important;
+        position:fixed;
+        inset:0 0 auto;
+      }
+      body.mobile-home-active .site-header .nav{
+        min-height:calc(68px + env(safe-area-inset-top));
+        padding-top:env(safe-area-inset-top);
+      }
+      body.mobile-home-active.menu-open .mobile-menu{
+        display:block!important;
+        inset:calc(68px + env(safe-area-inset-top)) 0 0;
+      }
       .container{width:min(100% - 26px,var(--max))}
       .nav{min-height:68px}.mobile-menu{inset:68px 0 0}
       .header-brand-logo{width:142px;max-height:50px}
@@ -1328,6 +1341,9 @@
         padding-top:max(10px,env(safe-area-inset-top));
         padding-left:max(10px,env(safe-area-inset-left));
         padding-right:max(10px,env(safe-area-inset-right));
+      }
+      body.mobile-home-active .site-track .hero{
+        padding-top:max(78px,calc(68px + env(safe-area-inset-top)));
       }
       .hero .container{
         width:min(100%,430px);
@@ -1687,7 +1703,7 @@
     .recap-body img,.recap-body iframe,.recap-body video{max-width:100%;height:auto}.recap-source{display:inline-block;margin-top:30px;color:var(--yellow);font-weight:850}
     .recap-source::after{content:"\2197";display:inline-block;margin-left:.35em}
     @media(max-width:980px){.recap-hero{grid-template-columns:1fr}.recap-console{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.recap-console::before{grid-column:1/-1}.recap-stat{display:block}.recap-stat span{display:block;margin-top:5px;text-align:left}.recap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:600px){html.jnc-universe-entered{height:100%!important;overflow:hidden!important}body.recap-page{height:100vh!important;height:100dvh!important;min-height:100vh!important;min-height:100dvh!important;overflow-x:hidden!important;overflow-y:scroll!important;-webkit-overflow-scrolling:touch;overscroll-behavior-y:auto;touch-action:pan-y}body.recap-page.menu-open{overflow-y:hidden!important}.recap-page .site-header{display:block!important;position:sticky}.recap-page .mobile-menu{display:none!important;inset:68px 0 0}.recap-page.menu-open .mobile-menu{display:block!important}.recap-page .nav{min-height:68px}.recap-page .header-brand-logo{width:142px;max-height:50px}.recap-main{padding:46px 0 80px}.recap-hero{gap:28px;margin-bottom:30px}.recap-hero h1{font-size:clamp(3.8rem,20vw,5.7rem)}.recap-hero .lead{font-size:.84rem}.recap-console{grid-template-columns:repeat(3,1fr);padding:18px}.recap-stat strong{font-size:1.8rem}.recap-stat span{font-size:.47rem}.recap-tools{top:74px;grid-template-columns:1fr;padding:9px}.recap-filter{padding-bottom:1px}.recap-grid{grid-template-columns:1fr;gap:15px}.recap-card{display:grid;grid-template-columns:112px 1fr;border-radius:17px}.recap-card-image{height:100%;min-height:154px;aspect-ratio:auto}.recap-card-copy{padding:15px}.recap-card h2{font-size:.9rem}.recap-card p{display:none}.recap-open{padding-top:10px}.recap-dialog{width:100%;max-height:100dvh;border:0;border-radius:0}.recap-dialog-hero{aspect-ratio:16/9}.recap-article{padding:0 20px 44px}.recap-article header{margin:-25px 0 28px}.recap-article h1{font-size:2.5rem}.recap-body{font-size:.9rem;line-height:1.7}.recap-page footer{height:auto;min-height:0;overflow:visible;padding:48px 0 28px}.recap-page .footer-grid{grid-template-columns:1fr 1fr}.recap-page .footer-brand{grid-column:1/-1}}
+    @media(max-width:600px){html.jnc-universe-entered{height:100%!important;overflow:hidden!important}body.recap-page{height:100vh!important;height:100dvh!important;min-height:100vh!important;min-height:100dvh!important;overflow-x:hidden!important;overflow-y:scroll!important;-webkit-overflow-scrolling:touch;overscroll-behavior-y:auto;touch-action:pan-y}body.recap-page.menu-open{overflow-y:hidden!important}.recap-page .site-header{display:block!important;position:sticky;top:0}.recap-page .mobile-menu{display:none!important;inset:68px 0 0}.recap-page.menu-open .mobile-menu{display:block!important}.recap-page .nav{min-height:68px}.recap-page .header-brand-logo{width:142px;max-height:50px}.recap-main{padding:46px 0 80px}.recap-hero{gap:28px;margin-bottom:30px}.recap-hero h1{font-size:clamp(3.8rem,20vw,5.7rem)}.recap-hero .lead{font-size:.84rem}.recap-console{grid-template-columns:repeat(3,1fr);padding:18px}.recap-stat strong{font-size:1.8rem}.recap-stat span{font-size:.47rem}.recap-tools{top:74px;grid-template-columns:1fr;padding:9px}.recap-filter{padding-bottom:1px}.recap-grid{grid-template-columns:1fr;gap:15px}.recap-card{display:grid;grid-template-columns:112px 1fr;border-radius:17px}.recap-card-image{height:100%;min-height:154px;aspect-ratio:auto}.recap-card-copy{padding:15px}.recap-card h2{font-size:.9rem}.recap-card p{display:none}.recap-open{padding-top:10px}.recap-dialog{width:100%;max-height:100dvh;border:0;border-radius:0}.recap-dialog-hero{aspect-ratio:16/9}.recap-article{padding:0 20px 44px}.recap-article header{margin:-25px 0 28px}.recap-article h1{font-size:2.5rem}.recap-body{font-size:.9rem;line-height:1.7}.recap-page footer{height:auto;min-height:0;overflow:visible;padding:48px 0 28px}.recap-page .footer-grid{grid-template-columns:1fr 1fr}.recap-page .footer-brand{grid-column:1/-1}}
   </style>
 </head>
 <body class="recap-page">
