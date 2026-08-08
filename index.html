@@ -932,7 +932,6 @@
         <a href="#home" class="active">Home</a>
         <a href="#watch">Watch</a>
         <a href="#segments">Listen</a>
-        <a href="#stories">Stories</a>
         <a href="shot_of_the_week.html">Cocktails</a>
         <a href="#arcade">Arcade</a>
         <a href="#support">Support</a>
@@ -952,7 +951,6 @@
     <a href="#home">Home</a>
     <a href="#watch">Watch</a>
     <a href="#segments">Listen</a>
-    <a href="#stories">Stories</a>
     <a href="shot_of_the_week.html">Cocktails</a>
     <a href="#arcade">Arcade</a>
     <a href="#support">Support</a>
@@ -1078,67 +1076,6 @@
             <div class="podcast-queue-head"><h3>Latest drops</h3><span>Choose an episode</span></div>
             <div class="podcast-episode-list" id="podcastEpisodeList" role="list" aria-live="polite">
               <span class="podcast-skeleton"></span><span class="podcast-skeleton"></span><span class="podcast-skeleton"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section social-lounge" id="stories">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div>
-            <p class="eyebrow" id="instagramEyebrow">Fresh from Instagram</p>
-            <h2 id="instagramTitle">Stories & <span class="yellow">Clips</span></h2>
-          </div>
-          <div class="instagram-heading-actions">
-            <a class="btn btn-ghost" id="instagramProfileLink" href="https://www.instagram.com/jamsncocktails/" target="_blank" rel="noopener">Follow @jamsncocktails</a>
-          </div>
-        </div>
-
-        <div class="social-shell reveal" id="instagramLounge">
-          <div class="social-marquee">
-            <div>
-              <span class="social-status">Live from the feed</span>
-              <p>Reels, backstage chaos, show clips, and whatever happened after the second round.</p>
-            </div>
-            <div class="social-profile" aria-label="JNC Instagram profile">
-              <span class="social-profile-mark" aria-hidden="true">IG</span>
-              <span><strong id="instagramHandle">@jamsncocktails</strong><small>Official JNC feed</small></span>
-            </div>
-          </div>
-
-          <div class="social-stage-grid">
-            <div class="social-viewer-wrap">
-              <div class="social-viewer">
-                <div class="social-viewer-bar"><span>Now pouring</span><span id="instagramViewerCount">Reel 01 / 05</span></div>
-                <div class="instagram-stage" id="instagramStage" aria-live="polite">
-                  <div class="social-loader" id="instagramLoader"><span>Loading the latest chaos</span></div>
-                  <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/jamsncocktails/reel/DblBs3pCbZg/" data-instgrm-version="14"></blockquote>
-                </div>
-              </div>
-            </div>
-
-            <div class="social-queue">
-              <span class="social-queue-kicker">The social pour</span>
-              <h3>Tap Into the <span class="yellow">Chaos</span></h3>
-              <p class="social-queue-intro" id="instagramDescription">Pick a reel from the lineup and play it right here. New clips can be swapped into the weekly content file whenever the lounge gets rowdy.</p>
-              <div class="social-queue-head">
-                <div><strong>Reels on deck</strong><br><span>Choose what plays next</span></div>
-                <div class="instagram-heading-actions">
-                  <button class="instagram-arrow" id="instagramPrev" type="button" aria-label="Previous Instagram reel">←</button>
-                  <button class="instagram-arrow" id="instagramNext" type="button" aria-label="Next Instagram reel">→</button>
-                </div>
-              </div>
-              <div class="social-queue-list" id="instagramTrack" role="list" aria-label="JNC Instagram reel queue">
-                <button class="social-queue-item active" type="button" data-instagram-index="0"><span class="social-queue-number">01</span><span class="social-queue-copy"><small>Featured reel</small><strong>Fresh from the JNC Lounge</strong></span><span class="social-queue-play">▶</span></button>
-                <button class="social-queue-item" type="button" data-instagram-index="1"><span class="social-queue-number">02</span><span class="social-queue-copy"><small>On deck</small><strong>More lounge chaos</strong></span><span class="social-queue-play">▶</span></button>
-                <button class="social-queue-item" type="button" data-instagram-index="2"><span class="social-queue-number">03</span><span class="social-queue-copy"><small>On deck</small><strong>Another round from JNC</strong></span><span class="social-queue-play">▶</span></button>
-              </div>
-              <div class="social-actions">
-                <a class="btn btn-primary" id="instagramOpenPost" href="https://www.instagram.com/jamsncocktails/" target="_blank" rel="noopener">Open this reel</a>
-                <a class="btn btn-ghost" id="instagramProfileLinkSecondary" href="https://www.instagram.com/jamsncocktails/" target="_blank" rel="noopener">Visit the full feed</a>
-              </div>
             </div>
           </div>
         </div>
@@ -1332,11 +1269,9 @@
     <button class="carousel-button" id="carouselNext" type="button" aria-label="Next section">→</button>
   </nav>
 
-  <script async id="instagramEmbedScript" src="https://www.instagram.com/embed.js"></script>
   <script src="assets/data/weekly-content.js"></script>
   <script src="assets/js/jnc-site-chrome.js"></script>
   <script src="assets/js/jnc-podcast-player.js"></script>
-  <script src="assets/js/jnc-instagram-lounge.js"></script>
   <script>
     (() => {
       const body = document.body;
@@ -1420,7 +1355,7 @@
       const carouselMedia = window.matchMedia('(max-width:600px)');
       const slideTitles = {
         home:'Home', highlights:'Inside the Show', watch:'Latest Episode', segments:'Audio Lounge',
-        stories:'Stories & Clips', arcade:'JNC Arcade', support:'Support JNC', subscribe:'JNC Weekly', connect:'Connect'
+        arcade:'JNC Arcade', support:'Support JNC', subscribe:'JNC Weekly', connect:'Connect'
       };
       let currentSlide = 0;
       let carouselFrame;
