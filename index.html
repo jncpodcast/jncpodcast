@@ -1096,6 +1096,7 @@
     @media (max-width:600px){
       html,body{height:100%;overflow:hidden}
       body{overscroll-behavior:none}
+      .site-header,.mobile-menu{display:none!important}
       .container{width:min(100% - 26px,var(--max))}
       .nav{min-height:68px}.mobile-menu{inset:68px 0 0}
       .header-brand-logo{width:142px;max-height:50px}
@@ -1208,7 +1209,8 @@
       .site-track{
         display:flex;
         width:100%;
-        height:calc(100svh - 68px);
+        height:100svh;
+        height:100dvh;
         overflow-x:auto;
         overflow-y:hidden;
         scroll-snap-type:x mandatory;
