@@ -876,92 +876,78 @@
     .social-queue-play{position:relative;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.07);color:var(--yellow);font-size:.62rem}.social-queue-item.active .social-queue-play{background:var(--yellow);color:var(--ink)}
     .social-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:20px}
 
-    .arcade{
-      background:
-        linear-gradient(180deg,rgba(5,6,14,.8),rgba(5,6,14,.94)),
-        repeating-linear-gradient(0deg,rgba(255,255,255,.025),rgba(255,255,255,.025) 1px,transparent 1px,transparent 4px);
-    }
-    .arcade-shell{
-      position:relative;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:32px;
-      background:linear-gradient(135deg,#101326,#090b15 58%);
-      box-shadow:var(--shadow);
-    }
-    .arcade-shell::before{
-      content:"";position:absolute;inset:-1px;
-      background:linear-gradient(90deg,transparent,rgba(244,241,0,.08),transparent);
-      transform:translateX(-100%);
-      animation:scan 6s infinite;
-    }
-    @keyframes scan{55%,100%{transform:translateX(100%)}}
-    .arcade-marquee{
-      position:relative;z-index:2;
-      display:grid;grid-template-columns:minmax(0,1fr) 210px;align-items:center;gap:38px;
-      padding:44px 44px 34px;
-      border-bottom:1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(circle at 86% 20%,rgba(255,58,181,.17),transparent 18rem),
-        radial-gradient(circle at 70% 70%,rgba(0,217,255,.13),transparent 22rem);
-    }
-    .pixel-label{
-      display:inline-flex;
-      padding:8px 10px;
-      border:2px solid var(--yellow);
-      color:var(--yellow);
-      font:900 .72rem/1 monospace;
-      letter-spacing:.12em;text-transform:uppercase;
-      box-shadow:4px 4px 0 var(--purple);
-      margin-bottom:15px;
-    }
-    .arcade-marquee h2{margin-bottom:15px}
-    .arcade-marquee .lead{margin-bottom:0}
-    .arcade-logo-panel{
-      position:relative;
-      width:210px;
-      aspect-ratio:1/1;
-      justify-self:end;
-      align-self:center;
-      filter:drop-shadow(0 18px 32px rgba(0,0,0,.42));
-    }
-    .arcade-logo-panel img{
-      width:100%;
-      height:100%!important;
-      max-height:210px;
-      object-fit:contain;
-      border-radius:24px;
-      transform:rotate(2deg);
-    }
-    .arcade-console-bar{
-      position:relative;z-index:2;
-      display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
-      padding:18px 44px;background:rgba(4,6,14,.72);border-bottom:1px solid rgba(255,255,255,.1);
-    }
-    .arcade-mobile-hint{display:none}
-    .arcade-status{display:flex;align-items:center;gap:18px;flex-wrap:wrap;color:#c8cad7;font:800 .68rem/1 monospace;text-transform:uppercase;letter-spacing:.08em}
-    .arcade-status span{display:flex;align-items:center;gap:7px}
-    .arcade-status i{width:8px;height:8px;border-radius:50%;background:#46ef84;box-shadow:0 0 13px rgba(70,239,132,.7)}
-    .arcade-games{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:28px 28px 22px}
-    .arcade-game{
-      min-width:0;overflow:hidden;display:flex;flex-direction:column;
-      border:1px solid rgba(255,255,255,.14);border-radius:22px;
-      background:linear-gradient(180deg,#15182a,#0a0c16);
-      box-shadow:0 16px 42px rgba(0,0,0,.28);
-      transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
-    }
-    .arcade-game:hover{transform:translateY(-7px);border-color:var(--yellow);box-shadow:0 22px 55px rgba(0,0,0,.4),0 0 24px rgba(244,241,0,.09)}
-    .arcade-game-art{position:relative;aspect-ratio:1/1;overflow:hidden;background:#04050c;border-bottom:1px solid rgba(255,255,255,.1)}
-    .arcade-game-art img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease,filter .35s ease}
-    .arcade-game:hover .arcade-game-art img{transform:scale(1.035);filter:saturate(1.08)}
-    .arcade-game-badge{position:absolute;left:13px;top:13px;padding:7px 9px;border-radius:8px;background:var(--yellow);color:#080910;font:950 .58rem/1 monospace;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 8px 20px rgba(0,0,0,.3)}
-    .arcade-game-copy{display:flex;flex:1;flex-direction:column;padding:20px}
-    .arcade-game-copy h3{font:950 1rem/1.15 monospace;letter-spacing:.02em;margin-bottom:9px}
-    .arcade-game-copy p{font:700 .73rem/1.5 monospace;color:#b8bbca;margin-bottom:18px}
-    .arcade-game-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;color:var(--yellow);font:900 .59rem/1 monospace;text-transform:uppercase;letter-spacing:.08em}
-    .arcade-workshop{position:relative;z-index:2;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:0 28px 30px}
-    .arcade-workshop strong{color:var(--muted);font:900 .61rem/1 monospace;text-transform:uppercase;letter-spacing:.1em;margin-right:4px}
-    .arcade-chip{padding:8px 10px;border:1px solid rgba(255,255,255,.13);border-radius:999px;background:rgba(255,255,255,.04);color:#d5d7e3;font:800 .61rem/1 monospace;text-transform:uppercase}
+    .arcade{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 38%,rgba(129,46,255,.2),transparent 35rem),linear-gradient(180deg,#080916,#020309)}
+    .arcade::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;background:linear-gradient(rgba(4,5,12,.15),rgba(4,5,12,.82)),repeating-linear-gradient(90deg,transparent 0 55px,rgba(0,217,255,.035) 56px),repeating-linear-gradient(0deg,transparent 0 55px,rgba(255,58,181,.035) 56px)}
+    .arcade-stage{position:relative;z-index:1;display:grid;grid-template-columns:minmax(260px,.72fr) minmax(520px,1.28fr);align-items:center;gap:clamp(28px,5vw,76px)}
+    .arcade-intro .pixel-label{display:inline-flex;margin-bottom:18px;padding:8px 10px;border:2px solid var(--yellow);color:var(--yellow);font:900 .72rem/1 monospace;letter-spacing:.12em;text-transform:uppercase;box-shadow:4px 4px 0 var(--purple)}
+    .arcade-intro h2{margin-bottom:18px}.arcade-intro .lead{max-width:560px;margin-bottom:25px}.arcade-status{display:flex;align-items:center;gap:9px;color:#bfc3d4;font:900 .62rem/1 monospace;letter-spacing:.1em;text-transform:uppercase}.arcade-status i{width:8px;height:8px;border-radius:50%;background:#50ff8a;box-shadow:0 0 16px #50ff8a}
+    .arcade-cabinet{position:relative;width:min(100%,680px);justify-self:end;filter:drop-shadow(0 34px 52px rgba(0,0,0,.62))}
+    .arcade-cabinet::before,.arcade-cabinet::after{content:"";position:absolute;z-index:4;top:14px;bottom:4px;width:16px;border-radius:10px;background:linear-gradient(90deg,#7c0da5,#ff3ab5 38%,#62117f);box-shadow:0 0 18px rgba(255,58,181,.42)}
+    .arcade-cabinet::before{left:-7px;transform:skewY(-1deg)}.arcade-cabinet::after{right:-7px;transform:skewY(1deg)}
+    .cabinet-marquee{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;min-height:106px;padding:16px 70px 12px;border:5px solid #171925;border-bottom-width:9px;border-radius:28px 28px 10px 10px;background:radial-gradient(circle,rgba(244,241,0,.24),transparent 55%),linear-gradient(115deg,#111426,#351052 55%,#0b0d19);box-shadow:inset 0 0 0 3px var(--yellow),inset 0 0 34px rgba(244,241,0,.15)}
+    .cabinet-marquee img{width:min(100%,310px);height:76px!important;object-fit:contain;filter:drop-shadow(0 0 16px rgba(244,241,0,.42))}
+    .cabinet-body{position:relative;z-index:2;padding:22px 30px 0;background:linear-gradient(90deg,#131521,#292b38 14%,#0b0c13 50%,#292b38 86%,#131521);clip-path:polygon(3% 0,97% 0,94% 100%,6% 100%)}
+    .cabinet-monitor-frame{position:relative;padding:20px;border:3px solid #08090d;border-radius:18px 18px 40px 40px;background:linear-gradient(145deg,#292c36,#050609 75%);box-shadow:inset 0 0 0 2px rgba(255,255,255,.07),inset 0 -18px 40px #000}
+    .cabinet-screen{position:relative;overflow:hidden;aspect-ratio:16/9;border:4px solid #030306;border-radius:12px 12px 26px 26px;background:#02030a;box-shadow:0 0 0 2px #383b48,0 0 38px rgba(0,217,255,.22)}
+    .cabinet-screen video{width:100%;height:100%;display:block;object-fit:cover;filter:saturate(1.16) contrast(1.06) brightness(.72)}
+    .cabinet-screen::after{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;background:radial-gradient(ellipse,transparent 48%,rgba(0,0,0,.6) 100%),repeating-linear-gradient(0deg,rgba(255,255,255,.055) 0 1px,transparent 1px 4px);mix-blend-mode:screen}
+    .cabinet-start{position:absolute;z-index:3;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;color:#fff;text-align:center;text-shadow:0 2px 9px #000;background:radial-gradient(circle,rgba(6,8,22,.25),rgba(3,4,12,.72));transition:background .25s ease}
+    .cabinet-start:hover{background:radial-gradient(circle,rgba(129,46,255,.18),rgba(3,4,12,.62))}.cabinet-start small{margin-bottom:10px;color:#5dff9b;font:900 .58rem/1 monospace;letter-spacing:.16em;text-transform:uppercase}.cabinet-start strong{font:950 clamp(1.7rem,3.5vw,3.35rem)/.85 var(--font-display);text-transform:uppercase}.cabinet-start span{margin-top:13px;padding:9px 14px;border:2px solid var(--yellow);color:var(--yellow);font:950 .65rem/1 monospace;letter-spacing:.13em;text-transform:uppercase;box-shadow:3px 3px 0 var(--purple);animation:arcade-pulse 1.2s steps(2,end) infinite}
+    @keyframes arcade-pulse{50%{opacity:.52}}
+    .cabinet-controls{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-around;min-height:112px;margin:-2px 18px 0;padding:15px 44px 24px;border:4px solid #0b0c12;border-radius:5px 5px 26px 26px;background:linear-gradient(165deg,#424652,#171923 53%,#080910);clip-path:polygon(4% 0,96% 0,100% 88%,93% 100%,7% 100%,0 88%);box-shadow:inset 0 3px 0 rgba(255,255,255,.13),0 15px 25px rgba(0,0,0,.4)}
+    .joystick{--joy-x:0px;--joy-y:0px;--joy-scale:1;position:relative;width:54px;height:60px;touch-action:none;cursor:grab;outline:none;transform:translate(var(--joy-x),var(--joy-y)) scale(var(--joy-scale));transform-origin:bottom center;transition:filter .16s ease}.joystick:active,.joystick.dragging{cursor:grabbing;filter:drop-shadow(0 0 8px rgba(229,22,82,.65))}.joystick:focus-visible{filter:drop-shadow(0 0 9px var(--yellow))}.joystick::before{content:"";position:absolute;left:24px;top:12px;width:8px;height:38px;border-radius:4px;background:linear-gradient(90deg,#4a4c55,#d4d5dc,#33353c);transform:rotate(-7deg);transform-origin:bottom}.joystick::after{content:"";position:absolute;left:7px;top:0;width:35px;height:35px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#ff7698,#e51652 42%,#67061e);box-shadow:0 7px 10px #000}
+    .arcade-buttons{display:flex;gap:15px;transform:rotate(-7deg)}.arcade-buttons button{appearance:none;width:28px;height:28px;padding:0;border:3px solid #090a0e;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff27c,#f4f100 50%,#787600);box-shadow:0 5px 7px #000;cursor:pointer;transition:transform .08s ease,filter .08s ease,box-shadow .08s ease}.arcade-buttons button:nth-child(2){background:radial-gradient(circle at 35% 25%,#60efff,#00a7d1 50%,#004a63)}.arcade-buttons button:nth-child(3){background:radial-gradient(circle at 35% 25%,#ff7bd4,#ff3ab5 50%,#7a0a51)}.arcade-buttons button.pressed,.arcade-buttons button:active{transform:translateY(4px) scale(.94);filter:brightness(1.55);box-shadow:0 1px 2px #000,0 0 16px currentColor}.arcade-buttons button:focus-visible{outline:2px solid #fff;outline-offset:4px}
+    .arcade-cabinet.cabinet-bump{animation:cabinet-bump .18s ease-out}@keyframes cabinet-bump{35%{transform:translateY(2px) rotate(.18deg)}70%{transform:translateY(-1px) rotate(-.12deg)}}
+    .cabinet-base{position:relative;z-index:1;width:82%;height:70px;margin:-7px auto 0;border:4px solid #11131b;border-top:0;background:linear-gradient(90deg,#11131e,#272a35 14%,#090a10 50%,#272a35 86%,#11131e);clip-path:polygon(4% 0,96% 0,100% 100%,0 100%)}.cabinet-base::after{content:"25¢  •  PLAYER ONE";position:absolute;left:50%;top:24px;transform:translateX(-50%);white-space:nowrap;color:#9a9dab;font:900 .56rem/1 monospace;letter-spacing:.13em}
+    /* Physical-cabinet finishing layer */
+    .arcade-stage::before{content:"";position:absolute;z-index:-1;right:-8%;bottom:-6%;width:72%;height:28%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,58,181,.25),rgba(0,217,255,.1) 35%,transparent 70%);filter:blur(18px);transform:perspective(300px) rotateX(62deg)}
+    .arcade-cabinet{perspective:1100px;transform-style:preserve-3d}
+    .arcade-cabinet::before,.arcade-cabinet::after{background:linear-gradient(90deg,#3b0751,#ff3ab5 32%,#9f19d4 56%,#260531);border:1px solid rgba(255,255,255,.22);box-shadow:inset 2px 0 0 rgba(255,255,255,.16),0 0 22px rgba(255,58,181,.48)}
+    .cabinet-marquee{overflow:hidden;isolation:isolate;transform:translateZ(8px);box-shadow:inset 0 0 0 3px var(--yellow),inset 0 0 42px rgba(244,241,0,.24),0 8px 16px rgba(0,0,0,.55),0 0 28px rgba(244,241,0,.12)}
+    .cabinet-marquee::before{content:"";position:absolute;z-index:-1;inset:7px;border-radius:18px;background:radial-gradient(circle,#fffbd1 0 2px,var(--yellow) 3px,transparent 5px) 0 0/22px 22px;opacity:.52;filter:drop-shadow(0 0 5px var(--yellow))}
+    .cabinet-marquee::after{content:"INSERT CHAOS";position:absolute;right:17px;bottom:11px;color:rgba(255,255,255,.65);font:900 .44rem/1 monospace;letter-spacing:.14em}
+    .cabinet-marquee img{position:relative;z-index:1;padding:5px 16px;border-radius:14px;background:rgba(6,7,15,.72);filter:drop-shadow(0 0 13px rgba(244,241,0,.72))}
+    .cabinet-body{border-inline:2px solid rgba(255,255,255,.1);box-shadow:inset 24px 0 30px rgba(255,255,255,.035),inset -24px 0 30px rgba(255,255,255,.035)}
+    .cabinet-speakers{height:20px;margin:0 34px 12px;border-radius:5px;opacity:.68;background:radial-gradient(circle,#05060a 0 1.5px,transparent 2px) 0 0/8px 8px,linear-gradient(#292c35,#101117);box-shadow:inset 0 1px 4px #000}
+    .cabinet-monitor-frame{border-width:5px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.08),inset 0 -22px 42px #000,0 12px 18px rgba(0,0,0,.52)}
+    .cabinet-screen{transform:perspective(900px) rotateX(.8deg);box-shadow:0 0 0 3px #050509,0 0 0 5px #3b3e49,0 0 45px rgba(0,217,255,.3),inset 0 0 28px #000}
+    .cabinet-screen::before{content:"";position:absolute;z-index:2;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 35px 11px rgba(0,0,0,.62);background:linear-gradient(115deg,rgba(255,255,255,.13),transparent 22% 78%,rgba(255,255,255,.035))}
+    .cabinet-controls{transform:perspective(560px) rotateX(7deg);transform-origin:top;box-shadow:inset 0 3px 0 rgba(255,255,255,.18),inset 0 -18px 24px rgba(0,0,0,.35),0 17px 27px rgba(0,0,0,.55)}
+    .cabinet-controls::before{content:"PLAYER 1";position:absolute;left:45px;bottom:15px;color:#9195a8;font:900 .46rem/1 monospace;letter-spacing:.14em}.cabinet-controls::after{content:"A   B   JAM";position:absolute;right:36px;bottom:15px;color:#9195a8;font:900 .43rem/1 monospace;letter-spacing:.13em}
+    .cabinet-base{height:104px;border-inline:5px solid #11131b;background:linear-gradient(90deg,#090a10,#242732 15%,#08090e 48%,#161822 83%,#08090e);box-shadow:inset 0 0 45px #000,0 22px 26px rgba(0,0,0,.48)}
+    .cabinet-base::after{display:none}
+    .coin-bank{position:absolute;inset:19px 50% auto auto;display:flex;gap:28px;transform:translateX(50%)}
+    .coin-slot{position:relative;width:35px;height:54px;border:2px solid #444854;border-radius:4px;background:linear-gradient(145deg,#20232b,#07080c);box-shadow:inset 0 0 9px #000,0 2px 0 rgba(255,255,255,.1)}
+    .coin-slot::before{content:"";position:absolute;left:50%;top:8px;width:7px;height:20px;border-radius:2px;background:#ec315b;box-shadow:0 0 10px rgba(236,49,91,.75);transform:translateX(-50%)}.coin-slot::after{content:"25¢";position:absolute;left:50%;bottom:7px;transform:translateX(-50%);color:#aeb1be;font:800 .4rem/1 monospace}
+    /* Integrated JNC equipment-rack treatment */
+    .arcade-stage{isolation:isolate;padding:clamp(22px,3vw,42px);border:6px solid #29251f;border-radius:28px;background:linear-gradient(145deg,#17191f,#07080c 72%);box-shadow:inset 0 0 0 1px #665c4c,inset 0 14px 32px rgba(255,255,255,.025),inset 0 -30px 55px #020204,0 34px 70px rgba(0,0,0,.56)}
+    .arcade-stage::before{right:2%;bottom:-9%;width:62%;height:24%;opacity:.58;filter:blur(25px)}
+    .arcade-stage::after{content:"";position:absolute;z-index:5;inset:12px;pointer-events:none;border-radius:17px;background:radial-gradient(circle,#ad9d7d 0 2px,#332d25 2.5px 4px,transparent 4.5px) left top/26px 26px no-repeat,radial-gradient(circle,#ad9d7d 0 2px,#332d25 2.5px 4px,transparent 4.5px) right top/26px 26px no-repeat,radial-gradient(circle,#ad9d7d 0 2px,#332d25 2.5px 4px,transparent 4.5px) left bottom/26px 26px no-repeat,radial-gradient(circle,#ad9d7d 0 2px,#332d25 2.5px 4px,transparent 4.5px) right bottom/26px 26px no-repeat}
+    .arcade-intro{align-self:stretch;display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,3vw,38px);border:1px solid #363943;border-radius:18px;background:linear-gradient(145deg,#22252d,#0c0d12 76%);box-shadow:inset 0 1px rgba(255,255,255,.08),inset 0 -18px 30px rgba(0,0,0,.3),0 14px 28px rgba(0,0,0,.28)}
+    .arcade-intro::after{content:"JNC ENTERTAINMENT SYSTEMS  •  MODEL 08PM";margin-top:28px;padding-top:13px;border-top:1px solid rgba(255,255,255,.1);color:#777b86;font:800 .5rem/1.4 monospace;letter-spacing:.13em}
+    .arcade-intro .pixel-label{align-self:flex-start;border:1px solid #9b8060;border-radius:4px;background:#171008;color:#f3b857;box-shadow:inset 0 0 15px rgba(255,151,31,.12),0 0 12px rgba(255,151,31,.08)}
+    .arcade-cabinet{width:min(100%,700px);padding:10px;border:1px solid #494d58;border-radius:22px;background:linear-gradient(145deg,#30333c,#0b0c11 72%);box-shadow:inset 0 1px rgba(255,255,255,.13),inset 14px 0 25px rgba(255,255,255,.018),inset -14px 0 25px rgba(0,0,0,.3),0 24px 48px rgba(0,0,0,.48);filter:none}
+    .arcade-cabinet::before,.arcade-cabinet::after{top:17px;bottom:17px;width:5px;border:0;border-radius:3px;background:linear-gradient(#6f5a35,var(--yellow) 22%,#7f6a34 75%,#30281c);box-shadow:0 0 11px rgba(244,241,0,.2)}
+    .arcade-cabinet::before{left:4px}.arcade-cabinet::after{right:4px}
+    .cabinet-marquee{min-height:88px;margin:0 9px;padding:10px 56px;border:1px solid #585c65;border-bottom:4px solid #08090c;border-radius:14px 14px 5px 5px;background:linear-gradient(180deg,#292c33,#101116);transform:none;box-shadow:inset 0 1px rgba(255,255,255,.13),inset 0 -12px 18px rgba(0,0,0,.36),0 7px 12px rgba(0,0,0,.42)}
+    .cabinet-marquee::before{inset:10px 34px;border:1px solid #765c2d;border-radius:7px;background:radial-gradient(ellipse,rgba(244,241,0,.15),transparent 68%),linear-gradient(#17130a,#080807);opacity:1;filter:none;box-shadow:inset 0 0 21px rgba(244,241,0,.16),0 0 10px rgba(244,241,0,.08)}
+    .cabinet-marquee::after{right:24px;bottom:9px;color:#777b84;font-size:.38rem}
+    .cabinet-marquee img{width:min(100%,270px);height:64px!important;padding:4px 13px;background:transparent;filter:drop-shadow(0 0 8px rgba(244,241,0,.34))}
+    .cabinet-body{margin:0 9px;padding:15px 22px 0;border-inline:1px solid #3d414a;background:linear-gradient(90deg,#17191e,#252830 8%,#0c0d11 50%,#252830 92%,#17191e);clip-path:none;box-shadow:inset 0 12px 24px rgba(0,0,0,.52),inset 20px 0 28px rgba(255,255,255,.02),inset -20px 0 28px rgba(255,255,255,.02)}
+    .cabinet-speakers{height:17px;margin:0 48px 13px;opacity:.5}
+    .cabinet-monitor-frame{padding:18px;border:7px solid #090a0d;border-radius:15px 15px 30px 30px;background:linear-gradient(145deg,#2c2f37,#06070a 72%);box-shadow:inset 0 0 0 1px #535761,inset 0 -20px 40px #000,0 12px 20px rgba(0,0,0,.56)}
+    .cabinet-screen{border:2px solid #050507;border-radius:10px 10px 22px 22px;transform:none;box-shadow:0 0 0 2px #343740,0 0 25px rgba(244,241,0,.08),inset 0 0 30px #000}
+    .cabinet-controls{min-height:99px;margin:0 9px;padding:13px 48px 23px;border:1px solid #4b4e57;border-top:4px solid #0b0c10;border-radius:2px 2px 12px 12px;background:linear-gradient(165deg,#3b3e47,#15171d 52%,#08090c);clip-path:none;transform:perspective(700px) rotateX(5deg);box-shadow:inset 0 1px rgba(255,255,255,.13),inset 0 -18px 25px rgba(0,0,0,.38),0 12px 18px rgba(0,0,0,.45)}
+    .cabinet-base{width:calc(100% - 38px);height:82px;margin:-4px auto 0;border:1px solid #3c4049;border-top:0;border-radius:0 0 13px 13px;background:linear-gradient(90deg,#111319,#23262e 12%,#090a0e 50%,#23262e 88%,#111319);clip-path:none;box-shadow:inset 0 -22px 33px #050507,0 15px 20px rgba(0,0,0,.4)}
+    .coin-bank{top:13px}.coin-slot{border-color:#575b64;background:linear-gradient(145deg,#292c33,#08090c)}
+    /* Photoreal cabinet composite */
+    .arcade-render{position:relative;width:min(100%,700px);aspect-ratio:2/3;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;filter:drop-shadow(0 28px 34px rgba(0,0,0,.62));isolation:isolate}
+    .arcade-render::before,.arcade-render::after{display:none}
+    .arcade-render-frame{position:absolute;z-index:3;inset:0;width:100%;height:100%!important;object-fit:contain;pointer-events:none;user-select:none}
+    .arcade-render-video{position:absolute;z-index:1;left:22.45%;top:35.2%;width:54.6%;height:33.25%;display:block;object-fit:cover;background:#030407;filter:brightness(.96) saturate(1.02);box-shadow:0 0 24px rgba(244,241,0,.09)}
+    .arcade-render-start{z-index:2;left:22.45%;top:35.2%;right:auto;bottom:auto;width:54.6%;height:33.25%;padding:14px;border-radius:1%;background:radial-gradient(circle,rgba(4,5,12,.2),rgba(3,4,10,.6));overflow:hidden}
+    .arcade-render-start:hover{background:radial-gradient(circle,rgba(244,241,0,.07),rgba(3,4,10,.54))}
+    .arcade-render-logo{position:absolute;z-index:4;left:24%;top:7.3%;width:52%;height:14%!important;object-fit:contain;pointer-events:none;filter:drop-shadow(0 0 12px rgba(244,241,0,.34))}
 
     .merch{
       position:relative;overflow:hidden;
@@ -1123,6 +1109,9 @@
       .arcade-games{grid-template-columns:1fr 1fr;padding-inline:22px}
       .arcade-game:first-child{grid-column:1/-1;display:grid;grid-template-columns:minmax(230px,.8fr) 1fr}
       .arcade-game:first-child .arcade-game-art{aspect-ratio:auto;min-height:300px}
+      .arcade-stage{grid-template-columns:1fr;gap:34px}
+      .arcade-intro{text-align:center}.arcade-intro .lead{margin-inline:auto}.arcade-status{justify-content:center}
+      .arcade-cabinet{width:min(100%,650px);justify-self:center}
       .footer-grid{grid-template-columns:1.3fr 1fr}
     }
     @media (max-width:600px){
@@ -1606,6 +1595,29 @@
       .arcade .arcade-game-copy p{display:none}
       .arcade .arcade-game-meta{gap:5px;font-size:.47rem;letter-spacing:.04em}
       .arcade .arcade-workshop{display:none}
+      .arcade .arcade-stage{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:7px;border-width:3px;border-radius:18px}
+      .arcade .arcade-intro{display:block;flex:0 0 auto;width:100%;max-width:430px;padding:4px 10px 5px;border:0;background:transparent;box-shadow:none;text-align:center}
+      .arcade .arcade-intro::after,.arcade .arcade-intro .pixel-label,.arcade .arcade-status{display:none}
+      .arcade .arcade-intro h2{margin:0 0 5px;font-size:clamp(1.45rem,7vw,2rem);line-height:.88}
+      .arcade .arcade-intro .lead{display:block;max-width:410px;margin:0 auto;color:#d1d3dc;font-size:.7rem;line-height:1.38}
+      .arcade .arcade-cabinet{width:min(100%,430px);max-height:100%;padding:6px;justify-self:auto;border-radius:15px;filter:drop-shadow(0 18px 28px rgba(0,0,0,.62))}
+      .arcade .arcade-cabinet::before,.arcade .arcade-cabinet::after{width:10px;top:8px}
+      .arcade .arcade-cabinet::before{left:-3px}.arcade .arcade-cabinet::after{right:-3px}
+      .arcade .cabinet-marquee{min-height:64px;margin-inline:5px;padding:7px 38px 5px;border-width:1px;border-bottom-width:4px;border-radius:10px 10px 4px 4px}
+      .arcade .cabinet-marquee img{height:51px!important}
+      .arcade .cabinet-body{margin-inline:5px;padding:10px 14px 0}
+      .arcade .cabinet-speakers{height:12px;margin:0 22px 7px;background-size:6px 6px}
+      .arcade .cabinet-monitor-frame{padding:10px;border-radius:12px 12px 25px 25px}
+      .arcade .cabinet-screen{border-width:3px;border-radius:8px 8px 17px 17px}
+      .arcade .cabinet-start{padding:10px}.arcade .cabinet-start small{margin-bottom:6px;font-size:.43rem}.arcade .cabinet-start strong{font-size:clamp(1.25rem,7vw,2rem)}.arcade .cabinet-start span{margin-top:8px;padding:7px 10px;font-size:.5rem;box-shadow:2px 2px 0 var(--purple)}
+      .arcade .cabinet-controls{min-height:68px;margin:0 5px;padding:7px 24px 13px;border-width:1px;border-top-width:3px}
+      .arcade .joystick{--joy-scale:.72;width:38px;height:43px}
+      .arcade .arcade-buttons{gap:9px}.arcade .arcade-buttons button{width:19px;height:19px;border-width:2px}
+      .arcade .cabinet-base{width:calc(100% - 22px);height:45px;margin-top:-3px;border-width:1px}.arcade .cabinet-base::after{top:17px;font-size:.42rem}
+      .arcade .coin-bank{top:5px;gap:14px;transform:translateX(50%) scale(.58);transform-origin:top center}
+      .arcade .cabinet-controls::before,.arcade .cabinet-controls::after{display:none}
+      .arcade .arcade-render{width:min(92%,380px);aspect-ratio:2/3;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;filter:drop-shadow(0 16px 22px rgba(0,0,0,.6))}
+      .arcade .arcade-render-start small{font-size:.4rem}.arcade .arcade-render-start strong{font-size:clamp(1rem,5.5vw,1.55rem)}.arcade .arcade-render-start span{padding:6px 8px;font-size:.43rem}
 
       .site-track .merch{overflow-y:hidden}
       .site-track .merch > .container{
@@ -1647,6 +1659,13 @@
       .arcade-mobile-hint{padding-top:5px}
       .arcade .arcade-game,.arcade .arcade-game:first-child{height:min(185px,100%)}
       .arcade .arcade-game-copy{flex-basis:60px;padding:7px 9px 6px}
+      .arcade .arcade-cabinet{width:min(78%,300px)}
+      .arcade .arcade-intro h2{font-size:clamp(1.2rem,6vw,1.55rem)}
+      .arcade .arcade-intro .lead{font-size:.61rem;line-height:1.3}
+      .arcade .cabinet-marquee{min-height:58px}.arcade .cabinet-marquee img{height:40px!important}
+      .arcade .cabinet-controls{min-height:58px;padding-block:4px 10px}
+      .arcade .cabinet-base{height:38px}.arcade .cabinet-base::after{top:12px}
+      .arcade .coin-bank{top:1px;transform:translateX(50%) scale(.48)}
     }
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -1850,72 +1869,24 @@
 
     <section class="section arcade" id="arcade">
       <div class="container">
-        <div class="arcade-shell reveal">
-          <div class="arcade-marquee">
-            <div>
-              <span class="pixel-label">Player 1 · Select game</span>
-              <h2>The Lounge Has an <span class="yellow">Arcade</span></h2>
-              <p class="lead">Play original JNC games starring the crew, unruly cocktails, undead fruit, angry pretzels, and the kind of decisions that only make sense after 8 PM.</p>
-            </div>
-            <div class="arcade-logo-panel">
-              <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-arcade.png" alt="JNC Arcade" width="1244" height="1244" loading="lazy">
-            </div>
+        <div class="arcade-stage reveal">
+          <div class="arcade-intro">
+            <span class="pixel-label">Player 1 · Ready</span>
+            <h2>The <span class="yellow">JNC Arcade</span></h2>
+            <p class="lead">Original JNC games, unruly cocktails, undead fruit, angry pretzels, and the kind of decisions that only make sense after 8 PM.</p>
+            <div class="arcade-status"><i></i>Cabinet online · Free play enabled</div>
           </div>
-
-          <div class="arcade-console-bar">
-            <div class="arcade-status">
-              <span><i></i>3 games online</span>
-              <span>Keyboard · Touch · Controller</span>
-            </div>
-            <a class="btn btn-primary" href="https://jncpodcast.github.io/jncarcade/" target="_blank" rel="noopener">Enter the full arcade</a>
-          </div>
-
-          <div class="arcade-mobile-hint" aria-hidden="true"><span>3 games loaded</span></div>
-
-          <div class="arcade-games">
-            <a class="arcade-game" href="https://jncpodcast.github.io/jnc_happy_hour/" target="_blank" rel="noopener">
-              <span class="arcade-game-art">
-                <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-happy-hour.png" alt="JNC's Happy Hour game artwork" width="1244" height="1244" loading="lazy">
-                <span class="arcade-game-badge">Featured</span>
-              </span>
-              <span class="arcade-game-copy">
-                <h3>JNC'S HAPPY HOUR</h3>
-                <p>Choose your character and survive the wildest happy hour in the JNC Lounge.</p>
-                <span class="arcade-game-meta"><span>Arcade maze</span><span>Play →</span></span>
-              </span>
+          <div class="arcade-cabinet arcade-render">
+            <video class="arcade-render-video" autoplay muted loop playsinline preload="metadata" poster="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-happy-hour.png" aria-label="Featured JNC Arcade gameplay">
+              <source src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/arcade%20background%20video.mp4" type="video/mp4">
+            </video>
+            <a class="cabinet-start arcade-render-start" href="https://jncpodcast.github.io/jncarcade/" target="_blank" rel="noopener" aria-label="Enter the JNC Arcade">
+              <small>Now loading the JNC Universe</small>
+              <strong>Tap to Enter<br>the Arcade</strong>
+              <span>Press Start</span>
             </a>
-            <a class="arcade-game" href="https://jncpodcast.github.io/jnc_lounge_crush/" target="_blank" rel="noopener">
-              <span class="arcade-game-art">
-                <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-lounge-crush.png" alt="JNC Lounge Crush game artwork" width="1254" height="1254" loading="lazy">
-                <span class="arcade-game-badge">Play now</span>
-              </span>
-              <span class="arcade-game-copy">
-                <h3>JNC LOUNGE CRUSH</h3>
-                <p>Mix, match, and make some noise before your moves run out in the JNC Lounge.</p>
-                <span class="arcade-game-meta"><span>Match-3 puzzle</span><span>Play →</span></span>
-              </span>
-            </a>
-            <a class="arcade-game" href="https://jncpodcast.github.io/ellys-flip-cup/" target="_blank" rel="noopener">
-              <span class="arcade-game-art">
-                <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/ellys-flip-cup-challenge.png" alt="Elly's Flip Cup Challenge game artwork" width="1254" height="1254" loading="lazy">
-                <span class="arcade-game-badge">Play now</span>
-              </span>
-              <span class="arcade-game-copy">
-                <h3>ELLY'S FLIP CUP CHALLENGE</h3>
-                <p>Find your rhythm, nail the flip, and help Elly rule the table one cup at a time.</p>
-                <span class="arcade-game-meta"><span>Timing challenge</span><span>Play →</span></span>
-              </span>
-            </a>
-          </div>
-
-          <div class="arcade-workshop" aria-label="More JNC games in development">
-            <strong>Also in the cabinet:</strong>
-            <span class="arcade-chip">Dunk Jordy</span>
-            <span class="arcade-chip">Zombied Strawberries</span>
-            <span class="arcade-chip">Brocktoberfest: Das Boot</span>
-            <span class="arcade-chip">Cake Hole Adventure</span>
-            <span class="arcade-chip">Ant Wars</span>
-            <span class="arcade-chip">Shock Collar Trivia</span>
+            <img class="arcade-render-frame" src="assets/images/arcade/jnc-arcade-console-v3.png" alt="Realistic JNC Arcade cabinet" width="1024" height="1536" loading="lazy">
+            <img class="arcade-render-logo" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-arcade.png" alt="JNC Arcade" width="1244" height="1244" loading="lazy">
           </div>
         </div>
       </div>
