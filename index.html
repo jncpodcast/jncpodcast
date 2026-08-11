@@ -62,12 +62,16 @@
       position:fixed;
       z-index:1000;
       inset:0;
+      width:100%;
+      max-width:100%;
       min-height:100svh;
       display:grid;
+      grid-template-columns:minmax(0,1fr);
       place-items:center;
       isolation:isolate;
       overflow:hidden;
-      padding:max(24px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));
+      padding-block:max(24px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-bottom));
+      padding-inline:max(18px,env(safe-area-inset-left),env(safe-area-inset-right));
       color:var(--white);
       background:
         radial-gradient(circle at 50% 42%,rgba(129,46,255,.42),transparent 24rem),
@@ -139,6 +143,9 @@
     .universe-panel{
       position:relative;
       width:min(100%,690px);
+      max-width:690px;
+      margin-inline:auto;
+      justify-self:center;
       text-align:center;
       padding:clamp(24px,5vw,48px);
       border:1px solid rgba(255,255,255,.17);
@@ -233,7 +240,8 @@
     @keyframes universe-launch{to{transform:scale(1.08);opacity:0;filter:blur(10px)}}
 
     @media (max-width:600px){
-      .universe-panel{padding:30px 20px 28px}
+      .universe-gate{padding-inline:max(14px,env(safe-area-inset-left),env(safe-area-inset-right))}
+      .universe-panel{width:100%;max-width:690px;margin-inline:auto;justify-self:center;padding:30px 20px 28px}
       .universe-logo{max-height:70px;margin-bottom:24px}
       .universe-title{font-size:clamp(3.55rem,17.5vw,5.7rem)}
       .universe-enter{min-height:68px}
