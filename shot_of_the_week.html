@@ -479,6 +479,85 @@
     .text-link { color: var(--yellow); font: 800 15px/1 "Barlow Condensed", Impact, sans-serif; text-decoration: none; text-transform: uppercase; letter-spacing: .06em; }
     .text-link:hover { text-decoration: underline; }
 
+    .recipe-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      border: 0;
+      color: var(--yellow);
+      background: transparent;
+      font: 800 15px/1 "Barlow Condensed", Impact, sans-serif;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .recipe-open:hover,
+    .recipe-open:focus-visible { text-decoration: underline; outline: none; }
+    .recipe-open::after { content: "→"; transition: transform .2s ease; }
+    .recipe-open:hover::after { transform: translateX(4px); }
+    .archive-hint { margin: 34px auto 0; color: #aeb0bd; font-size: 14px; text-align: center; }
+
+    body.recipe-modal-open { overflow: hidden; }
+    .recipe-dialog {
+      width: min(980px, calc(100% - 28px));
+      max-height: min(90vh, 920px);
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 28px;
+      color: var(--white);
+      background: #0b0d18;
+      box-shadow: 0 34px 130px rgba(0,0,0,.78), 0 0 60px rgba(243,245,0,.08);
+    }
+    .recipe-dialog::backdrop { background: rgba(1,2,8,.86); backdrop-filter: blur(9px); }
+    .recipe-dialog-shell { display: grid; grid-template-columns: minmax(0,1.08fr) minmax(320px,.92fr); max-height: min(90vh,920px); }
+    .recipe-dialog-art {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 480px;
+      padding: 24px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 40%, rgba(243,245,0,.16), transparent 45%), #050610;
+    }
+    .recipe-dialog-art::after {
+      content: "JNC RECIPE VAULT";
+      position: absolute;
+      right: -22px;
+      bottom: 8px;
+      color: rgba(255,255,255,.045);
+      font: 900 64px/1 "Barlow Condensed", Impact, sans-serif;
+      transform: rotate(-7deg);
+      pointer-events: none;
+    }
+    .recipe-dialog-art img { position: relative; z-index: 1; width: 100%; height: auto; max-height: 76vh; object-fit: contain; border-radius: 15px; box-shadow: 0 22px 55px rgba(0,0,0,.52); }
+    .recipe-dialog-content { overflow-y: auto; padding: clamp(32px,5vw,56px) clamp(26px,4vw,48px) 42px; }
+    .recipe-dialog-close {
+      position: absolute;
+      z-index: 5;
+      top: 15px;
+      right: 15px;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 50%;
+      color: white;
+      background: rgba(5,6,16,.86);
+      cursor: pointer;
+    }
+    .recipe-dialog-close::before,
+    .recipe-dialog-close::after { content: ""; position: absolute; left: 50%; top: 50%; width: 19px; height: 2px; border-radius: 2px; background: currentColor; transform: translate(-50%,-50%) rotate(45deg); }
+    .recipe-dialog-close::after { transform: translate(-50%,-50%) rotate(-45deg); }
+    .recipe-dialog-close:hover,
+    .recipe-dialog-close:focus-visible { color: var(--yellow); border-color: var(--yellow); outline: none; }
+    .recipe-dialog-type { margin: 0 0 11px; color: var(--yellow); font: 800 13px/1 "Barlow Condensed", Impact, sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+    .recipe-dialog h2 { margin: 0 0 17px; font: 900 clamp(38px,5vw,64px)/.88 "Barlow Condensed", Impact, sans-serif; text-transform: uppercase; }
+    .recipe-dialog-blurb { margin: 0 0 28px; color: #c9cbd5; font-size: 15px; line-height: 1.7; }
+    .recipe-detail { padding: 20px 0; border-top: 1px solid rgba(255,255,255,.12); }
+    .recipe-detail h3 { margin: 0 0 10px; color: var(--yellow); font: 800 16px/1 "Barlow Condensed", Impact, sans-serif; letter-spacing: .09em; text-transform: uppercase; }
+    .recipe-detail p { margin: 0; color: #f0f0f4; font-size: 14px; line-height: 1.65; }
+
     .center { text-align: center; margin-top: 34px; }
 
     .cta {
@@ -564,6 +643,12 @@
       .cta { grid-template-columns: 1fr; transform: none; }
       .cta::after { font-size: 150px; right: -25px; }
       .footer-grid { grid-template-columns: 1fr; }
+      .recipe-dialog { width: 100%; max-height: 100dvh; border: 0; border-radius: 0; }
+      .recipe-dialog-shell { display: block; max-height: 100dvh; overflow-y: auto; }
+      .recipe-dialog-art { min-height: 0; padding: 58px 14px 14px; }
+      .recipe-dialog-art img { max-height: none; }
+      .recipe-dialog-content { overflow: visible; padding: 30px 22px 45px; }
+      .recipe-dialog h2 { font-size: clamp(40px,13vw,58px); }
     }
 
     @media (max-width: 490px) {
@@ -1021,7 +1106,7 @@ footer#connect .copyright{
               <div class="eyebrow">The JNC Recipe Vault</div>
               <h2>More From Behind the Bar</h2>
             </div>
-            <p>A visual pull from the JNC recipe archive, with quick filters for shots, cocktails, base spirits, coffee drinks, and holiday chaos.</p>
+            <p>Tap any drink for its ingredients, method, original recipe artwork, and a quick story—then use the filters to chase shots, spirits, coffee drinks, and holiday chaos.</p>
           </div>
 
           <div class="filter-bar" role="group" aria-label="Filter recipes">
@@ -1044,7 +1129,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Rum</span>
                 <h3>Liquid Marijuana</h3>
                 <p>Spiced rum, coconut rum, melon liqueur, blue curaçao, pineapple, and sweet-and-sour.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1054,7 +1139,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Gin</span>
                 <h3>Classic Negroni</h3>
                 <p>Gin, Campari, sweet vermouth, and an orange peel garnish over fresh ice.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1064,7 +1149,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Whiskey</span>
                 <h3>Smoked Mango Bourbon Smash</h3>
                 <p>Bourbon, smoked mango, lemon, mint, simple syrup, and cinnamon-stick drama.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1074,7 +1159,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Whiskey</span>
                 <h3>Tangerine Dream</h3>
                 <p>A smoky bourbon cocktail with caramelized tangerine, cocoa bitters, and applewood smoke.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1084,7 +1169,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Everything</span>
                 <h3>One of Everything</h3>
                 <p>Scotch, absinthe, rum, gin, vermouth, triple sec, and several questionable decisions.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1094,7 +1179,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Whiskey</span>
                 <h3>Okeechobee Purple</h3>
                 <p>Jack Daniel’s, blackberry liqueur, blue curaçao, and cranberry in one bold purple shot.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1104,7 +1189,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Rum</span>
                 <h3>The Rum Dumpster</h3>
                 <p>White rum, dark rum, pineapple, orange, lime, and grenadine served with full JNC attitude.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1114,7 +1199,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Moonshine</span>
                 <h3>Gibberish</h3>
                 <p>White lightning moonshine, peach schnapps, pineapple, blue curaçao, and a tiny squeeze of lime.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1124,7 +1209,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Rum</span>
                 <h3>Click Click Boom</h3>
                 <p>A quick two-ingredient shot built with Malibu coconut rum and peach schnapps.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1134,7 +1219,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Coffee</span>
                 <h3>The Coffee King</h3>
                 <p>Vodka, coffee liqueur, cream or milk, and King Cake whip for Mardi Gras flair.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1144,7 +1229,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Gin</span>
                 <h3>The Gibson</h3>
                 <p>Gin, dry vermouth, and pickled cocktail onions for a crystal-clear classic.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1154,7 +1239,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Whiskey</span>
                 <h3>The Baby New Year</h3>
                 <p>Fireball, RumChata, and vanilla vodka shaken into a sweet cinnamon New Year shooter.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1164,7 +1249,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Tequila</span>
                 <h3>Grinch Margarita</h3>
                 <p>Tequila, blue curaçao, pineapple, orange, and fresh lime with a mischievous green finish.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1174,7 +1259,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Coffee</span>
                 <h3>Candy Cane Car Bomb</h3>
                 <p>Coffee porter with a drop shot of Irish cream and Rumple Minze for chaotic holiday cheer.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1184,7 +1269,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Vodka</span>
                 <h3>The Snickerdoodle Martini</h3>
                 <p>Milk, RumChata, amaretto, and vanilla vodka with a cinnamon-sugar martini rim.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1194,7 +1279,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Vodka</span>
                 <h3>The Jukebox Hero</h3>
                 <p>Cola vodka and iced cake vodka shaken together for a sweet rock-and-roll shooter.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1204,7 +1289,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Whiskey</span>
                 <h3>The Alaskan Duck Fart</h3>
                 <p>Coffee liqueur, Irish cream, and Crown Royal layered into a classic party shot.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1214,7 +1299,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Whiskey</span>
                 <h3>Mango-Habanero Old Fashioned</h3>
                 <p>Mango-habanero whiskey, simple syrup, Angostura bitters, orange bitters, and citrus.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1224,7 +1309,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Vodka</span>
                 <h3>The Memphis Mule</h3>
                 <p>Citron vodka, lime juice, ginger beer, and a lime wedge served over ice.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1234,7 +1319,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Spooky</span>
                 <h3>The Boogeyman</h3>
                 <p>Blue curaçao, melon liqueur, and Irish cream layered into a spooky Halloween shot.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1244,7 +1329,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Spooky</span>
                 <h3>The Diabolique</h3>
                 <p>Citron vodka, Cointreau, pineapple, lime, Chambord, and a mint garnish.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1254,7 +1339,7 @@ footer#connect .copyright{
                 <span class="archive-type">Cocktail · Bubbly</span>
                 <h3>Hocus Pocus Mimosas</h3>
                 <p>Gin, Chambord or Midori, colored glitter, and Champagne for a theatrical toast.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1264,7 +1349,7 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Vodka</span>
                 <h3>The Black Forest</h3>
                 <p>Pinnacle Cake Vodka, crème de cacao, and grenadine with a dramatic bleed-through effect.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
 
@@ -1274,16 +1359,36 @@ footer#connect .copyright{
                 <span class="archive-type">Shot · Bomb</span>
                 <h3>Jäger Bomb</h3>
                 <p>Jägermeister dropped into Red Bull for the classic fizzy bomb-shot experience.</p>
-                <a class="text-link" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Get the recipe →</a>
+                <button class="recipe-open" type="button">View recipe</button>
               </div>
             </article>
           </div>
 
-          <div class="center">
-            <a class="button" href="https://www.jamsncocktails.com/shot-of-the-week-archive" target="_blank" rel="noopener">Explore the Full Recipe Archive</a>
-          </div>
+          <p class="archive-hint">Tap or click any drink above to open its recipe rundown.</p>
         </div>
       </section>
+
+      <dialog class="recipe-dialog" id="recipeDialog" aria-labelledby="recipeDialogTitle">
+        <button class="recipe-dialog-close" id="recipeDialogClose" type="button" aria-label="Close recipe"></button>
+        <div class="recipe-dialog-shell">
+          <div class="recipe-dialog-art">
+            <img id="recipeDialogImage" src="" alt="">
+          </div>
+          <article class="recipe-dialog-content">
+            <p class="recipe-dialog-type" id="recipeDialogType"></p>
+            <h2 id="recipeDialogTitle"></h2>
+            <p class="recipe-dialog-blurb" id="recipeDialogBlurb"></p>
+            <section class="recipe-detail">
+              <h3>What’s in it</h3>
+              <p id="recipeDialogIngredients"></p>
+            </section>
+            <section class="recipe-detail">
+              <h3>How to make it</h3>
+              <p id="recipeDialogMethod"></p>
+            </section>
+          </article>
+        </div>
+      </dialog>
 
       <section class="section">
         <div class="wrap">
@@ -1323,7 +1428,7 @@ footer#connect .copyright{
             <a href="episode-recaps.html">Recap blog</a>
             <a href="shot_of_the_week.html">Shot recipes</a>
             <a href="index.html#arcade">JNC Arcade</a>
-            <a href="https://www.jamsncocktails.com/merch-1" target="_blank" rel="noopener">Merch</a>
+            <a href="https://jamsncocktails.threadless.com/designs/" target="_blank" rel="noopener">Merch</a>
           </div>
           <div class="footer-col">
             <h3>Connect</h3>
@@ -1372,19 +1477,153 @@ footer#connect .copyright{
     (() => {
       const filters = document.querySelectorAll('.filter');
       const cards = document.querySelectorAll('.archive-card');
+      const dialog = document.getElementById('recipeDialog');
+      const dialogImage = document.getElementById('recipeDialogImage');
+      const dialogType = document.getElementById('recipeDialogType');
+      const dialogTitle = document.getElementById('recipeDialogTitle');
+      const dialogBlurb = document.getElementById('recipeDialogBlurb');
+      const dialogIngredients = document.getElementById('recipeDialogIngredients');
+      const dialogMethod = document.getElementById('recipeDialogMethod');
+      let lastTrigger = null;
+
+      const recipeDetails = {
+        'Liquid Marijuana': {
+          blurb: 'Tropical, electric green, and built for nights when subtlety has already left the building.',
+          method: 'Add everything to a shaker with ice, shake until cold, and strain into a shot glass.'
+        },
+        'Classic Negroni': {
+          blurb: 'A bitter, botanical Italian classic with a perfect one-to-one-to-one balance.',
+          method: 'Stir the gin, Campari, and sweet vermouth with ice. Strain over fresh ice and finish with an expressed orange peel.'
+        },
+        'Smoked Mango Bourbon Smash': {
+          blurb: 'Juicy mango and bourbon meet mint, citrus, and a little campfire theater.',
+          method: 'Muddle the fruit, mint, lemon, and syrup. Add bourbon and ice, shake well, then strain over fresh ice and add the smoky finish.'
+        },
+        'Tangerine Dream': {
+          blurb: 'A citrus-forward bourbon drink with caramelized fruit, cocoa depth, and applewood smoke.',
+          method: 'Combine the bourbon, tangerine, and bitters with ice and stir until chilled. Strain over fresh ice and smoke the finished drink.'
+        },
+        'One of Everything': {
+          blurb: 'An everything-but-the-bar-sink experiment for adventurous drinkers and questionable decision-makers.',
+          method: 'Combine the spirits and modifiers with ice, stir until thoroughly chilled, and strain into a chilled cocktail glass.'
+        },
+        'Okeechobee Purple': {
+          blurb: 'A dark purple Florida party shot with whiskey bite, berry sweetness, and citrus color.',
+          method: 'Shake all ingredients with ice and strain into a shot glass.'
+        },
+        'The Rum Dumpster': {
+          blurb: 'A full-send tropical rum cocktail: bright juices, layered rum, and absolutely no restraint.',
+          method: 'Shake the rums and juices with ice, pour over fresh ice, and finish with grenadine.'
+        },
+        'Gibberish': {
+          blurb: 'Moonshine, peach, pineapple, and blue curaçao—one sip and coherent sentences become optional.',
+          method: 'Shake everything hard with ice and strain into a shot glass.'
+        },
+        'Click Click Boom': {
+          blurb: 'A sweet, fast two-part shooter that gets straight to the point.',
+          method: 'Shake the coconut rum and peach schnapps with ice, then strain into a shot glass.'
+        },
+        'The Coffee King': {
+          blurb: 'A creamy coffee cocktail wearing its Mardi Gras crown with pride.',
+          method: 'Shake the drink ingredients with ice, strain into the serving glass, and crown it with the King Cake-inspired topping.'
+        },
+        'The Gibson': {
+          blurb: 'Cold, crisp, savory, and distinguished by its signature cocktail-onion garnish.',
+          method: 'Stir the gin and dry vermouth with ice until very cold. Strain into a chilled cocktail glass and garnish with cocktail onions.'
+        },
+        'The Baby New Year': {
+          blurb: 'Sweet cinnamon, vanilla, and cream packaged into a tiny New Year’s celebration.',
+          method: 'Shake all ingredients with ice and strain into a shot glass.'
+        },
+        'Grinch Margarita': {
+          blurb: 'A bright green tequila shooter with enough tropical cheer to grow a heart three sizes.',
+          method: 'Shake all ingredients with ice and strain into a shot glass. Add the festive garnish shown on the recipe card.'
+        },
+        'Candy Cane Car Bomb': {
+          blurb: 'Coffee porter, Irish cream, and peppermint collide in one gloriously chaotic holiday drop shot.',
+          method: 'Pour the porter into a glass. Build the liqueurs in a shot glass, drop it into the porter, and drink immediately.'
+        },
+        'The Snickerdoodle Martini': {
+          blurb: 'A creamy cinnamon-cookie dessert drink dressed up like a martini.',
+          method: 'Rim the glass with cinnamon sugar. Shake the drink ingredients with ice and strain into the prepared glass.'
+        },
+        'The Jukebox Hero': {
+          blurb: 'Sweet cola and cake-vodka energy in a shooter made to soundtrack last call.',
+          method: 'Shake both vodkas with ice and strain into a shot glass.'
+        },
+        'The Alaskan Duck Fart': {
+          blurb: 'A legendary layered party shot that moves from coffee to cream to Canadian whiskey.',
+          method: 'Slowly layer coffee liqueur, Irish cream, and Crown Royal in that order over the back of a spoon.'
+        },
+        'Mango-Habanero Old Fashioned': {
+          blurb: 'A fruitier, hotter Old Fashioned with mango sweetness and a habanero kick.',
+          method: 'Stir the whiskey, syrup, and bitters with ice. Strain over a large cube and finish with citrus.'
+        },
+        'The Memphis Mule': {
+          blurb: 'A bright, fizzy mule with citron vodka and plenty of fresh lime snap.',
+          method: 'Build the vodka and lime over ice, top with ginger beer, stir gently, and garnish with a lime wedge.'
+        },
+        'The Boogeyman': {
+          blurb: 'A lurid Halloween layer shot with a creepy Irish-cream finish.',
+          method: 'Layer the blue curaçao and melon liqueur, then slowly float the Irish cream to create the spooky effect.'
+        },
+        'The Diabolique': {
+          blurb: 'A devilishly polished tropical cocktail with citrus, berry, and a dramatic dark-red sink.',
+          method: 'Shake the vodka, Cointreau, pineapple, and lime with ice. Strain, slowly add the Chambord, and garnish with mint.'
+        },
+        'Hocus Pocus Mimosas': {
+          blurb: 'A sparkling Halloween toast with jewel-toned liqueurs and enough shimmer for a spellbinding entrance.',
+          method: 'Add the gin, chosen liqueur, and edible glitter to a flute. Top slowly with Champagne and stir very gently.'
+        },
+        'The Black Forest': {
+          blurb: 'Chocolate-cake sweetness with a blood-red grenadine effect built for a dramatic reveal.',
+          method: 'Shake the vodka and crème de cacao with ice and strain into a shot glass. Slowly add the grenadine for the bleed-through effect.'
+        },
+        'Jäger Bomb': {
+          blurb: 'The unmistakable high-energy bar classic—herbal liqueur, energy drink, and no introduction required.',
+          method: 'Pour the energy drink into a glass, fill a shot glass with Jägermeister, drop the shot into the glass, and drink immediately.'
+        }
+      };
+
+      const openRecipe = (card, trigger) => {
+        const title = card.querySelector('h3').textContent.trim();
+        const details = recipeDetails[title] || {};
+        const image = card.querySelector('img');
+        lastTrigger = trigger;
+        dialogImage.src = image.currentSrc || image.src;
+        dialogImage.alt = `${title} JNC recipe card`;
+        dialogType.textContent = card.querySelector('.archive-type').textContent.trim();
+        dialogTitle.textContent = title;
+        dialogBlurb.textContent = details.blurb || 'A favorite pull from the JNC recipe vault.';
+        dialogIngredients.textContent = card.querySelector('.archive-body > p').textContent.trim();
+        dialogMethod.textContent = details.method || 'Follow the proportions on the recipe card, combine with ice, and serve cold.';
+        dialog.showModal();
+        dialog.scrollTop = 0;
+        document.body.classList.add('recipe-modal-open');
+      };
 
       filters.forEach((button) => {
         button.addEventListener('click', () => {
           const selected = button.dataset.filter;
-
           filters.forEach((item) => item.classList.remove('active'));
           button.classList.add('active');
-
           cards.forEach((card) => {
             const tags = (card.dataset.tags || '').split(/\s+/);
             card.hidden = selected !== 'all' && !tags.includes(selected);
           });
         });
+      });
+
+      cards.forEach((card) => {
+        const trigger = card.querySelector('.recipe-open');
+        trigger.addEventListener('click', () => openRecipe(card, trigger));
+      });
+
+      document.getElementById('recipeDialogClose').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+      dialog.addEventListener('close', () => {
+        document.body.classList.remove('recipe-modal-open');
+        lastTrigger?.focus();
       });
     })();
   
