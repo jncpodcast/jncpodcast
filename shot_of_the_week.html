@@ -1024,7 +1024,7 @@ footer#connect .copyright{
               <p class="method">Add all ingredients to a shaker with ice. Shake until well chilled, then strain into a coupe glass. Garnish with a small paper plane pick if desired.</p>
 
               <div class="actions">
-            <a class="button" href="https://youtu.be/ocieENyqvtE?t=380" target="_blank" rel="noopener">Watch the Episode</a>
+            <a class="button" data-cocktail-video-link href="https://youtu.be/ocieENyqvtE?t=380" target="_blank" rel="noopener">Watch the Episode</a>
                 <a class="button secondary" href="#archive">Browse Recipes</a>
               </div>
             </article>
@@ -1051,7 +1051,7 @@ footer#connect .copyright{
 
           <div class="behind-grid">
             <div class="video-card">
-              <iframe src="https://www.youtube-nocookie.com/embed/ocieENyqvtE?start=380&amp;playsinline=1&amp;rel=0" title="The Paper Plane cocktail segment on Jams 'N' Cocktails" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe id="cocktailVideoPlayer" src="https://www.youtube-nocookie.com/embed/ocieENyqvtE?start=380&amp;end=543&amp;playsinline=1&amp;rel=0" title="The featured cocktail segment on Jams 'N' Cocktails" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
 
             <article class="story-card">
@@ -1063,7 +1063,7 @@ footer#connect .copyright{
                 <span class="pill">Bourbon Cocktail</span>
                 <span class="pill">The Paper Plane</span>
               </div>
-              <a class="text-link" href="https://youtu.be/ocieENyqvtE?t=380" target="_blank" rel="noopener">Watch the full episode →</a>
+              <a class="text-link" data-cocktail-video-link href="https://youtu.be/ocieENyqvtE?t=380" target="_blank" rel="noopener">Watch the full episode →</a>
             </article>
           </div>
         </div>
@@ -1412,6 +1412,50 @@ footer#connect .copyright{
       </div>
     </footer>
   </div>
+  <script>
+    document.write('<script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/cocktail-content.js?v=' + Date.now() + '"><\/script>');
+  </script>
+  <script>
+    (() => {
+      const content = window.JNC_COCKTAIL_CONTENT;
+      const player = document.getElementById('cocktailVideoPlayer');
+      if (!content || !player || !content.videoUrl) return;
+
+      const parseTime = value => {
+        if (typeof value === 'number' && Number.isFinite(value)) return Math.max(0, Math.floor(value));
+        const parts = String(value || '').trim().split(':').map(Number);
+        if (!parts.length || parts.some(part => !Number.isFinite(part) || part < 0)) return 0;
+        return parts.reduce((seconds, part) => (seconds * 60) + part, 0);
+      };
+
+      const getVideoId = value => {
+        const raw = String(value || '').trim();
+        if (/^[\w-]{11}$/.test(raw)) return raw;
+        try {
+          const url = new URL(raw);
+          if (url.hostname === 'youtu.be') return url.pathname.split('/').filter(Boolean)[0] || '';
+          if (url.hostname.includes('youtube.com')) {
+            const pathParts = url.pathname.split('/').filter(Boolean);
+            if (pathParts[0] === 'embed' || pathParts[0] === 'shorts' || pathParts[0] === 'live') return pathParts[1] || '';
+            return url.searchParams.get('v') || '';
+          }
+        } catch (error) {}
+        return '';
+      };
+
+      const videoId = getVideoId(content.videoUrl);
+      if (!videoId) return;
+      const start = parseTime(content.startTime);
+      const end = parseTime(content.endTime);
+      const params = new URLSearchParams({ playsinline: '1', rel: '0' });
+      if (start > 0) params.set('start', String(start));
+      if (end > start) params.set('end', String(end));
+      player.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${params}`;
+
+      const watchUrl = `https://youtu.be/${encodeURIComponent(videoId)}${start > 0 ? `?t=${start}` : ''}`;
+      document.querySelectorAll('[data-cocktail-video-link]').forEach(link => { link.href = watchUrl; });
+    })();
+  </script>
   <script>
 (() => {
   const body = document.body;
