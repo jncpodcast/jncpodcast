@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#06084f">
+  <title>JNC Guest Check-In | Jams 'N' Cocktails</title>
+  <meta name="description" content="Private pre-interview check-in for upcoming Jams 'N' Cocktails guests.">
+  <link rel="icon" href="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/css/jnc-site-chrome.css">
+  <style>
+    :root{
+      --navy:#06084f;
+      --ink:#080910;
+      --panel:#11131e;
+      --panel-2:#181b2b;
+      --yellow:#f4f100;
+      --pink:#ff3ab5;
+      --cyan:#00d9ff;
+      --purple:#812eff;
+      --white:#f7f7fb;
+      --muted:#aeb2c1;
+      --max:1180px;
+      --font-display:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif;
+      --font-body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--ink)}
+    body{min-width:0;margin:0;overflow-x:hidden;color:var(--white);background:
+      radial-gradient(circle at 10% 10%,rgba(129,46,255,.18),transparent 32rem),
+      radial-gradient(circle at 95% 28%,rgba(0,217,255,.11),transparent 30rem),
+      linear-gradient(rgba(7,8,18,.93),rgba(7,8,18,.98)),
+      url("https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/brick.svg") center/320px 160px repeat;
+      font-family:var(--font-body)}
+    body::before{content:"";position:fixed;z-index:100;inset:0;pointer-events:none;opacity:.22;background:url("https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/noise.svg") repeat;mix-blend-mode:soft-light}
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+    button{color:inherit}
+    img{display:block;max-width:100%}
+    [hidden]{display:none!important}
+
+    .guest-main{position:relative;padding:clamp(50px,8vw,92px) 0 100px}
+    .guest-wrap{width:min(calc(100% - 34px),var(--max));margin-inline:auto}
+    .guest-hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(290px,.8fr);align-items:end;gap:clamp(28px,6vw,74px);margin-bottom:42px}
+    .guest-eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:15px;color:var(--cyan);font:900 .7rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.18em;text-transform:uppercase}
+    .guest-eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+    .guest-hero h1{max-width:780px;margin:0;font:950 clamp(4rem,10vw,8.7rem)/.78 var(--font-display);letter-spacing:-.035em;text-transform:uppercase;text-shadow:5px 5px 0 rgba(129,46,255,.72),-2px -2px 0 rgba(0,217,255,.26)}
+    .guest-hero h1 span{display:block;color:var(--yellow)}
+    .guest-hero-copy{max-width:700px;margin:24px 0 0;color:#d3d5df;font-size:clamp(.96rem,2vw,1.1rem);line-height:1.7}
+
+    .backstage-pass{position:relative;padding:27px;border:2px solid var(--yellow);border-radius:25px;background:linear-gradient(145deg,#161928,#090a12);box-shadow:8px 8px 0 var(--purple),0 25px 75px rgba(0,0,0,.4);transform:rotate(1.2deg);overflow:hidden}
+    .backstage-pass::after{content:"GUEST";position:absolute;right:-18px;bottom:-28px;color:rgba(255,255,255,.045);font:950 8.4rem/1 var(--font-display);transform:rotate(-8deg)}
+    .pass-top{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-bottom:16px;border-bottom:1px dashed rgba(255,255,255,.2)}
+    .pass-top img{width:150px;max-height:55px;object-fit:contain}
+    .pass-number{color:var(--yellow);font:900 .64rem/1 ui-monospace,monospace;letter-spacing:.12em}
+    .pass-title{position:relative;z-index:1;margin:24px 0 6px;font:900 2.6rem/.86 var(--font-display);text-transform:uppercase}
+    .pass-copy{position:relative;z-index:1;margin:0;color:var(--muted);font-size:.78rem;line-height:1.55}
+
+    .progress-dock{position:sticky;z-index:40;top:88px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;margin-bottom:28px;padding:13px 17px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(10,11,20,.88);box-shadow:0 15px 40px rgba(0,0,0,.25);backdrop-filter:blur(16px)}
+    .progress-label,.draft-status{font:900 .62rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+    .progress-label{color:var(--yellow)}
+    .draft-status{color:#8e92a2}
+    .progress-track{height:8px;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.09)}
+    .progress-fill{width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--purple),var(--pink),var(--yellow));box-shadow:0 0 18px rgba(255,58,181,.38);transition:width .25s ease}
+
+    .guest-form{display:grid;gap:24px}
+    .form-section{position:relative;padding:clamp(25px,4vw,45px);border:1px solid rgba(255,255,255,.12);border-radius:28px;background:linear-gradient(145deg,rgba(20,22,36,.97),rgba(8,9,16,.98));box-shadow:0 24px 68px rgba(0,0,0,.28);overflow:hidden}
+    .form-section::after{content:attr(data-step);position:absolute;right:14px;top:-26px;color:rgba(244,241,0,.055);font:950 9rem/1 var(--font-display);pointer-events:none}
+    .section-heading{position:relative;z-index:1;display:flex;align-items:flex-start;gap:17px;margin-bottom:29px}
+    .step-chip{flex:0 0 auto;display:grid;place-items:center;width:44px;height:44px;border:2px solid var(--yellow);border-radius:13px;color:var(--yellow);background:#090a12;box-shadow:4px 4px 0 var(--purple);font:900 .8rem/1 ui-monospace,monospace}
+    .section-heading h2{margin:0;font:900 clamp(2rem,4vw,3.25rem)/.9 var(--font-display);letter-spacing:.01em;text-transform:uppercase}
+    .section-heading p{max-width:720px;margin:9px 0 0;color:var(--muted);font-size:.82rem;line-height:1.6}
+
+    .field-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .field{min-width:0}
+    fieldset.field{margin:0;padding:0;border:0}
+    .field.full{grid-column:1/-1}
+    .field label,.field-label{display:block;margin:0 0 9px;color:#f0f1f5;font-size:.73rem;font-weight:850;line-height:1.35;letter-spacing:.025em}
+    .required{color:var(--yellow)}
+    .field input[type="text"],.field input[type="email"],.field input[type="url"],.field textarea{width:100%;min-height:52px;border:1px solid rgba(255,255,255,.15);border-radius:13px;padding:14px 15px;color:white;background:rgba(255,255,255,.045);outline:none;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+    .field textarea{min-height:120px;resize:vertical;line-height:1.55}
+    .field textarea.tall{min-height:165px}
+    .field input::placeholder,.field textarea::placeholder{color:#696d7d}
+    .field input:focus,.field textarea:focus{border-color:var(--cyan);background:rgba(0,217,255,.04);box-shadow:0 0 0 3px rgba(0,217,255,.12)}
+    .field-note{display:block;margin-top:7px;color:#858998;font-size:.68rem;line-height:1.5}
+
+    .choice-grid{display:flex;flex-wrap:wrap;gap:11px}
+    .choice{position:relative;display:block;flex:1 1 150px;cursor:pointer}
+    .choice input{position:absolute;opacity:0;pointer-events:none}
+    .choice span{display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 16px;border:1px solid rgba(255,255,255,.16);border-radius:13px;color:#c8cad4;background:rgba(255,255,255,.04);font-size:.78rem;font-weight:850;text-align:center;transition:.18s ease}
+    .choice span::before{content:"";flex:0 0 auto;width:10px;height:10px;margin-right:9px;border:2px solid #777b8c;border-radius:50%}
+    .choice input:checked + span{border-color:var(--yellow);color:#07070a;background:var(--yellow);box-shadow:4px 4px 0 var(--purple)}
+    .choice input:checked + span::before{border-color:#07070a;background:#07070a;box-shadow:inset 0 0 0 2px var(--yellow)}
+    .choice input:focus-visible + span{outline:2px solid white;outline-offset:3px}
+
+    .equipment-board{position:relative;z-index:1;display:grid;grid-template-columns:minmax(250px,.75fr) minmax(0,1.25fr);gap:25px;padding:25px;border:1px solid rgba(244,241,0,.27);border-radius:20px;background:linear-gradient(135deg,rgba(244,241,0,.085),rgba(129,46,255,.07))}
+    .equipment-board h3{margin:0 0 14px;color:var(--yellow);font:900 1.65rem/1 var(--font-display);text-transform:uppercase}
+    .equipment-list{display:grid;gap:9px;margin:0;padding:0;list-style:none}
+    .equipment-list li{position:relative;padding-left:23px;color:#e5e6ec;font-size:.8rem;line-height:1.45}
+    .equipment-list li::before{content:"✓";position:absolute;left:0;color:var(--cyan);font-weight:950}
+    .equipment-copy p{margin:0 0 13px;color:#c5c7d1;font-size:.78rem;line-height:1.65}
+    .equipment-copy p:last-child{margin-bottom:0}
+
+    .know-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:25px}
+    .know-card{padding:21px;border:1px solid rgba(255,255,255,.1);border-radius:17px;background:rgba(255,255,255,.035)}
+    .know-card strong{display:block;margin-bottom:8px;color:var(--yellow);font:900 1.25rem/1 var(--font-display);letter-spacing:.03em;text-transform:uppercase}
+    .know-card p{margin:0;color:#bfc2ce;font-size:.75rem;line-height:1.6}
+    .responsibility-note{position:relative;z-index:1;margin:0 0 25px;padding:22px 23px;border-left:5px solid var(--pink);border-radius:0 15px 15px 0;background:rgba(255,58,181,.07);color:#e1e2e8;font-size:.8rem;line-height:1.7}
+    .responsibility-note strong{color:var(--yellow)}
+    .closing-line{position:relative;z-index:1;margin:25px 0 0;color:var(--yellow);font:900 clamp(2rem,5vw,4rem)/.9 var(--font-display);text-align:center;text-transform:uppercase;text-shadow:3px 3px 0 var(--purple)}
+
+    .submit-panel{display:grid;grid-template-columns:1fr auto;align-items:center;gap:25px;padding:clamp(25px,4vw,40px);border:2px solid var(--yellow);border-radius:25px;background:linear-gradient(130deg,var(--yellow),#ffd900);color:#07070a;box-shadow:8px 8px 0 var(--purple),0 25px 65px rgba(0,0,0,.35)}
+    .submit-panel h2{margin:0 0 7px;font:900 clamp(2rem,4vw,3.5rem)/.9 var(--font-display);text-transform:uppercase}
+    .submit-panel p{margin:0;max-width:670px;font-size:.8rem;font-weight:700;line-height:1.55}
+    .submit-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .submit-button,.clear-button{min-height:54px;border-radius:999px;padding:14px 23px;font-size:.73rem;font-weight:950;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:transform .18s ease}
+    .submit-button{border:2px solid var(--navy);color:white;background:var(--navy);box-shadow:0 11px 28px rgba(5,7,79,.25)}
+    .clear-button{border:1px solid rgba(5,7,79,.35);color:var(--navy);background:transparent}
+    .submit-button:hover,.clear-button:hover{transform:translateY(-2px)}
+    .submit-button:disabled{opacity:.65;cursor:wait;transform:none}
+    .form-status{grid-column:1/-1;margin:0;min-height:1.4em;font-size:.76rem;font-weight:850;text-align:right}
+    .form-status.error{color:#97001f}
+
+    .success-panel{padding:clamp(36px,7vw,80px);border:2px solid var(--yellow);border-radius:30px;background:linear-gradient(145deg,rgba(14,16,28,.98),rgba(6,7,13,.98));box-shadow:8px 8px 0 var(--purple),0 30px 100px rgba(0,0,0,.5);text-align:center}
+    .success-icon{display:grid;place-items:center;width:78px;height:78px;margin:0 auto 22px;border-radius:50%;color:#07070a;background:var(--yellow);box-shadow:0 0 38px rgba(244,241,0,.38);font-size:2rem;font-weight:950}
+    .success-panel h2{margin:0 0 13px;font:950 clamp(3rem,8vw,6rem)/.85 var(--font-display);text-transform:uppercase}
+    .success-panel p{max-width:650px;margin:0 auto;color:#c8cad5;line-height:1.7}
+
+    .botcheck{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+
+    @media(max-width:900px){
+      .guest-hero{grid-template-columns:1fr}.backstage-pass{width:min(520px,100%);transform:none}
+      .equipment-board{grid-template-columns:1fr}.know-grid{grid-template-columns:1fr}
+      .submit-panel{grid-template-columns:1fr}.submit-actions{justify-content:flex-start}.form-status{text-align:left}
+    }
+    @media(max-width:650px){
+      .guest-main{padding-top:38px}.guest-wrap{width:min(calc(100% - 22px),var(--max))}
+      .guest-hero h1{font-size:clamp(3.6rem,20vw,5.8rem)}
+      .progress-dock{top:76px;grid-template-columns:1fr auto}.progress-track{grid-column:1/-1;grid-row:2}.draft-status{font-size:.54rem}
+      .form-section{padding:25px 17px;border-radius:21px}.field-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+      .section-heading{gap:13px}.step-chip{width:40px;height:40px}.choice{flex-basis:120px}
+      .equipment-board{padding:20px 17px}.submit-panel{padding:25px 19px}.submit-actions{display:grid;grid-template-columns:1fr}.submit-button,.clear-button{width:100%}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html#home" aria-label="Jams 'N' Cocktails home">
+        <img class="header-brand-logo" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="Jams 'N' Cocktails">
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#watch">Watch + Listen</a>
+        <a href="episode-recaps.html">Recaps</a>
+        <a href="shot_of_the_week.html">Cocktails</a>
+        <a href="index.html#arcade">Arcade</a>
+        <a href="index.html#merch">Merch</a>
+        <a href="index.html#support">Support</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary" id="watchLiveButton" href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">
+          <span class="live-dot"></span>
+          <span id="watchLiveText">Watch Live</span>
+        </a>
+        <button class="menu-btn" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#watch">Watch + Listen</a>
+    <a href="episode-recaps.html">Recaps</a>
+    <a href="shot_of_the_week.html">Cocktails</a>
+    <a href="index.html#arcade">Arcade</a>
+    <a href="index.html#merch">Merch</a>
+    <a href="index.html#support">Support</a>
+    <a href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">Watch Live ↗</a>
+  </nav>
+
+  <main class="guest-main">
+    <div class="guest-wrap">
+      <section class="guest-hero" aria-labelledby="guestTitle">
+        <div>
+          <div class="guest-eyebrow">Private guest entrance</div>
+          <h1 id="guestTitle">Welcome to <span>The Lounge</span></h1>
+          <p class="guest-hero-copy">Before we go live, give us the good stuff: who you are, what you’re working on, what gets you talking, and what you need to feel completely at home in the JNC Lounge.</p>
+        </div>
+        <aside class="backstage-pass" aria-label="JNC guest backstage pass">
+          <div class="pass-top">
+            <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="">
+            <span class="pass-number">FORM 01 · ALL ACCESS</span>
+          </div>
+          <div class="pass-title">Guest Check-In</div>
+          <p class="pass-copy">Your answers help us build a better conversation, prepare the studio, and make your appearance feel effortless.</p>
+        </aside>
+      </section>
+
+      <div class="progress-dock" aria-label="Form completion progress">
+        <span class="progress-label" id="progressLabel">0% ready</span>
+        <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="draft-status" id="draftStatus">Draft saves on this device</span>
+      </div>
+
+      <form class="guest-form" id="guestForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="63fea077-6713-4039-b2aa-c744296fb75c">
+        <input type="hidden" name="subject" value="New JNC Guest Pre-Interview Form">
+        <input type="hidden" name="from_name" value="JNC Guest Portal">
+        <div class="botcheck" aria-hidden="true"><label>Leave this field empty <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+
+        <section class="form-section" data-step="01" aria-labelledby="aboutHeading">
+          <div class="section-heading">
+            <span class="step-chip">01</span>
+            <div><h2 id="aboutHeading">Your Backstage Pass</h2><p>Start with the essentials so we can introduce you properly and point our audience toward your world.</p></div>
+          </div>
+          <div class="field-grid">
+            <div class="field" data-progress>
+              <label for="guestName">Guest Name <span class="required">*</span></label>
+              <input id="guestName" name="Guest Name" type="text" autocomplete="name" placeholder="How should we introduce you?" required>
+            </div>
+            <div class="field" data-progress>
+              <label for="guestEmail">Email <span class="required">*</span></label>
+              <input id="guestEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field full" data-progress>
+              <label for="webSocial">Webpage / Social Media</label>
+              <input id="webSocial" name="Webpage or Social Media" type="text" inputmode="url" placeholder="Website, Instagram, Facebook, Linktree—or several links">
+            </div>
+            <div class="field full" data-progress>
+              <label for="bio">Bio</label>
+              <textarea class="tall" id="bio" name="Bio" placeholder="Give us the bio you’d love to hear on air. Bragging is permitted here."></textarea>
+            </div>
+            <div class="field" data-progress>
+              <label for="favoriteDrink">Favorite Drink</label>
+              <input id="favoriteDrink" name="Favorite Drink" type="text" placeholder="Cocktail, beer, spirit, mocktail...">
+            </div>
+            <div class="field" data-progress>
+              <label for="favoriteArtist">Favorite Band or Artist</label>
+              <input id="favoriteArtist" name="Favorite Band or Artist" type="text" placeholder="The one you never skip">
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section" data-step="02" aria-labelledby="conversationHeading">
+          <div class="section-heading">
+            <span class="step-chip">02</span>
+            <div><h2 id="conversationHeading">Build the Conversation</h2><p>Point us toward the stories, work, and wonderfully opinionated rabbit holes that will make this episode yours.</p></div>
+          </div>
+          <div class="field-grid">
+            <div class="field full" data-progress>
+              <label for="projects">Current Project(s)</label>
+              <textarea id="projects" name="Current Projects" placeholder="What are you creating, releasing, touring, launching, or celebrating?"></textarea>
+            </div>
+            <div class="field full" data-progress>
+              <label for="headlines">Headlines &amp; Pop Culture Topics That Interest You</label>
+              <textarea id="headlines" name="Headlines and Pop Culture Topics" placeholder="Music news, movies, local stories, weird headlines, hot takes—give us some fuel."></textarea>
+            </div>
+            <div class="field full" data-progress>
+              <label for="talkTopics">Anything Specific You’d Like to Talk About During the Show?</label>
+              <textarea class="tall" id="talkTopics" name="Specific Show Topics" placeholder="Stories you want to tell, questions you hope we ask, or subjects you’d rather avoid."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section" data-step="03" aria-labelledby="mediaHeading">
+          <div class="section-heading">
+            <span class="step-chip">03</span>
+            <div><h2 id="mediaHeading">Your Media Kit</h2><p>Help our production crew find the audio, video, and imagery that makes your appearance look and sound great.</p></div>
+          </div>
+          <div class="field-grid">
+            <div class="field full" data-progress>
+              <label for="mediaLinks">Links to Audio / Video / Photo Media</label>
+              <textarea id="mediaLinks" name="Audio Video Photo Media Links" placeholder="One link per line works beautifully."></textarea>
+            </div>
+            <fieldset class="field full" data-progress>
+              <legend class="field-label">Is it okay to play your music and share other media during our broadcast and subsequent uploads relating to this episode? <span class="required">*</span></legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="Media Permission" value="Yes" required><span>Yes, absolutely</span></label>
+                <label class="choice"><input type="radio" name="Media Permission" value="No"><span>No, please don’t</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="field" data-progress>
+              <legend class="field-label">Do you have hi-res promo or live photos? <span class="required">*</span></legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="Has Hi-Res Photos" value="Yes" data-reveal="photoLocation" required><span>Yes</span></label>
+                <label class="choice"><input type="radio" name="Has Hi-Res Photos" value="No" data-reveal="photoLocation"><span>No</span></label>
+              </div>
+            </fieldset>
+            <div class="field" id="photoLocation" data-progress hidden>
+              <label for="photoLink">Where Can We Find Them?</label>
+              <input id="photoLink" name="Hi-Res Photo Location" type="text" inputmode="url" placeholder="Drive, Dropbox, website, media kit..." disabled>
+            </div>
+            <div class="field full" data-progress>
+              <label for="youtubeChannel">Link to YouTube Channel</label>
+              <input id="youtubeChannel" name="YouTube Channel" type="url" inputmode="url" placeholder="https://youtube.com/@yourchannel">
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section" data-step="04" aria-labelledby="technicalHeading">
+          <div class="section-heading">
+            <span class="step-chip">04</span>
+            <div><h2 id="technicalHeading">Technical Stuff</h2><p>Choose your route into the Lounge and let us know what the production team should prepare.</p></div>
+          </div>
+          <div class="field-grid">
+            <fieldset class="field full" data-progress>
+              <legend class="field-label">Preferred Way to Appear on the Show <span class="required">*</span></legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="Appearance Preference" value="LIVE In-Studio" required><span>LIVE In-Studio</span></label>
+                <label class="choice"><input type="radio" name="Appearance Preference" value="Remotely via Zoom"><span>Remotely via Zoom</span></label>
+              </div>
+            </fieldset>
+
+            <div class="field full">
+              <div class="equipment-board">
+                <div>
+                  <h3>For Performing Musical Guests</h3>
+                  <ul class="equipment-list">
+                    <li>Vocal microphone(s)</li>
+                    <li>DI box for instrument(s)</li>
+                    <li>Over-ear headphones</li>
+                    <li>One guitar and one bass amp emulator</li>
+                  </ul>
+                </div>
+                <div class="equipment-copy">
+                  <p>You’re welcome to bring anything you require for performing, including your own mixer. We can run a line from your mixer to ours.</p>
+                  <p>Everything is run directly, so there are no amps, live drums, or monitor wedges. Feel free to bring your own headphones or in-ear monitors if you prefer.</p>
+                </div>
+              </div>
+            </div>
+
+            <fieldset class="field" data-progress>
+              <legend class="field-label">Do You Have Any Special Requirements or Requests? <span class="required">*</span></legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="Has Special Requirements" value="Yes" data-reveal="specialDetails" required><span>Yes</span></label>
+                <label class="choice"><input type="radio" name="Has Special Requirements" value="No" data-reveal="specialDetails"><span>No</span></label>
+              </div>
+            </fieldset>
+            <div class="field" id="specialDetails" data-progress hidden>
+              <label for="requirements">Tell Us What You Need <span class="required">*</span></label>
+              <textarea id="requirements" name="Special Requirements Details" placeholder="Accessibility, equipment, scheduling, hospitality, or anything else." disabled></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section" data-step="05" aria-labelledby="knowHeading">
+          <div class="section-heading">
+            <span class="step-chip">05</span>
+            <div><h2 id="knowHeading">Things to Know</h2><p>A quick green-room briefing so show night stays smooth, safe, and seriously fun.</p></div>
+          </div>
+
+          <div class="know-grid">
+            <article class="know-card"><strong>In-Studio</strong><p>Please arrive by 7:30 PM for setup and soundcheck before our 8 PM start. The show runs until approximately 10 PM. Contact us if you need an earlier arrival.</p></article>
+            <article class="know-card"><strong>Remote Guests</strong><p>Please join the Zoom call by 7:45 PM for an audio and video check before the broadcast begins.</p></article>
+            <article class="know-card"><strong>Spread the Word</strong><p>Please feel free to share and promote your appearance on Jams 'N' Cocktails: LIVE Radio Show. Logo files are available upon request.</p></article>
+          </div>
+
+          <p class="responsibility-note"><strong>Super Important:</strong> We’re all about cutting loose and having a good time, but please be responsible. We’ll never pressure you to drink more than you’d like or set a pace. Please consider a designated driver or a rideshare such as Lyft or Uber if you really want to get down.</p>
+
+          <div class="field-grid">
+            <div class="field full" data-progress>
+              <label for="questions">Questions, Comments, or Concerns?</label>
+              <textarea id="questions" name="Questions Comments or Concerns" placeholder="Anything we haven’t covered? This is the place."></textarea>
+            </div>
+            <fieldset class="field full" data-progress>
+              <legend class="field-label">Cool With All of This? <span class="required">*</span></legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="Cool With All of This" value="Yes" required><span>Yes — let’s make a show!</span></label>
+                <label class="choice"><input type="radio" name="Cool With All of This" value="No"><span>No — let’s talk first</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <p class="closing-line">Let’s Make Some Music &amp; Some Memories!</p>
+        </section>
+
+        <section class="submit-panel" aria-labelledby="submitHeading">
+          <div><h2 id="submitHeading">Ready for Soundcheck?</h2><p>Give everything one quick look, then send it to the JNC production crew. Your locally saved draft is cleared only after a successful submission.</p></div>
+          <div class="submit-actions">
+            <button class="clear-button" id="clearDraft" type="button">Clear Draft</button>
+            <button class="submit-button" id="submitButton" type="submit">Send to the JNC Crew →</button>
+          </div>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </section>
+      </form>
+
+      <section class="success-panel" id="successPanel" tabindex="-1" hidden>
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <h2>You’re on the Guest List!</h2>
+        <p>Thanks, <span id="successName">friend</span>. Your pre-interview form has landed with the JNC crew. We’ll use it to get the Lounge ready for a great show.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer id="connect">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html#home" aria-label="Jams 'N' Cocktails home">
+            <img class="header-brand-logo" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="Jams 'N' Cocktails">
+          </a>
+          <p style="margin-top:18px">Talk radio, pop culture, music, games, cocktails, and live entertainment from the Treasure Coast of Florida.</p>
+          <div class="social-row">
+            <a class="social" href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+            <a class="social" href="https://www.facebook.com/jncpodcast" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+            <a class="social" href="https://www.instagram.com/jamsncocktailspodcast/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a class="social" href="https://www.tiktok.com/@jamsncocktailspodcast" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Watch &amp; Listen</h3>
+          <a href="index.html#watch">Latest episode</a>
+          <a href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://podcasts.apple.com/us/podcast/jams-n-cocktails/id1498239152" target="_blank" rel="noopener">Apple Podcasts</a>
+          <a href="https://www.iheart.com/podcast/269-jams-n-cocktails-96540907/" target="_blank" rel="noopener">iHeartRadio</a>
+        </div>
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <a href="episode-recaps.html">Recap blog</a>
+          <a href="shot_of_the_week.html">Cocktail recipes</a>
+          <a href="index.html#arcade">JNC Arcade</a>
+          <a href="index.html#merch">Merch</a>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <a href="index.html#subscribe">Newsletter</a>
+          <a href="https://www.patreon.com/jncpodcast" target="_blank" rel="noopener">Patreon</a>
+          <a href="mailto:jnctvlive@gmail.com">Contact</a>
+          <a href="mailto:jnctvlive@gmail.com?subject=JNC%20Sponsorship%20Inquiry">Sponsor JNC</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <span>© 2026 Brad Brock Media. Jams 'N' Cocktails.</span>
+        <span>Created and Maintained by Brad Brock.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/js/jnc-site-chrome.js"></script>
+  <script>
+    (() => {
+      const form = document.getElementById('guestForm');
+      const submitButton = document.getElementById('submitButton');
+      const clearButton = document.getElementById('clearDraft');
+      const status = document.getElementById('formStatus');
+      const successPanel = document.getElementById('successPanel');
+      const successName = document.getElementById('successName');
+      const progressFill = document.getElementById('progressFill');
+      const progressLabel = document.getElementById('progressLabel');
+      const draftStatus = document.getElementById('draftStatus');
+      const draftKey = 'jnc-guest-preinterview-draft-v1';
+      const excludedDraftFields = new Set(['access_key', 'subject', 'from_name', 'botcheck']);
+      let saveTimer;
+
+      const updateConditionalField = (groupName, containerId, detailId) => {
+        const selected = form.querySelector(`input[name="${groupName}"]:checked`);
+        const container = document.getElementById(containerId);
+        const detail = document.getElementById(detailId);
+        const show = selected?.value === 'Yes';
+        container.hidden = !show;
+        detail.disabled = !show;
+        detail.required = show && groupName === 'Has Special Requirements';
+        if (!show) detail.value = '';
+      };
+
+      const updateConditionals = () => {
+        updateConditionalField('Has Hi-Res Photos', 'photoLocation', 'photoLink');
+        updateConditionalField('Has Special Requirements', 'specialDetails', 'requirements');
+      };
+
+      const updateProgress = () => {
+        const items = [...form.querySelectorAll('[data-progress]')].filter(item => !item.hidden);
+        const answered = items.filter(item => {
+          const radios = [...item.querySelectorAll('input[type="radio"]')];
+          if (radios.length) return radios.some(radio => radio.checked);
+          const control = item.querySelector('input:not([type="hidden"]), textarea');
+          return Boolean(control && !control.disabled && control.value.trim());
+        }).length;
+        const percent = items.length ? Math.round((answered / items.length) * 100) : 0;
+        progressFill.style.width = `${percent}%`;
+        progressLabel.textContent = `${percent}% ready`;
+      };
+
+      const saveDraft = () => {
+        try {
+          const draft = {};
+          new FormData(form).forEach((value, key) => {
+            if (!excludedDraftFields.has(key) && typeof value === 'string') draft[key] = value;
+          });
+          localStorage.setItem(draftKey, JSON.stringify(draft));
+          draftStatus.textContent = 'Draft saved on this device';
+        } catch (error) {
+          draftStatus.textContent = 'Draft saving unavailable';
+        }
+      };
+
+      const scheduleDraftSave = () => {
+        window.clearTimeout(saveTimer);
+        draftStatus.textContent = 'Saving draft…';
+        saveTimer = window.setTimeout(saveDraft, 350);
+      };
+
+      const restoreDraft = () => {
+        try {
+          const draft = JSON.parse(localStorage.getItem(draftKey) || '{}');
+          /* Restore choices first so conditional detail fields can be enabled. */
+          Object.entries(draft).forEach(([name, value]) => {
+            const controls = [...form.elements].filter(control => control.name === name);
+            controls.forEach(control => {
+              if (control.type === 'radio') control.checked = control.value === value;
+            });
+          });
+          updateConditionals();
+          Object.entries(draft).forEach(([name, value]) => {
+            const controls = [...form.elements].filter(control => control.name === name);
+            controls.forEach(control => {
+              if (control.type !== 'radio' && !control.disabled) control.value = value;
+            });
+          });
+          if (Object.keys(draft).length) draftStatus.textContent = 'Saved draft restored';
+        } catch (error) {
+          localStorage.removeItem(draftKey);
+        }
+      };
+
+      form.addEventListener('input', () => {
+        updateConditionals();
+        updateProgress();
+        scheduleDraftSave();
+      });
+      form.addEventListener('change', () => {
+        updateConditionals();
+        updateProgress();
+        scheduleDraftSave();
+      });
+
+      clearButton.addEventListener('click', () => {
+        if (!window.confirm('Clear every answer saved in this form?')) return;
+        form.reset();
+        localStorage.removeItem(draftKey);
+        updateConditionals();
+        updateProgress();
+        draftStatus.textContent = 'Draft cleared';
+        status.textContent = '';
+        document.getElementById('guestName').focus();
+      });
+
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending to the Lounge…';
+        status.className = 'form-status';
+        status.textContent = 'Transmitting your guest pass…';
+
+        try {
+          const response = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+          const result = await response.json();
+          if (!response.ok || !result.success) throw new Error(result.message || 'Submission failed');
+          successName.textContent = document.getElementById('guestName').value.trim() || 'friend';
+          localStorage.removeItem(draftKey);
+          form.hidden = true;
+          document.querySelector('.progress-dock').hidden = true;
+          successPanel.hidden = false;
+          successPanel.focus();
+          successPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (error) {
+          status.className = 'form-status error';
+          status.textContent = 'That transmission didn’t make it through. Please check your connection and try again.';
+          submitButton.disabled = false;
+          submitButton.textContent = 'Send to the JNC Crew →';
+        }
+      });
+
+      restoreDraft();
+      updateConditionals();
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
