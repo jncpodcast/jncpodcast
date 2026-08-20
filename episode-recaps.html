@@ -1762,7 +1762,7 @@
           <p class="lead">The stories behind the chaos: complete show notes, guests, cocktails, games, music, and everything worth remembering after last call.</p>
         </div>
         <aside class="recap-console" aria-label="Archive overview">
-          <div class="recap-stat"><strong>83</strong><span>Archived recaps</span></div>
+          <div class="recap-stat"><strong>82</strong><span>Archived recaps</span></div>
           <div class="recap-stat"><strong>2026</strong><span>Latest season</span></div>
           <div class="recap-stat"><strong>JNC</strong><span>Beautifully organized chaos</span></div>
         </aside>
@@ -1838,7 +1838,18 @@
       const assetBase = 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/';
       const toAssetUrl = value => String(value || '').startsWith('assets/') ? assetBase + String(value).slice(7) : value;
       const resolveBodyAssets = html => String(html || '').replace(/src=(["'])assets\//g, (match, quote) => 'src=' + quote + assetBase);
-      const rawPosts = Array.isArray(window.JNC_RECAP_POSTS) ? window.JNC_RECAP_POSTS : [];
+      const newRecapPosts = [{
+        slug: 'bad-drawings-flying-songs-big-laughs',
+        title: "Bad Drawings, Flying Songs & Big Laughs: Inside This Week’s Jams 'N' Cocktails",
+        date: '2026-08-20',
+        image: 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/recaps/bad-drawings-flying-songs-big-laughs/image-01.jpg',
+        excerpt: 'The JNC crew tests new interactive games, tackles flying-song trivia, pours a Bicicletta, and proves that questionable artwork makes for excellent live entertainment.',
+        bodyUrl: 'recap-articles/bad-drawings-flying-songs-big-laughs.html',
+        source: 'https://www.youtube.com/@JamsNCocktails',
+        sourceLabel: 'Watch JNC on YouTube'
+      }];
+      const archivedRecapPosts = Array.isArray(window.JNC_RECAP_POSTS) ? window.JNC_RECAP_POSTS : [];
+      const rawPosts = [...newRecapPosts, ...archivedRecapPosts];
       const posts = rawPosts.map(post => ({
         ...post,
         image: toAssetUrl(post.image),
