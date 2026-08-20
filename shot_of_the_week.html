@@ -388,6 +388,7 @@
         linear-gradient(180deg, rgba(3,4,10,.06) 28%, rgba(3,4,10,.94) 100%),
         url('https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-crew-hero.jpg') center/cover;
     }
+    .video-placeholder[hidden] { display: none !important; }
     .video-placeholder-copy { position: relative; z-index: 1; }
     .video-placeholder-copy strong { display: block; color: var(--yellow); font: 900 34px/1 "Barlow Condensed", Impact, sans-serif; text-transform: uppercase; }
     .video-placeholder-copy span { display: block; margin-top: 8px; color: #e0e1e8; font-size: 14px; }
@@ -1017,7 +1018,7 @@ footer#connect .copyright{
             <div class="poster-wrap">
               <span class="tape one" aria-hidden="true"></span>
               <span class="tape two" aria-hidden="true"></span>
-              <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/bicicletta-cocktail-of-the-week.jpg" alt="The Bicicletta Cocktail of the Week recipe card" />
+              <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/shot-of-the-week/bicicletta-cocktail-of-the-week.jpg" alt="The Bicicletta Cocktail of the Week recipe card" />
             </div>
 
             <article class="recipe-card">
@@ -1489,7 +1490,11 @@ footer#connect .copyright{
       if (end > start) params.set('end', String(end));
       player.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${params}`;
       player.hidden = false;
-      if (placeholder) placeholder.hidden = true;
+      player.style.display = 'block';
+      if (placeholder) {
+        placeholder.hidden = true;
+        placeholder.style.display = 'none';
+      }
 
       const watchUrl = `https://youtu.be/${encodeURIComponent(videoId)}${start > 0 ? `?t=${start}` : ''}`;
       document.querySelectorAll('[data-cocktail-video-link]').forEach(link => { link.href = watchUrl; });
