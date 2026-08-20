@@ -1831,6 +1831,7 @@
   </dialog>
   <script>
     document.write('<script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/recap-posts.js?v=' + Date.now() + '"><\/script>');
+    document.write('<script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/recap-latest.js?v=' + Date.now() + '"><\/script>');
   </script>
   <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/js/jnc-site-chrome.js"></script>
   <script>
@@ -1838,7 +1839,14 @@
       const assetBase = 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/';
       const toAssetUrl = value => String(value || '').startsWith('assets/') ? assetBase + String(value).slice(7) : value;
       const resolveBodyAssets = html => String(html || '').replace(/src=(["'])assets\//g, (match, quote) => 'src=' + quote + assetBase);
-      const rawPosts = Array.isArray(window.JNC_RECAP_POSTS) ? window.JNC_RECAP_POSTS : [];
+      const latestPosts = Array.isArray(window.JNC_RECAP_LATEST) ? window.JNC_RECAP_LATEST : [];
+      const archivedPosts = Array.isArray(window.JNC_RECAP_POSTS) ? window.JNC_RECAP_POSTS : [];
+      const seenRecapSlugs = new Set();
+      const rawPosts = [...latestPosts, ...archivedPosts].filter(post => {
+        if (!post?.slug || seenRecapSlugs.has(post.slug)) return false;
+        seenRecapSlugs.add(post.slug);
+        return true;
+      });
       const posts = rawPosts.map(post => ({
         ...post,
         image: toAssetUrl(post.image),
