@@ -1017,7 +1017,7 @@ footer#connect .copyright{
             <div class="poster-wrap">
               <span class="tape one" aria-hidden="true"></span>
               <span class="tape two" aria-hidden="true"></span>
-              <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/shot-of-the-week/bicicletta-cocktail-of-the-week.jpg" alt="The Bicicletta Cocktail of the Week recipe card" />
+              <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/bicicletta-cocktail-of-the-week.jpg" alt="The Bicicletta Cocktail of the Week recipe card" />
             </div>
 
             <article class="recipe-card">
@@ -1443,10 +1443,16 @@ footer#connect .copyright{
     </footer>
   </div>
   <script>
-    document.write('<script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/cocktail-content.js?v=' + Date.now() + '"><\/script>');
+    window.JNC_COCKTAIL_READY = new Promise((resolve, reject) => {
+      const contentScript = document.createElement('script');
+      contentScript.src = 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/cocktail-content.js?v=' + Date.now();
+      contentScript.onload = resolve;
+      contentScript.onerror = () => reject(new Error('Unable to load cocktail-content.js'));
+      document.head.appendChild(contentScript);
+    });
   </script>
   <script>
-    (() => {
+    window.JNC_COCKTAIL_READY.then(() => {
       const content = window.JNC_COCKTAIL_CONTENT;
       const player = document.getElementById('cocktailVideoPlayer');
       const placeholder = document.getElementById('cocktailVideoPlaceholder');
@@ -1487,7 +1493,9 @@ footer#connect .copyright{
 
       const watchUrl = `https://youtu.be/${encodeURIComponent(videoId)}${start > 0 ? `?t=${start}` : ''}`;
       document.querySelectorAll('[data-cocktail-video-link]').forEach(link => { link.href = watchUrl; });
-    })();
+    }).catch(error => {
+      console.error('JNC cocktail video could not be initialized:', error);
+    });
   </script>
   <script>
 (() => {
