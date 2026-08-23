@@ -1018,17 +1018,17 @@ footer#connect .copyright{
             <div class="poster-wrap">
               <span class="tape one" aria-hidden="true"></span>
               <span class="tape two" aria-hidden="true"></span>
-              <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/shot-of-the-week/bicicletta-cocktail-of-the-week.jpg" alt="The Bicicletta Cocktail of the Week recipe card" />
+              <img id="featuredCocktailImage" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/shot-of-the-week/bicicletta-cocktail-of-the-week.jpg" alt="The Bicicletta Cocktail of the Week recipe card" />
             </div>
 
             <article class="recipe-card">
               <span class="tape" aria-hidden="true"></span>
               <div class="kicker">Featured Recipe</div>
-              <h2>The Bicicletta</h2>
-              <p class="vibe"><strong>The vibe:</strong> Crisp, sparkling, and pleasantly bittersweet—dry white wine keeps it light while Campari and club soda give this Italian-style aperitivo its vivid color and refreshing snap.</p>
+              <h2 id="featuredCocktailName">The Bicicletta</h2>
+              <p class="vibe"><strong>The vibe:</strong> <span id="featuredCocktailVibe">Crisp, sparkling, and pleasantly bittersweet—dry white wine keeps it light while Campari and club soda give this Italian-style aperitivo its vivid color and refreshing snap.</span></p>
 
               <span class="recipe-label">Ingredients</span>
-              <ul class="ingredients">
+              <ul class="ingredients" id="featuredCocktailIngredients">
                 <li><span>Dry white wine</span><strong>3 oz</strong></li>
                 <li><span>Campari</span><strong>2 oz</strong></li>
                 <li><span>Chilled club soda</span><strong>To top</strong></li>
@@ -1036,7 +1036,7 @@ footer#connect .copyright{
               </ul>
 
               <span class="recipe-label">Method</span>
-              <p class="method">Pour the white wine and Campari into a wine glass or double rocks glass. Fill the glass about three-quarters full with ice, top with chilled club soda, and stir gently. Garnish with two orange wheels.</p>
+              <p class="method" id="featuredCocktailMethod">Pour the white wine and Campari into a wine glass or double rocks glass. Fill the glass about three-quarters full with ice, top with chilled club soda, and stir gently. Garnish with two orange wheels.</p>
 
               <div class="actions">
                 <a class="button" data-cocktail-video-link href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">Visit JNC on YouTube</a>
@@ -1046,10 +1046,10 @@ footer#connect .copyright{
           </div>
 
           <div class="quick-facts" aria-label="Drink information">
-            <div class="fact"><span>Base</span><strong>Dry White Wine</strong></div>
-            <div class="fact"><span>Flavor</span><strong>Crisp &amp; Bittersweet</strong></div>
-            <div class="fact"><span>Prep Time</span><strong>2 Minutes</strong></div>
-            <div class="fact"><span>Serve</span><strong>Wine Glass</strong></div>
+            <div class="fact"><span>Base</span><strong id="featuredCocktailBase">Dry White Wine</strong></div>
+            <div class="fact"><span>Flavor</span><strong id="featuredCocktailFlavor">Crisp &amp; Bittersweet</strong></div>
+            <div class="fact"><span>Prep Time</span><strong id="featuredCocktailPrep">2 Minutes</strong></div>
+            <div class="fact"><span>Serve</span><strong id="featuredCocktailServe">Wine Glass</strong></div>
           </div>
         </div>
       </section>
@@ -1061,7 +1061,7 @@ footer#connect .copyright{
               <div class="eyebrow">More Than a Recipe</div>
               <h2>Behind the Drink</h2>
             </div>
-            <p>The Bicicletta segment is still being mixed. Until the video arrives, get to know the drink and the easygoing aperitivo spirit behind it.</p>
+            <p id="featuredCocktailBehindIntro">The Bicicletta segment is still being mixed. Until the video arrives, get to know the drink and the easygoing aperitivo spirit behind it.</p>
           </div>
 
           <div class="behind-grid">
@@ -1070,16 +1070,18 @@ footer#connect .copyright{
               <div class="video-placeholder" id="cocktailVideoPlaceholder" role="img" aria-label="The Jams 'N' Cocktails crew in the JNC Lounge">
                 <div class="video-placeholder-copy">
                   <strong>Video Coming Soon</strong>
-                  <span>The Bicicletta segment will appear here after this week’s show.</span>
+                  <span id="cocktailVideoPlaceholderText">The Bicicletta segment will appear here after this week’s show.</span>
                 </div>
               </div>
             </div>
 
             <article class="story-card">
-              <blockquote>“Bittersweet, bubbly, and built for the ride.”</blockquote>
-              <p>The Bicicletta combines dry white wine and Campari, then stretches everything with chilled club soda for a bright red aperitivo that stays crisp, refreshing, and easy to sip.</p>
-              <p>Served over plenty of ice with two orange wheels, it brings bold citrus and herbal bitterness without weighing down the evening—the perfect kind of drink for a long, relaxed stop at the JNC bar.</p>
-              <div class="episode-meta">
+              <blockquote id="featuredCocktailQuote">“Bittersweet, bubbly, and built for the ride.”</blockquote>
+              <div id="featuredCocktailStory">
+                <p>The Bicicletta combines dry white wine and Campari, then stretches everything with chilled club soda for a bright red aperitivo that stays crisp, refreshing, and easy to sip.</p>
+                <p>Served over plenty of ice with two orange wheels, it brings bold citrus and herbal bitterness without weighing down the evening—the perfect kind of drink for a long, relaxed stop at the JNC bar.</p>
+              </div>
+              <div class="episode-meta" id="featuredCocktailPills">
                 <span class="pill">Italian Aperitivo</span>
                 <span class="pill">Wine Cocktail</span>
                 <span class="pill">The Bicicletta</span>
@@ -1113,7 +1115,7 @@ footer#connect .copyright{
             <button class="filter" data-filter="holiday">Holiday</button>
           </div>
 
-          <div class="recipe-grid">
+          <div class="recipe-grid" id="recipeGrid">
             <article class="archive-card" data-tags="cocktail whiskey bourbon">
               <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/paper-plane-cocktail-of-the-week.jpg" alt="The Paper Plane cocktail recipe card" loading="lazy" />
               <div class="archive-body">
@@ -1446,7 +1448,11 @@ footer#connect .copyright{
   <script>
     window.JNC_COCKTAIL_READY = new Promise((resolve, reject) => {
       const contentScript = document.createElement('script');
-      contentScript.src = 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/cocktail-content.js?v=' + Date.now();
+      const localPreview = window.location.protocol === 'file:';
+      const cocktailDataUrl = localPreview
+        ? 'assets/data/cocktail-content.js'
+        : 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/cocktail-content.js';
+      contentScript.src = cocktailDataUrl + '?v=' + Date.now();
       contentScript.onload = resolve;
       contentScript.onerror = () => reject(new Error('Unable to load cocktail-content.js'));
       document.head.appendChild(contentScript);
@@ -1457,7 +1463,86 @@ footer#connect .copyright{
       const content = window.JNC_COCKTAIL_CONTENT;
       const player = document.getElementById('cocktailVideoPlayer');
       const placeholder = document.getElementById('cocktailVideoPlaceholder');
-      if (!content || !player || !content.videoUrl) return;
+      const assetBase = 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/';
+      const toAssetUrl = value => String(value || '').startsWith('assets/') ? assetBase + String(value).slice(7) : String(value || '');
+      const escapeText = value => String(value || '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+      const setText = (id, value) => { const element = document.getElementById(id); if (element && value) element.textContent = value; };
+
+      const featured = content?.featured;
+      if (featured) {
+        const image = document.getElementById('featuredCocktailImage');
+        if (image && featured.image) {
+          image.src = toAssetUrl(featured.image);
+          image.alt = featured.imageAlt || `${featured.name} ${featured.type || 'Cocktail'} of the Week recipe card`;
+        }
+        setText('featuredCocktailName', featured.name);
+        setText('featuredCocktailVibe', featured.vibe);
+        setText('featuredCocktailMethod', featured.method);
+        setText('featuredCocktailBase', featured.base);
+        setText('featuredCocktailFlavor', featured.flavor);
+        setText('featuredCocktailPrep', featured.prepTime);
+        setText('featuredCocktailServe', featured.serve);
+        setText('featuredCocktailBehindIntro', featured.behindIntro);
+        setText('cocktailVideoPlaceholderText', `${featured.name} will appear here after this week’s show.`);
+        setText('featuredCocktailQuote', `“${String(featured.quote || '').replace(/^[“"]|[”"]$/g, '')}”`);
+
+        const ingredients = document.getElementById('featuredCocktailIngredients');
+        if (ingredients && Array.isArray(featured.ingredients) && featured.ingredients.length) {
+          ingredients.replaceChildren();
+          featured.ingredients.forEach(ingredient => {
+            const item = document.createElement('li');
+            const name = document.createElement('span');
+            const amount = document.createElement('strong');
+            name.textContent = ingredient.name || '';
+            amount.textContent = ingredient.amount || '';
+            item.append(name, amount);
+            ingredients.append(item);
+          });
+        }
+
+        const story = document.getElementById('featuredCocktailStory');
+        if (story && Array.isArray(featured.story) && featured.story.length) {
+          story.replaceChildren();
+          featured.story.forEach(paragraph => {
+            const item = document.createElement('p');
+            item.textContent = paragraph;
+            story.append(item);
+          });
+        }
+
+        const pills = document.getElementById('featuredCocktailPills');
+        if (pills && Array.isArray(featured.pills) && featured.pills.length) {
+          pills.replaceChildren();
+          featured.pills.forEach(value => {
+            const pill = document.createElement('span');
+            pill.className = 'pill';
+            pill.textContent = value;
+            pills.append(pill);
+          });
+        }
+      }
+
+      const recipeGrid = document.getElementById('recipeGrid');
+      if (recipeGrid && Array.isArray(content?.archive)) {
+        content.archive.slice().reverse().forEach(recipe => {
+          if (!recipe?.name || recipeGrid.querySelector(`[data-builder-slug="${CSS.escape(recipe.slug || '')}"]`)) return;
+          const card = document.createElement('article');
+          card.className = 'archive-card';
+          card.dataset.tags = (recipe.tags || [String(recipe.type || 'cocktail').toLowerCase()]).join(' ');
+          card.dataset.builderSlug = recipe.slug || '';
+          card.dataset.recipeBlurb = recipe.vibe || '';
+          card.dataset.recipeIngredients = (recipe.ingredients || []).map(item => `${item.amount || ''} ${item.name || ''}`.trim()).join(', ');
+          card.dataset.recipeMethod = recipe.method || '';
+          card.innerHTML = `<img src="${escapeText(toAssetUrl(recipe.image))}" alt="${escapeText(recipe.imageAlt || `${recipe.name} recipe card`)}" loading="lazy"><div class="archive-body"><span class="archive-type">${escapeText(recipe.type || 'Cocktail')} · ${escapeText(recipe.base || 'JNC Favorite')}</span><h3>${escapeText(recipe.name)}</h3><p>${escapeText(card.dataset.recipeIngredients)}</p><button class="recipe-open" type="button">View recipe</button></div>`;
+          recipeGrid.prepend(card);
+        });
+      }
+
+      if (!content || !player || !content.videoUrl) {
+        if (player) { player.hidden = true; player.removeAttribute('src'); }
+        if (placeholder) { placeholder.hidden = false; placeholder.style.display = ''; }
+        return;
+      }
 
       const parseTime = value => {
         if (typeof value === 'number' && Number.isFinite(value)) return Math.max(0, Math.floor(value));
@@ -1532,8 +1617,9 @@ footer#connect .copyright{
   });
 })();
 
-</script>
+  </script>
   <script>
+    window.JNC_COCKTAIL_READY.finally(() => {
     (() => {
       const filters = document.querySelectorAll('.filter');
       const cards = document.querySelectorAll('.archive-card');
@@ -1658,9 +1744,9 @@ footer#connect .copyright{
         dialogImage.alt = `${title} JNC recipe card`;
         dialogType.textContent = card.querySelector('.archive-type').textContent.trim();
         dialogTitle.textContent = title;
-        dialogBlurb.textContent = details.blurb || 'A favorite pull from the JNC recipe vault.';
-        dialogIngredients.textContent = card.querySelector('.archive-body > p').textContent.trim();
-        dialogMethod.textContent = details.method || 'Follow the proportions on the recipe card, combine with ice, and serve cold.';
+        dialogBlurb.textContent = card.dataset.recipeBlurb || details.blurb || 'A favorite pull from the JNC recipe vault.';
+        dialogIngredients.textContent = card.dataset.recipeIngredients || card.querySelector('.archive-body > p').textContent.trim();
+        dialogMethod.textContent = card.dataset.recipeMethod || details.method || 'Follow the proportions on the recipe card, combine with ice, and serve cold.';
         dialog.showModal();
         dialog.scrollTop = 0;
         document.body.classList.add('recipe-modal-open');
@@ -1690,6 +1776,7 @@ footer#connect .copyright{
         lastTrigger?.focus();
       });
     })();
+    }).catch(() => {});
   
 
     // Reports the content height to the parent Wix page for optional Velo use.
