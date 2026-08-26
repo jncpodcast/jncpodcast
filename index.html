@@ -1054,8 +1054,10 @@
     }
     .signup input:focus{border-color:var(--yellow)}
     .signup small{display:block;color:#c8cee2;margin-top:12px;line-height:1.5}
-    .success-message{display:none;color:var(--yellow);font-weight:900;margin-top:12px}
-    .signup.sent .success-message{display:block}
+    .signup-status{min-height:1.5em;margin-top:12px;color:#c8cee2;font-size:.76rem;font-weight:850;line-height:1.5}
+    .signup-status.success{color:var(--yellow)}
+    .signup-status.error{color:#ff9aa9}
+    .signup button:disabled{cursor:wait;opacity:.7;transform:none}
 
     footer{
       padding:52px 0 30px;
@@ -1968,14 +1970,18 @@
           <p class="lead">Guest announcements, new episodes, cocktail recipes, games, music stories, and reminders before the next live show.</p>
         </div>
 
-        <form class="signup reveal" id="signupForm">
+        <form class="signup reveal" id="signupForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="256ab74e-e07e-4d73-b16c-24903d24498e">
+          <input type="hidden" name="subject" value="New JNC Weekly Subscriber">
+          <input type="hidden" name="from_name" value="JNC Website Newsletter">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
           <label for="email">Your email address</label>
           <div class="signup-row">
             <input id="email" name="email" type="email" autocomplete="email" placeholder="you@somewhere.com" required>
             <button class="btn btn-primary" type="submit">Subscribe</button>
           </div>
-          <small>This mockup form demonstrates the design only. Connect it to Wix Contacts, Mailchimp, ConvertKit, or your preferred email platform.</small>
-          <div class="success-message" role="status">Cheers! The mockup form works.</div>
+          <small>Occasional JNC updates, new episodes, cocktails, games, and live-show reminders. No inbox abuse.</small>
+          <div class="signup-status" id="signupStatus" role="status" aria-live="polite"></div>
         </form>
       </div>
     </section>
@@ -2038,7 +2044,10 @@
   </nav>
 
   <script>
-    document.write('<script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/weekly-content.js?v=' + Date.now() + '"><\/script>');
+    const weeklyContentSource = window.location.protocol === 'file:'
+      ? 'assets/data/weekly-content.js'
+      : 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/weekly-content.js';
+    document.write('<script src="' + weeklyContentSource + '?v=' + Date.now() + '"><\/script>');
   </script>
   <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/js/jnc-site-chrome.js"></script>
   <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/js/jnc-podcast-player.js"></script>
@@ -2331,11 +2340,38 @@
       setInterval(updateCountdown, 30000);
 
       const signup = document.getElementById('signupForm');
-      signup.addEventListener('submit', event => {
-        event.preventDefault();
-        signup.classList.add('sent');
-        signup.querySelector('button').textContent = 'Subscribed';
-      });
+      if (signup) {
+        const signupButton = signup.querySelector('button[type="submit"]');
+        const signupStatus = document.getElementById('signupStatus');
+        signup.addEventListener('submit', async event => {
+          event.preventDefault();
+          if (!signup.reportValidity()) return;
+          signupButton.disabled = true;
+          signupButton.textContent = 'Joining…';
+          signupStatus.className = 'signup-status';
+          signupStatus.textContent = 'Sending your address to the JNC Lounge…';
+
+          try {
+            const response = await fetch(signup.action, {
+              method: 'POST',
+              body: new FormData(signup),
+              headers: { Accept: 'application/json' }
+            });
+            const result = await response.json();
+            if (!response.ok || !result.success) throw new Error(result.message || 'Subscription failed');
+            signup.reset();
+            signup.classList.add('sent');
+            signupStatus.className = 'signup-status success';
+            signupStatus.textContent = 'Cheers! You’re on the JNC Weekly list.';
+            signupButton.textContent = 'Subscribed ✓';
+          } catch (error) {
+            signupStatus.className = 'signup-status error';
+            signupStatus.textContent = 'That didn’t make it through. Please check your connection and try again.';
+            signupButton.disabled = false;
+            signupButton.textContent = 'Subscribe';
+          }
+        });
+      }
     })();
   </script>
 </body>
