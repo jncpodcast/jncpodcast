@@ -224,6 +224,31 @@
       align-items: center;
     }
 
+    /* Prevent the built-in fallback cocktail from flashing while the current
+       weekly content and its hero artwork are loading. The fallback remains
+       available and is revealed if the weekly file cannot be loaded. */
+    .cocktail-data-loading #featured .hero-grid,
+    .cocktail-data-loading #featured .quick-facts,
+    .cocktail-data-loading #behind .section-head > p,
+    .cocktail-data-loading #behind .behind-grid {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    #featured .hero-grid,
+    #featured .quick-facts,
+    #behind .section-head > p,
+    #behind .behind-grid {
+      transition: opacity .2s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #featured .hero-grid,
+      #featured .quick-facts,
+      #behind .section-head > p,
+      #behind .behind-grid { transition: none; }
+    }
+
     .poster-wrap {
       position: relative;
       transform: rotate(-1.25deg);
@@ -968,7 +993,7 @@ footer#connect .copyright{
   <!-- Updated for JNC Cocktail of the Week: The Bicicletta -->
   <!-- Populated More From Behind the Bar from JNC archive on 2026-07-22 -->
 </head>
-<body>
+<body class="cocktail-data-loading">
   <div class="site-shell">
     <header class="site-header">
     <div class="container nav">
@@ -1467,6 +1492,7 @@ footer#connect .copyright{
       const toAssetUrl = value => String(value || '').startsWith('assets/') ? assetBase + String(value).slice(7) : String(value || '');
       const escapeText = value => String(value || '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
       const setText = (id, value) => { const element = document.getElementById(id); if (element && value) element.textContent = value; };
+      let featuredImageReady = Promise.resolve();
 
       const featured = content?.featured;
       if (featured) {
@@ -1474,6 +1500,15 @@ footer#connect .copyright{
         if (image && featured.image) {
           image.src = toAssetUrl(featured.image);
           image.alt = featured.imageAlt || `${featured.name} ${featured.type || 'Cocktail'} of the Week recipe card`;
+          featuredImageReady = typeof image.decode === 'function'
+            ? image.decode().catch(() => {})
+            : new Promise(resolve => {
+                if (image.complete) resolve();
+                else {
+                  image.addEventListener('load', resolve, { once: true });
+                  image.addEventListener('error', resolve, { once: true });
+                }
+              });
         }
         setText('featuredCocktailName', featured.name);
         setText('featuredCocktailVibe', featured.vibe);
@@ -1541,7 +1576,7 @@ footer#connect .copyright{
       if (!content || !player || !content.videoUrl) {
         if (player) { player.hidden = true; player.removeAttribute('src'); }
         if (placeholder) { placeholder.hidden = false; placeholder.style.display = ''; }
-        return;
+        return featuredImageReady;
       }
 
       const parseTime = value => {
@@ -1567,7 +1602,7 @@ footer#connect .copyright{
       };
 
       const videoId = getVideoId(content.videoUrl);
-      if (!videoId) return;
+      if (!videoId) return featuredImageReady;
       const start = parseTime(content.startTime);
       const end = parseTime(content.endTime);
       const params = new URLSearchParams({ playsinline: '1', rel: '0' });
@@ -1583,8 +1618,11 @@ footer#connect .copyright{
 
       const watchUrl = `https://youtu.be/${encodeURIComponent(videoId)}${start > 0 ? `?t=${start}` : ''}`;
       document.querySelectorAll('[data-cocktail-video-link]').forEach(link => { link.href = watchUrl; });
+      return featuredImageReady;
     }).catch(error => {
       console.error('JNC cocktail video could not be initialized:', error);
+    }).finally(() => {
+      document.body.classList.remove('cocktail-data-loading');
     });
   </script>
   <script>
