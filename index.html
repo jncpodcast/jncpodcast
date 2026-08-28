@@ -989,6 +989,40 @@
     .merch-tag{padding:8px 11px;border:1px solid rgba(255,255,255,.17);border-radius:999px;background:rgba(255,255,255,.04);color:#d8dae5;font:850 .58rem/1 monospace;letter-spacing:.08em;text-transform:uppercase}
     .merch-copy .btn{align-self:flex-start;min-width:210px}
 
+    .keg-honors{
+      position:relative;overflow:hidden;
+      background:
+        radial-gradient(circle at 18% 35%,rgba(126,39,190,.2),transparent 30rem),
+        radial-gradient(circle at 86% 14%,rgba(244,241,0,.1),transparent 25rem),
+        linear-gradient(145deg,#07070b,#11101a 58%,#07080d);
+    }
+    .keg-honors::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background:repeating-linear-gradient(90deg,transparent 0 90px,rgba(255,255,255,.018) 91px)}
+    .keg-honors-stage{position:relative;display:grid;grid-template-columns:minmax(310px,.78fr) minmax(0,1.22fr);gap:64px;align-items:center}
+    .keg-portrait-wrap{position:relative;width:min(100%,520px);justify-self:center;margin:0;filter:drop-shadow(0 34px 30px rgba(0,0,0,.66)) drop-shadow(0 0 25px rgba(143,42,204,.28))}
+    .keg-portrait-wrap::before,.keg-portrait-wrap::after{display:none}
+    .keg-portrait-mat{position:relative}
+    .keg-portrait-mat img{display:block;width:100%;height:auto;object-fit:contain}
+    .keg-feature-copy{position:relative}
+    .keg-feature-copy::before{content:"2026";position:absolute;z-index:-1;right:0;top:-70px;color:rgba(244,241,0,.035);font-family:var(--font-display);font-size:13rem;line-height:1}
+    .keg-crown{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;color:#f6d96b;font:950 .69rem/1 monospace;letter-spacing:.14em;text-transform:uppercase}
+    .keg-crown::before,.keg-crown::after{content:"";width:28px;height:1px;background:currentColor;box-shadow:0 0 10px currentColor}
+    .keg-feature-copy h2{max-width:730px;margin-bottom:18px;font-size:clamp(4.3rem,7vw,7.7rem);line-height:.78}
+    .keg-feature-name{margin-bottom:9px;color:var(--yellow);font-size:clamp(1.25rem,2vw,1.85rem);font-weight:950;letter-spacing:.015em}
+    .keg-feature-band{margin-bottom:22px;color:#d7d8e2;font:800 .75rem/1.4 monospace;letter-spacing:.1em;text-transform:uppercase}
+    .keg-feature-copy .lead{max-width:620px;color:#d9dae3;font-size:.95rem;line-height:1.7}
+    .keg-toast{margin-top:26px;padding:18px 20px;border-left:3px solid var(--yellow);background:linear-gradient(90deg,rgba(244,241,0,.08),transparent);color:#f2f2f5;font-weight:800;line-height:1.5}
+    .keg-yearbook{position:relative;margin-top:58px;padding-top:25px;border-top:1px solid rgba(255,255,255,.13)}
+    .keg-yearbook-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:16px}
+    .keg-yearbook-head h3{margin:0;font-size:clamp(2.25rem,3.5vw,3.7rem);line-height:.85}
+    .keg-yearbook-head p{max-width:460px;margin:0;color:#aeb1c1;font-size:.77rem;line-height:1.5;text-align:right}
+    .keg-yearbook-list{display:flex;gap:12px;overflow-x:auto;padding:3px 2px 10px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:#73601d transparent}
+    .keg-yearbook-card{flex:0 0 min(290px,78vw);display:grid;grid-template-columns:58px 1fr;gap:13px;align-items:center;padding:13px 15px;border:1px solid rgba(234,197,91,.25);border-radius:13px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));scroll-snap-align:start}
+    .keg-yearbook-month{width:58px;height:58px;display:grid;place-items:center;border:1px solid #765e1e;border-radius:50%;background:radial-gradient(circle,#413514,#0c0c0b 68%);color:#f4d96e;font:950 .62rem/1 monospace;letter-spacing:.08em;text-transform:uppercase}
+    .keg-yearbook-card small{display:block;margin-bottom:4px;color:#9295a5;font:850 .55rem/1 monospace;letter-spacing:.09em;text-transform:uppercase}
+    .keg-yearbook-card strong{font-size:.86rem;line-height:1.25}
+    .keg-data-loading #keg-sponsors > .container{opacity:0;visibility:hidden}
+    #keg-sponsors > .container{transition:opacity .2s ease}
+
     .support-grid{
       display:grid;grid-template-columns:1fr 1fr;gap:28px;
     }
@@ -1244,6 +1278,16 @@
       .merch-visual{min-height:0;aspect-ratio:16/9}
       .merch-visual::after{box-shadow:inset 0 -70px 80px rgba(7,8,13,.7)}
       .merch-copy{padding:34px 28px 38px}
+      .keg-honors-stage{grid-template-columns:1fr;gap:38px}
+      .keg-portrait-wrap{width:min(94vw,430px)}
+      .keg-feature-copy{text-align:center}
+      .keg-feature-copy h2{margin-inline:auto;font-size:clamp(3.7rem,17vw,5.4rem)}
+      .keg-feature-copy .lead{margin-inline:auto;font-size:.87rem}
+      .keg-toast{text-align:left}
+      .keg-yearbook{margin-top:34px}
+      .keg-yearbook-head{align-items:flex-start;flex-direction:column;gap:8px}
+      .keg-yearbook-head p{text-align:left}
+      .keg-yearbook-card{flex-basis:min(255px,78vw)}
       .support-card{padding:30px 26px;min-height:430px;border-radius:24px}
       .support-title{font-size:clamp(3.25rem,15vw,4.6rem);margin-bottom:24px}
       .support-mark{right:12px;top:14px}
@@ -1684,7 +1728,7 @@
   </style>
   <link rel="stylesheet" href="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/css/jnc-site-chrome.css">
 </head>
-<body class="mobile-home-active">
+<body class="mobile-home-active keg-data-loading">
   <div class="universe-gate" id="universeGate" role="dialog" aria-modal="true" aria-labelledby="universeTitle" aria-describedby="universeCopy">
     <div class="universe-orbit" aria-hidden="true"></div>
     <div class="universe-panel">
@@ -1923,6 +1967,44 @@
       </div>
     </section>
 
+    <section class="section keg-honors" id="keg-sponsors">
+      <div class="container">
+        <div class="keg-honors-stage">
+          <figure class="keg-portrait-wrap reveal">
+            <div class="keg-portrait-mat">
+              <img id="kegSponsorImage" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/keg-sponsors/current-keg-sponsor.png" onerror="this.onerror=null;this.src='assets/images/keg-sponsors/current-keg-sponsor.png'" alt="Backwater Saintz featuring Robert Voorhees, JNC Keg Sponsor for August 2026" width="755" height="907" loading="eager">
+            </div>
+          </figure>
+
+          <div class="keg-feature-copy reveal">
+            <p class="keg-crown" id="kegSponsorDate">August 2026 honoree</p>
+            <h2>The Monthly <span class="yellow">Keg Sponsor</span></h2>
+            <p class="keg-feature-name" id="kegSponsorName">Robert Voorhees</p>
+            <p class="keg-feature-band" id="kegSponsorOrganization">Backwater Saintz</p>
+            <p class="lead" id="kegSponsorDescription">This month, we raise a glass to Robert Voorhees of Backwater Saintz for keeping the JNC keg full and the weekly chaos flowing.</p>
+            <p class="keg-toast" id="kegSponsorToast">To Robert: thanks for backing independent music, conversation, cocktails, and one beautifully unruly lounge. This round is for you.</p>
+          </div>
+        </div>
+
+        <div class="keg-yearbook reveal" aria-labelledby="kegYearbookTitle">
+          <div class="keg-yearbook-head">
+            <h3 id="kegYearbookTitle">The <span id="kegWallYear">2026</span> <span class="yellow">Keg Wall</span></h3>
+            <p>A toast to the friends, fans, bands, and businesses who have kept JNC pouring all year.</p>
+          </div>
+          <div class="keg-yearbook-list" id="kegSponsorArchive" aria-label="Past 2026 keg sponsors">
+            <article class="keg-yearbook-card">
+              <span class="keg-yearbook-month">Feb</span>
+              <div><small>2026 Keg Sponsor</small><strong>Chase N Tails</strong></div>
+            </article>
+            <article class="keg-yearbook-card">
+              <span class="keg-yearbook-month">Jun</span>
+              <div><small>2026 Keg Sponsor</small><strong>JNC Arcade</strong></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="support">
       <div class="container">
         <div class="section-heading reveal">
@@ -2048,6 +2130,44 @@
       ? 'assets/data/weekly-content.js'
       : 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/weekly-content.js';
     document.write('<script src="' + weeklyContentSource + '?v=' + Date.now() + '"><\/script>');
+    const kegSponsorContentSource = window.location.protocol === 'file:'
+      ? 'assets/data/keg-sponsors.js'
+      : 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/data/keg-sponsors.js';
+    document.write('<script src="' + kegSponsorContentSource + '?v=' + Date.now() + '"><\/script>');
+  </script>
+  <script>
+    (() => {
+      const content = window.JNC_KEG_SPONSORS;
+      const reveal = () => document.body.classList.remove('keg-data-loading');
+      if (!content || !content.current) { reveal(); return; }
+      const current = content.current;
+      const setText = (id,value) => { const element=document.getElementById(id); if(element && value != null) element.textContent=value; };
+      const assetBase = 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/';
+      const toAssetUrl = value => String(value || '').startsWith('assets/') && window.location.protocol !== 'file:' ? assetBase + String(value).slice(7) : String(value || '');
+      setText('kegSponsorDate',`${current.month || ''} ${current.year || ''} honoree`.trim());
+      setText('kegSponsorName',current.name);
+      setText('kegSponsorOrganization',current.organization);
+      setText('kegSponsorDescription',current.description);
+      setText('kegSponsorToast',current.toast);
+      setText('kegWallYear',current.year || new Date().getFullYear());
+      const image=document.getElementById('kegSponsorImage');
+      let imageReady=Promise.resolve();
+      if(image && current.image){image.onerror=null;image.src=toAssetUrl(current.image);image.alt=current.imageAlt || `${current.name || 'Current'} JNC Keg Sponsor`;imageReady=typeof image.decode==='function'?image.decode().catch(()=>{}):Promise.resolve()}
+      const archive=document.getElementById('kegSponsorArchive');
+      if(archive && Array.isArray(content.past)){
+        archive.replaceChildren();
+        content.past.forEach(sponsor=>{
+          const card=document.createElement('article');card.className='keg-yearbook-card';
+          const month=document.createElement('span');month.className='keg-yearbook-month';month.textContent=String(sponsor.month || '').slice(0,3) || 'JNC';
+          const copy=document.createElement('div'),small=document.createElement('small'),strong=document.createElement('strong');
+          small.textContent=`${sponsor.year || current.year || ''} Keg Sponsor`.trim();strong.textContent=sponsor.name || 'JNC Supporter';
+          copy.append(small,strong);
+          if(sponsor.organization){const organization=document.createElement('small');organization.textContent=sponsor.organization;organization.style.marginTop='5px';copy.append(organization)}
+          card.append(month,copy);archive.append(card);
+        });
+      }
+      imageReady.finally(reveal);
+    })();
   </script>
   <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/js/jnc-site-chrome.js"></script>
   <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/js/jnc-podcast-player.js"></script>
@@ -2215,7 +2335,7 @@
       const carouselMedia = window.matchMedia('(max-width:600px)');
       const slideTitles = {
         home:'Home', highlights:'Inside the Show', watch:'JNC Hi-Fi',
-        arcade:'JNC Arcade', support:'Support JNC', subscribe:'JNC Weekly', connect:'Connect'
+        arcade:'JNC Arcade', merch:'JNC Merch', 'keg-sponsors':'Keg Sponsor', support:'Support JNC', subscribe:'JNC Weekly', connect:'Connect'
       };
       let currentSlide = 0;
       let carouselFrame;
