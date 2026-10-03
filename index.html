@@ -956,6 +956,24 @@
     .arcade-render-start{z-index:2;left:22.45%;top:35.2%;right:auto;bottom:auto;width:54.6%;height:33.25%;padding:14px;border-radius:1%;background:radial-gradient(circle,rgba(4,5,12,.2),rgba(3,4,10,.6));overflow:hidden}
     .arcade-render-start:hover{background:radial-gradient(circle,rgba(244,241,0,.07),rgba(3,4,10,.54))}
     .arcade-render-logo{position:absolute;z-index:4;left:24%;top:7.3%;width:52%;height:14%!important;object-fit:contain;pointer-events:none;filter:drop-shadow(0 0 12px rgba(244,241,0,.34))}
+    /* TEMPORARY: Zombied Strawberries launch takeover. Switch off in the script below. */
+    .arcade-launch-copy,.arcade-launch-screen-art,.arcade-launch-screen{display:none}
+    .arcade-stage.arcade-launch-live{grid-template-columns:minmax(300px,.82fr) minmax(500px,1.18fr);border-color:#421423;background:radial-gradient(circle at 12% 24%,rgba(137,255,0,.09),transparent 28rem),linear-gradient(145deg,#19131a,#07080c 72%);box-shadow:inset 0 0 0 1px #80213a,inset 0 14px 32px rgba(255,255,255,.025),inset 0 -30px 55px #020204,0 34px 70px rgba(0,0,0,.56),0 0 48px rgba(229,22,82,.13)}
+    .arcade-launch-live .arcade-standard-copy,.arcade-launch-live .arcade-render-video,.arcade-launch-live .arcade-render-start{display:none}
+    .arcade-launch-live .arcade-launch-copy{display:flex;flex-direction:column;justify-content:center}
+    .arcade-launch-kicker{display:inline-flex;align-self:flex-start;margin-bottom:13px;padding:7px 10px;border:1px solid #ff304e;border-radius:4px;background:#22050b;color:#aaff00;box-shadow:0 0 18px rgba(255,48,78,.16);font:950 .65rem/1 monospace;letter-spacing:.13em;text-transform:uppercase}
+    .arcade-launch-copy h2{margin-bottom:10px;font-size:clamp(3rem,5.5vw,5.8rem);line-height:.78;color:#aaff00;text-shadow:4px 4px 0 #9e001c,0 0 25px rgba(170,255,0,.18)}
+    .arcade-launch-copy h2 span{display:block;color:#ff243f}
+    .arcade-launch-deck{max-width:570px;margin:0 0 15px;color:#e7e2e5;font-size:clamp(.92rem,1.35vw,1.12rem);line-height:1.55}
+    .arcade-launch-time{display:flex;align-items:center;gap:12px;margin:0 0 15px;color:#fff;font:950 clamp(.9rem,1.5vw,1.25rem)/1 var(--font-display);letter-spacing:.045em;text-transform:uppercase}.arcade-launch-time::before{content:"";width:11px;height:11px;border-radius:50%;background:#ff243f;box-shadow:0 0 15px #ff243f;animation:arcade-pulse 1.1s steps(2,end) infinite}
+    .arcade-launch-countdown{display:grid;grid-template-columns:repeat(4,minmax(54px,76px));gap:8px;margin-bottom:17px}
+    .arcade-launch-countdown span{display:grid;place-items:center;min-height:54px;padding:7px 4px;border:1px solid #4c2731;border-radius:7px;background:#0a0b10;color:#aaff00;box-shadow:inset 0 -10px 18px rgba(0,0,0,.3);font:950 clamp(1rem,2vw,1.5rem)/1 monospace}.arcade-launch-countdown small{display:block;margin-top:4px;color:#8e929f;font-size:.42rem;letter-spacing:.11em;text-transform:uppercase}
+    .arcade-launch-actions{display:flex;gap:9px;flex-wrap:wrap}.arcade-launch-actions .btn{padding:12px 15px}.arcade-launch-actions .btn-secondary{color:#fff;border-color:#6c5660;background:#111218}
+    .arcade-launch-screen-art{position:absolute;z-index:2;left:22.45%;top:35.2%;width:54.6%;height:33.25%!important;object-fit:cover;object-position:center 46%;background:#020305;filter:saturate(1.06) contrast(1.04)}
+    .arcade-launch-live .arcade-launch-screen-art{display:block}
+    .arcade-launch-screen{position:absolute;z-index:3;left:22.45%;top:35.2%;width:54.6%;height:33.25%;align-items:center;justify-content:flex-end;padding:12px 12px 16px;color:#fff;text-align:center;text-decoration:none;background:linear-gradient(180deg,transparent 35%,rgba(1,2,7,.86));text-shadow:0 2px 7px #000}
+    .arcade-launch-live .arcade-launch-screen{display:flex}.arcade-launch-screen span{padding:8px 12px;border:2px solid #aaff00;background:rgba(3,5,8,.82);color:#aaff00;box-shadow:3px 3px 0 #c60025;font:950 .58rem/1 monospace;letter-spacing:.11em;text-transform:uppercase;animation:arcade-pulse 1.2s steps(2,end) infinite}
+    .arcade-launch-live .arcade-render-logo{filter:drop-shadow(0 0 12px rgba(255,36,63,.42))}
 
     .merch{
       position:relative;overflow:hidden;
@@ -1672,6 +1690,16 @@
       .arcade .cabinet-controls::before,.arcade .cabinet-controls::after{display:none}
       .arcade .arcade-render{width:min(92%,380px);aspect-ratio:2/3;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;filter:drop-shadow(0 16px 22px rgba(0,0,0,.6))}
       .arcade .arcade-render-start small{font-size:.4rem}.arcade .arcade-render-start strong{font-size:clamp(1rem,5.5vw,1.55rem)}.arcade .arcade-render-start span{padding:6px 8px;font-size:.43rem}
+      .arcade .arcade-stage.arcade-launch-live{gap:4px;padding:6px;grid-template-columns:1fr}
+      .arcade .arcade-launch-live .arcade-intro{max-width:460px;padding:2px 8px 4px}
+      .arcade .arcade-launch-kicker{margin:0 auto 4px;padding:4px 6px;font-size:.4rem}
+      .arcade .arcade-launch-copy h2{margin-bottom:3px;font-size:clamp(1.45rem,7.3vw,2rem);line-height:.78}
+      .arcade .arcade-launch-deck{display:none}
+      .arcade .arcade-launch-time{justify-content:center;gap:7px;margin-bottom:6px;font-size:.66rem}.arcade .arcade-launch-time::before{width:7px;height:7px}
+      .arcade .arcade-launch-countdown{grid-template-columns:repeat(4,46px);justify-content:center;gap:5px;margin-bottom:7px}.arcade .arcade-launch-countdown span{min-height:38px;padding:4px 2px;font-size:.8rem}.arcade .arcade-launch-countdown small{margin-top:2px;font-size:.3rem}
+      .arcade .arcade-launch-actions{justify-content:center;gap:6px}.arcade .arcade-launch-actions .btn{min-height:32px;padding:5px 8px;font-size:.46rem}.arcade .arcade-launch-actions .launch-reminder{display:none}
+      .arcade .arcade-launch-live .arcade-render{width:min(92%,350px)}
+      .arcade .arcade-launch-screen span{padding:5px 7px;font-size:.4rem;box-shadow:2px 2px 0 #c60025}
 
       .site-track .merch{overflow-y:hidden}
       .site-track .merch > .container{
@@ -1925,10 +1953,23 @@
       <div class="container">
         <div class="arcade-stage reveal">
           <div class="arcade-intro">
-            <span class="pixel-label">Player 1 · Ready</span>
-            <h2>The <span class="yellow">JNC Arcade</span></h2>
-            <p class="lead">Original JNC games, unruly cocktails, undead fruit, angry pretzels, and the kind of decisions that only make sense after 8 PM.</p>
-            <div class="arcade-status"><i></i>Cabinet online · Free play enabled</div>
+            <div class="arcade-standard-copy">
+              <span class="pixel-label">Player 1 · Ready</span>
+              <h2>The <span class="yellow">JNC Arcade</span></h2>
+              <p class="lead">Original JNC games, unruly cocktails, undead fruit, angry pretzels, and the kind of decisions that only make sense after 8 PM.</p>
+              <div class="arcade-status"><i></i>Cabinet online · Free play enabled</div>
+            </div>
+            <div class="arcade-launch-copy" aria-live="polite">
+              <span class="arcade-launch-kicker">New game incoming</span>
+              <h2>Zombied <span>Strawberries</span></h2>
+              <p class="arcade-launch-deck">The undead fruit invasion begins inside the JNC Arcade. Sharpen your reflexes, save your drink, and prepare for one seriously rotten midnight.</p>
+              <p class="arcade-launch-time" id="zombieLaunchTime">Wednesday, October 7 · Midnight ET</p>
+              <div class="arcade-launch-countdown" id="zombieLaunchCountdown" aria-label="Countdown to the Zombied Strawberries launch"></div>
+              <div class="arcade-launch-actions">
+                <a class="btn btn-primary" id="zombieLaunchButton" href="https://jncpodcast.github.io/jncarcade/" target="_blank" rel="noopener">Enter the Outbreak ↗</a>
+                <button class="btn btn-secondary launch-reminder" id="zombieLaunchReminder" type="button">Add Reminder</button>
+              </div>
+            </div>
           </div>
           <div class="arcade-cabinet arcade-render">
             <video class="arcade-render-video" autoplay muted loop playsinline preload="metadata" poster="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-happy-hour.png" aria-label="Featured JNC Arcade gameplay">
@@ -1939,6 +1980,8 @@
               <strong>Tap to Enter<br>the Arcade</strong>
               <span>Press Start</span>
             </a>
+            <img class="arcade-launch-screen-art" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/zombied-strawberries-launch.png" onerror="this.onerror=null;this.src='assets/images/arcade/zombied-strawberries-launch.png'" alt="Zombied Strawberries game launch artwork" width="1400" height="1400" loading="eager">
+            <a class="arcade-launch-screen" href="https://jncpodcast.github.io/jncarcade/" target="_blank" rel="noopener" aria-label="Enter the JNC Arcade for Zombied Strawberries"><span>Midnight launch · Press start</span></a>
             <img class="arcade-render-frame" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-arcade-console-v3.png" alt="Realistic JNC Arcade cabinet" width="1024" height="1536" loading="lazy">
             <img class="arcade-render-logo" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/arcade/jnc-arcade.png" alt="JNC Arcade" width="1244" height="1244" loading="lazy">
           </div>
@@ -2307,6 +2350,55 @@
       document.querySelectorAll('[data-open-media]').forEach(link => link.addEventListener('click', () => setMediaMode(link.dataset.openMedia)));
       try { setMediaMode(localStorage.getItem('jnc-media-mode') || 'video',false); }
       catch (error) { setMediaMode('video',false); }
+
+      /* TEMPORARY LAUNCH SWITCH: change true to false to restore the normal Arcade section. */
+      const ZOMBIED_STRAWBERRIES_TAKEOVER = true;
+      const arcadeStage = document.querySelector('#arcade .arcade-stage');
+      const zombieCountdown = document.getElementById('zombieLaunchCountdown');
+      const zombieLaunchTime = document.getElementById('zombieLaunchTime');
+      const zombieLaunchButton = document.getElementById('zombieLaunchButton');
+      const zombieLaunchScreen = document.querySelector('.arcade-launch-screen span');
+      const zombieLaunchReminder = document.getElementById('zombieLaunchReminder');
+      const zombieLaunchAt = new Date('2026-10-07T00:00:00-04:00');
+
+      if (ZOMBIED_STRAWBERRIES_TAKEOVER && arcadeStage) {
+        arcadeStage.classList.add('arcade-launch-live');
+        const updateZombieLaunch = () => {
+          const diff = zombieLaunchAt.getTime() - Date.now();
+          if (diff <= 0) {
+            zombieCountdown.innerHTML = '<span>LIVE<small>now</small></span>';
+            zombieCountdown.style.gridTemplateColumns = 'minmax(110px,180px)';
+            zombieLaunchTime.textContent = 'The invasion has begun · Play now';
+            zombieLaunchButton.textContent = 'Play Zombied Strawberries ↗';
+            zombieLaunchScreen.textContent = 'Now live · Press start';
+            return;
+          }
+          const days = Math.floor(diff / 86400000);
+          const hours = Math.floor(diff % 86400000 / 3600000);
+          const minutes = Math.floor(diff % 3600000 / 60000);
+          const seconds = Math.floor(diff % 60000 / 1000);
+          zombieCountdown.innerHTML = [
+            [days,'days'],[hours,'hours'],[minutes,'mins'],[seconds,'secs']
+          ].map(([value,label]) => `<span>${String(value).padStart(2,'0')}<small>${label}</small></span>`).join('');
+        };
+        updateZombieLaunch();
+        window.setInterval(updateZombieLaunch,1000);
+      }
+
+      zombieLaunchReminder?.addEventListener('click', () => {
+        const calendar = [
+          'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//JNC//Zombied Strawberries//EN','BEGIN:VEVENT',
+          'UID:zombied-strawberries-20261007@jncarcade.com','DTSTAMP:20261003T120000Z',
+          'DTSTART:20261007T040000Z','DTEND:20261007T050000Z',
+          'SUMMARY:Zombied Strawberries Launch','DESCRIPTION:The undead fruit invasion begins in the JNC Arcade.',
+          'URL:https://jncpodcast.github.io/jncarcade/','END:VEVENT','END:VCALENDAR'
+        ].join('\r\n');
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(new Blob([calendar],{type:'text/calendar'}));
+        link.download = 'zombied-strawberries-launch.ics';
+        link.click();
+        URL.revokeObjectURL(link.href);
+      });
 
       const reveals = document.querySelectorAll('.reveal');
       if ('IntersectionObserver' in window) {
