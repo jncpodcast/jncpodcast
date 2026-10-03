@@ -137,7 +137,23 @@
     }
     @media(max-width:650px){
       .guest-main{padding-top:38px}.guest-wrap{width:min(calc(100% - 22px),var(--max))}
-      .guest-hero h1{font-size:clamp(3.6rem,20vw,5.8rem)}
+      .guest-hero h1{font-size:clamp(2rem,10vw,4rem);line-height:.9;max-width:100%;overflow-wrap:normal;text-shadow:3px 3px 0 rgba(129,46,255,.72)}
+      .guest-hero{gap:24px;margin-bottom:28px;grid-template-columns:minmax(0,1fr)}
+      .guest-hero > div,.section-heading > div,.submit-panel > div,.know-card{min-width:0}
+      .guest-hero-copy{margin-top:18px;font-size:.95rem;line-height:1.6}
+      .backstage-pass{max-width:100%;min-width:0;padding:20px;box-shadow:4px 4px 0 var(--purple)}
+      .pass-top{flex-wrap:wrap;gap:12px}.pass-top img{width:min(150px,100%)}
+      .pass-number{font-size:.58rem;line-height:1.4;overflow-wrap:anywhere}
+      .pass-title{font-size:2rem;line-height:.95;overflow-wrap:anywhere}
+      .know-grid{grid-template-columns:minmax(0,1fr)!important;gap:12px}
+      .section-heading h2{font-size:clamp(1.65rem,7vw,2.6rem);line-height:1;overflow-wrap:anywhere}
+      .choice-grid{min-width:0}.choice{min-width:0}.choice span{overflow-wrap:anywhere}
+      .field input,.field textarea{min-width:0;font-size:16px!important}
+      .responsibility-note{padding:18px 15px;overflow-wrap:anywhere}
+      .submit-panel{min-width:0;box-shadow:4px 4px 0 var(--purple)}
+      .submit-panel h2{font-size:clamp(1.8rem,8vw,3rem);line-height:1}
+      .success-panel{padding:30px 18px;box-shadow:4px 4px 0 var(--purple)}
+      .success-panel h2{font-size:clamp(2rem,10vw,4rem);overflow-wrap:anywhere}
       .progress-dock{top:76px;grid-template-columns:1fr auto}.progress-track{grid-column:1/-1;grid-row:2}.draft-status{font-size:.54rem}
       .form-section{padding:25px 17px;border-radius:21px}.field-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
       .section-heading{gap:13px}.step-chip{width:40px;height:40px}.choice{flex-basis:120px}
