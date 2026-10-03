@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#06084f">
+  <title>Monthly Keg Sponsorship | Jams 'N' Cocktails</title>
+  <meta name="description" content="Sponsor a month of Jams 'N' Cocktails for $100. Individuals, businesses, bands, and events welcome.">
+  <link rel="icon" href="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/css/jnc-site-chrome.css">
+  <style>
+    :root{
+      --navy:#06084f;
+      --ink:#080910;
+      --panel:#11131e;
+      --panel-2:#181b2b;
+      --yellow:#f4f100;
+      --pink:#ff3ab5;
+      --cyan:#00d9ff;
+      --purple:#812eff;
+      --white:#f7f7fb;
+      --muted:#aeb2c1;
+      --max:1180px;
+      --font-display:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif;
+      --font-body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--ink)}
+    body{min-width:0;margin:0;overflow-x:hidden;color:var(--white);background:
+      radial-gradient(circle at 10% 10%,rgba(129,46,255,.18),transparent 32rem),
+      radial-gradient(circle at 95% 28%,rgba(0,217,255,.11),transparent 30rem),
+      linear-gradient(rgba(7,8,18,.93),rgba(7,8,18,.98)),
+      url("https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/brick.svg") center/320px 160px repeat;
+      font-family:var(--font-body)}
+    body::before{content:"";position:fixed;z-index:100;inset:0;pointer-events:none;opacity:.22;background:url("https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/noise.svg") repeat;mix-blend-mode:soft-light}
+    a{color:inherit}
+    button,input,textarea{font:inherit}
+    button{color:inherit}
+    img{display:block;max-width:100%}
+    [hidden]{display:none!important}
+
+    .guest-main{position:relative;padding:clamp(50px,8vw,92px) 0 100px}
+    .guest-wrap{width:min(calc(100% - 34px),var(--max));margin-inline:auto}
+    .guest-hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(290px,.8fr);align-items:end;gap:clamp(28px,6vw,74px);margin-bottom:42px}
+    .guest-eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:15px;color:var(--cyan);font:900 .7rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.18em;text-transform:uppercase}
+    .guest-eyebrow::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
+    .guest-hero h1{max-width:780px;margin:0;font:950 clamp(4rem,10vw,8.7rem)/.78 var(--font-display);letter-spacing:-.035em;text-transform:uppercase;text-shadow:5px 5px 0 rgba(129,46,255,.72),-2px -2px 0 rgba(0,217,255,.26)}
+    .guest-hero h1 span{display:block;color:var(--yellow)}
+    .guest-hero-copy{max-width:700px;margin:24px 0 0;color:#d3d5df;font-size:clamp(.96rem,2vw,1.1rem);line-height:1.7}
+
+    .backstage-pass{position:relative;padding:27px;border:2px solid var(--yellow);border-radius:25px;background:linear-gradient(145deg,#161928,#090a12);box-shadow:8px 8px 0 var(--purple),0 25px 75px rgba(0,0,0,.4);transform:rotate(1.2deg);overflow:hidden}
+    .backstage-pass::after{content:"KEG";position:absolute;right:-18px;bottom:-28px;color:rgba(255,255,255,.045);font:950 8.4rem/1 var(--font-display);transform:rotate(-8deg)}
+    .pass-top{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-bottom:16px;border-bottom:1px dashed rgba(255,255,255,.2)}
+    .pass-top img{width:150px;max-height:55px;object-fit:contain}
+    .pass-number{color:var(--yellow);font:900 .64rem/1 ui-monospace,monospace;letter-spacing:.12em}
+    .pass-title{position:relative;z-index:1;margin:24px 0 6px;font:900 2.6rem/.86 var(--font-display);text-transform:uppercase}
+    .pass-copy{position:relative;z-index:1;margin:0;color:var(--muted);font-size:.78rem;line-height:1.55}
+
+    .progress-dock{position:sticky;z-index:40;top:88px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;margin-bottom:28px;padding:13px 17px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(10,11,20,.88);box-shadow:0 15px 40px rgba(0,0,0,.25);backdrop-filter:blur(16px)}
+    .progress-label,.draft-status{font:900 .62rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+    .progress-label{color:var(--yellow)}
+    .draft-status{color:#8e92a2}
+    .progress-track{height:8px;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.09)}
+    .progress-fill{width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--purple),var(--pink),var(--yellow));box-shadow:0 0 18px rgba(255,58,181,.38);transition:width .25s ease}
+
+    .guest-form{display:grid;gap:24px}
+    .form-section{position:relative;padding:clamp(25px,4vw,45px);border:1px solid rgba(255,255,255,.12);border-radius:28px;background:linear-gradient(145deg,rgba(20,22,36,.97),rgba(8,9,16,.98));box-shadow:0 24px 68px rgba(0,0,0,.28);overflow:hidden}
+    .form-section::after{content:attr(data-step);position:absolute;right:14px;top:-26px;color:rgba(244,241,0,.055);font:950 9rem/1 var(--font-display);pointer-events:none}
+    .section-heading{position:relative;z-index:1;display:flex;align-items:flex-start;gap:17px;margin-bottom:29px}
+    .step-chip{flex:0 0 auto;display:grid;place-items:center;width:44px;height:44px;border:2px solid var(--yellow);border-radius:13px;color:var(--yellow);background:#090a12;box-shadow:4px 4px 0 var(--purple);font:900 .8rem/1 ui-monospace,monospace}
+    .section-heading h2{margin:0;font:900 clamp(2rem,4vw,3.25rem)/.9 var(--font-display);letter-spacing:.01em;text-transform:uppercase}
+    .section-heading p{max-width:720px;margin:9px 0 0;color:var(--muted);font-size:.82rem;line-height:1.6}
+
+    .field-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .field{min-width:0}
+    fieldset.field{margin:0;padding:0;border:0}
+    .field.full{grid-column:1/-1}
+    .field label,.field-label{display:block;margin:0 0 9px;color:#f0f1f5;font-size:.73rem;font-weight:850;line-height:1.35;letter-spacing:.025em}
+    .required{color:var(--yellow)}
+    .field input[type="text"],.field input[type="email"],.field input[type="url"],.field textarea{width:100%;min-height:52px;border:1px solid rgba(255,255,255,.15);border-radius:13px;padding:14px 15px;color:white;background:rgba(255,255,255,.045);outline:none;transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+    .field textarea{min-height:120px;resize:vertical;line-height:1.55}
+    .field textarea.tall{min-height:165px}
+    .field input::placeholder,.field textarea::placeholder{color:#696d7d}
+    .field input:focus,.field textarea:focus{border-color:var(--cyan);background:rgba(0,217,255,.04);box-shadow:0 0 0 3px rgba(0,217,255,.12)}
+    .field-note{display:block;margin-top:7px;color:#858998;font-size:.68rem;line-height:1.5}
+
+    .choice-grid{display:flex;flex-wrap:wrap;gap:11px}
+    .choice{position:relative;display:block;flex:1 1 150px;cursor:pointer}
+    .choice input{position:absolute;opacity:0;pointer-events:none}
+    .choice span{display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 16px;border:1px solid rgba(255,255,255,.16);border-radius:13px;color:#c8cad4;background:rgba(255,255,255,.04);font-size:.78rem;font-weight:850;text-align:center;transition:.18s ease}
+    .choice span::before{content:"";flex:0 0 auto;width:10px;height:10px;margin-right:9px;border:2px solid #777b8c;border-radius:50%}
+    .choice input:checked + span{border-color:var(--yellow);color:#07070a;background:var(--yellow);box-shadow:4px 4px 0 var(--purple)}
+    .choice input:checked + span::before{border-color:#07070a;background:#07070a;box-shadow:inset 0 0 0 2px var(--yellow)}
+    .choice input:focus-visible + span{outline:2px solid white;outline-offset:3px}
+
+    .equipment-board{position:relative;z-index:1;display:grid;grid-template-columns:minmax(250px,.75fr) minmax(0,1.25fr);gap:25px;padding:25px;border:1px solid rgba(244,241,0,.27);border-radius:20px;background:linear-gradient(135deg,rgba(244,241,0,.085),rgba(129,46,255,.07))}
+    .equipment-board h3{margin:0 0 14px;color:var(--yellow);font:900 1.65rem/1 var(--font-display);text-transform:uppercase}
+    .equipment-list{display:grid;gap:9px;margin:0;padding:0;list-style:none}
+    .equipment-list li{position:relative;padding-left:23px;color:#e5e6ec;font-size:.8rem;line-height:1.45}
+    .equipment-list li::before{content:"✓";position:absolute;left:0;color:var(--cyan);font-weight:950}
+    .equipment-copy p{margin:0 0 13px;color:#c5c7d1;font-size:.78rem;line-height:1.65}
+    .equipment-copy p:last-child{margin-bottom:0}
+
+    .know-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:25px}
+    .know-card{padding:21px;border:1px solid rgba(255,255,255,.1);border-radius:17px;background:rgba(255,255,255,.035)}
+    .know-card strong{display:block;margin-bottom:8px;color:var(--yellow);font:900 1.25rem/1 var(--font-display);letter-spacing:.03em;text-transform:uppercase}
+    .know-card p{margin:0;color:#bfc2ce;font-size:.75rem;line-height:1.6}
+    .responsibility-note{position:relative;z-index:1;margin:0 0 25px;padding:22px 23px;border-left:5px solid var(--pink);border-radius:0 15px 15px 0;background:rgba(255,58,181,.07);color:#e1e2e8;font-size:.8rem;line-height:1.7}
+    .responsibility-note strong{color:var(--yellow)}
+    .closing-line{position:relative;z-index:1;margin:25px 0 0;color:var(--yellow);font:900 clamp(2rem,5vw,4rem)/.9 var(--font-display);text-align:center;text-transform:uppercase;text-shadow:3px 3px 0 var(--purple)}
+
+    .submit-panel{display:grid;grid-template-columns:1fr auto;align-items:center;gap:25px;padding:clamp(25px,4vw,40px);border:2px solid var(--yellow);border-radius:25px;background:linear-gradient(130deg,var(--yellow),#ffd900);color:#07070a;box-shadow:8px 8px 0 var(--purple),0 25px 65px rgba(0,0,0,.35)}
+    .submit-panel h2{margin:0 0 7px;font:900 clamp(2rem,4vw,3.5rem)/.9 var(--font-display);text-transform:uppercase}
+    .submit-panel p{margin:0;max-width:670px;font-size:.8rem;font-weight:700;line-height:1.55}
+    .submit-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .submit-button,.clear-button{min-height:54px;border-radius:999px;padding:14px 23px;font-size:.73rem;font-weight:950;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:transform .18s ease}
+    .submit-button{border:2px solid var(--navy);color:white;background:var(--navy);box-shadow:0 11px 28px rgba(5,7,79,.25)}
+    .clear-button{border:1px solid rgba(5,7,79,.35);color:var(--navy);background:transparent}
+    .submit-button:hover,.clear-button:hover{transform:translateY(-2px)}
+    .submit-button:disabled{opacity:.65;cursor:wait;transform:none}
+    .form-status{grid-column:1/-1;margin:0;min-height:1.4em;font-size:.76rem;font-weight:850;text-align:right}
+    .form-status.error{color:#97001f}
+
+    .success-panel{padding:clamp(36px,7vw,80px);border:2px solid var(--yellow);border-radius:30px;background:linear-gradient(145deg,rgba(14,16,28,.98),rgba(6,7,13,.98));box-shadow:8px 8px 0 var(--purple),0 30px 100px rgba(0,0,0,.5);text-align:center}
+    .success-icon{display:grid;place-items:center;width:78px;height:78px;margin:0 auto 22px;border-radius:50%;color:#07070a;background:var(--yellow);box-shadow:0 0 38px rgba(244,241,0,.38);font-size:2rem;font-weight:950}
+    .success-panel h2{margin:0 0 13px;font:950 clamp(3rem,8vw,6rem)/.85 var(--font-display);text-transform:uppercase}
+    .success-panel p{max-width:650px;margin:0 auto;color:#c8cad5;line-height:1.7}
+
+    .botcheck{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+
+    @media(max-width:900px){
+      .guest-hero{grid-template-columns:1fr}.backstage-pass{width:min(520px,100%);transform:none}
+      .equipment-board{grid-template-columns:1fr}.know-grid{grid-template-columns:1fr}
+      .submit-panel{grid-template-columns:1fr}.submit-actions{justify-content:flex-start}.form-status{text-align:left}
+    }
+    @media(max-width:650px){
+      .guest-main{padding-top:38px}.guest-wrap{width:min(calc(100% - 22px),var(--max))}
+      .guest-hero h1{font-size:clamp(3.6rem,20vw,5.8rem)}
+      .progress-dock{top:76px;grid-template-columns:1fr auto}.progress-track{grid-column:1/-1;grid-row:2}.draft-status{font-size:.54rem}
+      .form-section{padding:25px 17px;border-radius:21px}.field-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+      .section-heading{gap:13px}.step-chip{width:40px;height:40px}.choice{flex-basis:120px}
+      .equipment-board{padding:20px 17px}.submit-panel{padding:25px 19px}.submit-actions{display:grid;grid-template-columns:1fr}.submit-button,.clear-button{width:100%}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html#home" aria-label="Jams 'N' Cocktails home">
+        <img class="header-brand-logo" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="Jams 'N' Cocktails">
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#watch">Watch + Listen</a>
+        <a href="episode-recaps.html">Recaps</a>
+        <a href="shot_of_the_week.html">Cocktails</a>
+        <a href="index.html#arcade">Arcade</a>
+        <a href="index.html#merch">Merch</a>
+        <a href="index.html#support">Support</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary" id="watchLiveButton" href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">
+          <span class="live-dot"></span>
+          <span id="watchLiveText">Watch Live</span>
+        </a>
+        <button class="menu-btn" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#watch">Watch + Listen</a>
+    <a href="episode-recaps.html">Recaps</a>
+    <a href="shot_of_the_week.html">Cocktails</a>
+    <a href="index.html#arcade">Arcade</a>
+    <a href="index.html#merch">Merch</a>
+    <a href="index.html#support">Support</a>
+    <a href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">Watch Live ↗</a>
+  </nav>
+
+  <main class="guest-main"><div class="guest-wrap">
+<section class="guest-hero"><div><div class="guest-eyebrow">One month. One keg. All the love.</div><h1>Keep the <span>Shenanigans Flowing</span></h1><p class="guest-hero-copy">You don’t need a business or a band to be a JNC Keg Sponsor. Anyone can pick up a round for the Lounge! Celebrate yourself, support the show, or put something you love in the spotlight.</p></div>
+<aside class="backstage-pass"><div class="pass-top"><img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="Jams 'N' Cocktails"><span class="pass-number">MONTHLY KEG SPONSOR</span></div><div class="pass-title">$100. A Whole Month.</div><p class="pass-copy">A little support. A lot of appreciation. Your name in the Lounge and across the month’s episodes.</p></aside></section>
+<section class="form-section" style="margin-bottom:24px"><div class="section-heading"><span class="step-chip">VIP</span><div><h2>Your Month in the Spotlight</h2><p>Every monthly sponsorship includes these four perks for the whole month you sponsor.</p></div></div><div class="know-grid" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+<div class="know-card"><strong>Lounge Wall Fame</strong><p>A sponsor poster hanging in our Lounge, positioned in a camera shot.</p></div><div class="know-card"><strong>Website Spotlight</strong><p>A featured sponsor spot on the JNC website during your sponsorship month.</p></div><div class="know-card"><strong>Roll the Credits</strong><p>Your name in our episode credits throughout the month.</p></div><div class="know-card"><strong>YouTube Love</strong><p>Your name in the YouTube episode descriptions for your sponsorship month.</p></div></div><p class="responsibility-note" style="margin-bottom:0"><strong>How it works:</strong> Send your inquiry below. We’ll reach out to confirm the month and your details, then provide a direct Venmo or Zelle payment link. Sponsorship is $100 for the month. No payment is collected on this form; submitting an inquiry does not reserve a month.</p></section>
+<form class="guest-form" id="sponsorForm" action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="84720a31-81a4-413a-bf25-1c33315c1e96"><input type="hidden" name="subject" value="New Monthly JNC Keg Sponsorship Inquiry"><input type="hidden" name="from_name" value="JNC Keg Sponsorship"><input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" aria-hidden="true">
+<section class="form-section" data-step="01"><div class="section-heading"><span class="step-chip">01</span><div><h2>Who’s Buying the Round?</h2><p>Just your name and email are required. Everything else helps us get your spotlight right.</p></div></div><div class="field-grid">
+<div class="field"><label for="sponsorName">Your name <span class="required">*</span></label><input id="sponsorName" name="Your name" type="text" required placeholder=""></div><div class="field"><label for="email">Email <span class="required">*</span></label><input id="email" name="Email" type="email" required placeholder=""></div><div class="field"><label for="displayName">Name to feature</label><input id="displayName" name="Name to feature" type="text"  placeholder="Your name, business, band, or event"></div><div class="field"><label for="month">Preferred month / year</label><input id="month" name="Preferred month / year" type="text"  placeholder="October 2026, or “any available month”"></div>
+<fieldset class="field full"><legend class="field-label">What brings you to the Lounge?</legend><div class="choice-grid"><label class="choice"><input type="radio" name="Sponsor type" value="Just supporting JNC" checked><span>Just supporting JNC</span></label><label class="choice"><input type="radio" name="Sponsor type" value="Business" ><span>Business</span></label><label class="choice"><input type="radio" name="Sponsor type" value="Band / Artist" ><span>Band / Artist</span></label><label class="choice"><input type="radio" name="Sponsor type" value="Show / Event" ><span>Show / Event</span></label><label class="choice"><input type="radio" name="Sponsor type" value="Something else" ><span>Something else</span></label></div></fieldset>
+</div></section>
+<section class="form-section" data-step="02"><div class="section-heading"><span class="step-chip">02</span><div><h2>Got Something to Plug?</h2><p>Totally optional. Tell us what you want to promote—or leave it blank and just enjoy being our hero for the month.</p></div></div><div class="field-grid">
+<div class="field full"><label for="promotion">What would you like to promote?</label><textarea id="promotion" name="What would you like to promote?" placeholder="A business, new music, an upcoming show, a birthday, or simply your love for JNC…"></textarea></div>
+<div class="field"><label for="links">Website / social links</label><input id="links" name="Website / social links" type="text"  placeholder="Any links or handles are fine"></div>
+<div class="field"><label for="event">Event date / location</label><input id="event" name="Event date / location" type="text"  placeholder="If you’re promoting an event"></div>
+<div class="field full"><label for="artwork">Logo / poster / photo links</label><textarea id="artwork" name="Logo / poster / photo links" placeholder="Paste a shared folder or image link, or tell us you’ll send it later."></textarea></div>
+<div class="field full"><label for="notes">Anything else we should know?</label><textarea id="notes" name="Anything else we should know?" placeholder=""></textarea></div>
+</div></section>
+<div class="submit-panel"><div><h2>Let’s Raise a Glass!</h2><p>Send your inquiry and we’ll get in touch about availability, your spotlight, and payment. Cheers to keeping independent entertainment alive!</p></div><div class="submit-actions"><button class="submit-button" id="submitButton" type="submit">Send My Inquiry ↗</button></div><p class="form-status" id="formStatus" role="status" aria-live="polite"></p></div>
+</form>
+<section class="success-panel" id="successPanel" tabindex="-1" hidden><div class="success-icon">✓</div><h2>This Round’s on You!</h2><p>Thanks for stepping up for the Lounge! Your inquiry has been sent. We’ll reach out to confirm the month and details, then send your Venmo or Zelle payment link.</p></section>
+</div></main>
+  <footer id="connect">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html#home" aria-label="Jams 'N' Cocktails home">
+            <img class="header-brand-logo" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-logo-full-yellow.png" alt="Jams 'N' Cocktails">
+          </a>
+          <p style="margin-top:18px">Talk radio, pop culture, music, games, cocktails, and live entertainment from the Treasure Coast of Florida.</p>
+          <div class="social-row">
+            <a class="social" href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+            <a class="social" href="https://www.facebook.com/jamsncocktails" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+            <a class="social" href="https://www.instagram.com/jamsncocktailspodcast/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+            <a class="social" href="https://www.tiktok.com/@jamsncocktailspodcast" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Watch &amp; Listen</h3>
+          <a href="index.html#watch">Latest episode</a>
+          <a href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://podcasts.apple.com/us/podcast/jams-n-cocktails/id1498239152" target="_blank" rel="noopener">Apple Podcasts</a>
+          <a href="https://www.iheart.com/podcast/269-jams-n-cocktails-96540907/" target="_blank" rel="noopener">iHeartRadio</a>
+        </div>
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <a href="episode-recaps.html">Recap blog</a>
+          <a href="shot_of_the_week.html">Cocktail recipes</a>
+          <a href="index.html#arcade">JNC Arcade</a>
+          <a href="index.html#merch">Merch</a>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <a href="index.html#subscribe">Newsletter</a>
+          <a href="https://www.patreon.com/jncpodcast" target="_blank" rel="noopener">Patreon</a>
+          <a href="mailto:jnctvlive@gmail.com">Contact</a>
+          <a href="keg-sponsorship.html">Sponsor JNC</a>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <span>© 2026 Brad Brock Media. Jams 'N' Cocktails.</span>
+        <span>Created and Maintained by Brad Brock.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/js/jnc-site-chrome.js"></script>
+<script>
+(() => {
+const form=document.getElementById('sponsorForm'),button=document.getElementById('submitButton'),status=document.getElementById('formStatus');
+form.addEventListener('submit',async event=>{
+event.preventDefault();if(!form.reportValidity())return;
+button.disabled=true;button.textContent='Sending…';status.className='form-status';status.textContent='Sending your inquiry to the Lounge…';
+try{
+const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+const result=await response.json();if(!response.ok||!result.success)throw new Error('Unable to send');
+form.hidden=true;const success=document.getElementById('successPanel');success.hidden=false;success.focus();success.scrollIntoView({behavior:'smooth',block:'start'});
+}catch(error){status.className='form-status error';status.textContent='Your inquiry didn’t send. Please try again, or email jnctvlive@gmail.com.';button.disabled=false;button.textContent='Send My Inquiry ↗';}
+});
+})();
+</script></body></html>
