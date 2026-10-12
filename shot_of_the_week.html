@@ -1119,7 +1119,7 @@ footer#connect .copyright{
 
 <section class="section dark" id="captCocktail" hidden>
 <div class="wrap"><div class="capt-deck">
-<div class="capt-brand"><img id="captArt" alt="Derek as Capt. Cocktail, wearing a captain’s hat and plaid shirt"><div class="eyebrow">Derek is behind the bar</div><h2>Capt. <span style="color:var(--yellow)">Cocktail</span></h2><p>Good spirits. Questionable navigation. A fresh pour from the Captain.</p><a class="btn btn-primary" href="mailto:jnctvlive@gmail.com?subject=Sponsor%20a%20Bottle%20for%20Capt.%20Cocktail">Sponsor a Bottle ↗</a></div>
+<div class="capt-brand"><img id="captArt" alt="Derek as Capt. Cocktail, wearing a captain’s hat and plaid shirt"><div class="eyebrow">Derek is behind the bar</div><h2>CAPT. <span style="color:var(--yellow)">COCKTAIL</span></h2><p>Good spirits. Questionable navigation. A fresh pour from the Captain.</p><a class="capt-sponsor-button" href="mailto:jnctvlive@gmail.com?subject=Sponsor%20a%20Bottle%20for%20Capt.%20Cocktail">Sponsor a Bottle ↗</a></div>
 <div class="capt-content"><div class="eyebrow">The Captain’s recipe</div><h3 id="captRecipeName"></h3><p id="captRecipeIntro"></p><div class="capt-recipe"><h4>Ingredients</h4><ul id="captRecipeIngredients"></ul><h4>Make it with the Captain</h4><p id="captRecipeMethod"></p></div><div class="capt-screen"><iframe id="captPlayer" title="Capt. Cocktail video segment" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen hidden></iframe><div id="captStandby"><strong>The Captain’s on deck</strong><p>Video segment coming soon. Grab the recipe and check back after the show.</p></div></div></div>
 </div></div></section>
       <section class="section navy" id="archive">
@@ -1842,6 +1842,8 @@ footer#connect .copyright{
   </script>
 <style>
 #captCocktail[hidden],#captPlayer[hidden],#captStandby[hidden]{display:none!important}
+.capt-sponsor-button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:16px;padding:13px 22px;border:1px solid #f4f100;border-radius:999px;background:#f4f100;color:#080910;text-decoration:none;font:900 .78rem/1.2 system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;box-shadow:0 10px 28px rgba(244,241,0,.2);transition:transform .2s,box-shadow .2s}.capt-sponsor-button:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(244,241,0,.3)}.capt-sponsor-button:focus-visible{outline:2px solid white;outline-offset:4px}
+#captStandby{position:relative;padding:0!important}#captStandby > strong,#captStandby > p{display:none}#captFallbackImage{width:100%;height:100%;object-fit:cover;display:block}
 .capt-deck{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px;padding:clamp(22px,4vw,48px);border:1px solid rgba(244,241,0,.3);border-radius:28px;background:radial-gradient(circle at 15% 20%,rgba(129,46,255,.24),transparent 30rem),linear-gradient(135deg,#141629,#090a12);box-shadow:0 24px 65px rgba(0,0,0,.35)}
 .capt-brand{text-align:center;min-width:0}.capt-brand img{width:100%;max-height:360px;object-fit:contain;filter:drop-shadow(0 10px 28px rgba(129,46,255,.28))}.capt-brand h2{font-size:clamp(2.4rem,5vw,4.8rem);margin:12px 0}.capt-brand p,.capt-content p{color:#bcc0cf;line-height:1.65}.capt-brand .btn{margin-top:16px}
 .capt-content{min-width:0}.capt-content h3{font:clamp(2rem,4vw,3.3rem)/1 Impact,sans-serif;text-transform:uppercase;margin:12px 0;overflow-wrap:anywhere}
@@ -1853,6 +1855,7 @@ window.JNC_COCKTAIL_READY.then(()=>{
 const d=window.JNC_COCKTAIL_CONTENT?.captCocktail;if(!d||d.enabled===false)return;
 const get=id=>document.getElementById(id);
 get('captCocktail').hidden=false;
+const fallback=document.createElement('img');fallback.id='captFallbackImage';fallback.alt=d.placeholderAlt||'A freshly mixed cocktail from the Captain’s bar';const fallbackPath=d.placeholderImage||'assets/images/shot-of-the-week/capt-cocktail-placeholder-v1.png';fallback.src=location.protocol==='file:'?fallbackPath:(fallbackPath.startsWith('assets/')?'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/'+fallbackPath:fallbackPath);get('captStandby').prepend(fallback);
 const image='assets/images/shot-of-the-week/capt-cocktail-derek-v1.png';
 get('captArt').src=location.protocol==='file:'?image:'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/'+image;
 get('captRecipeName').textContent=d.name||'The Captain’s next pour';
