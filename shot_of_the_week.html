@@ -1117,6 +1117,11 @@ footer#connect .copyright{
         </div>
       </section>
 
+<section class="section dark" id="captCocktail" hidden>
+<div class="wrap"><div class="capt-deck">
+<div class="capt-brand"><img id="captArt" alt="Derek as Capt. Cocktail, wearing a captain’s hat and plaid shirt"><div class="eyebrow">Derek is behind the bar</div><h2>Capt. <span style="color:var(--yellow)">Cocktail</span></h2><p>Good spirits. Questionable navigation. A fresh pour from the Captain.</p><a class="btn btn-primary" href="mailto:jnctvlive@gmail.com?subject=Sponsor%20a%20Bottle%20for%20Capt.%20Cocktail">Sponsor a Bottle ↗</a></div>
+<div class="capt-content"><div class="eyebrow">The Captain’s recipe</div><h3 id="captRecipeName"></h3><p id="captRecipeIntro"></p><div class="capt-recipe"><h4>Ingredients</h4><ul id="captRecipeIngredients"></ul><h4>Make it with the Captain</h4><p id="captRecipeMethod"></p></div><div class="capt-screen"><iframe id="captPlayer" title="Capt. Cocktail video segment" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen hidden></iframe><div id="captStandby"><strong>The Captain’s on deck</strong><p>Video segment coming soon. Grab the recipe and check back after the show.</p></div></div></div>
+</div></div></section>
       <section class="section navy" id="archive">
         <div class="wrap">
           <div class="section-head">
@@ -1463,7 +1468,7 @@ footer#connect .copyright{
             <a href="index.html#subscribe">Newsletter</a>
             <a href="https://www.patreon.com/jncpodcast" target="_blank" rel="noopener">Patreon</a>
             <a href="mailto:jnctvlive@gmail.com">Contact</a>
-            <a href="mailto:jnctvlive@gmail.com?subject=JNC%20Sponsorship%20Inquiry">Sponsor JNC</a>
+            <a href="keg-sponsorship.html">Sponsor JNC</a>
           </div>
         </div>
         <div class="copyright"><span>© 2026 Brad Brock Media. JNC redesign concept.</span><span>Built as an editable Dreamweaver-friendly HTML mockup.</span></div>
@@ -1835,5 +1840,28 @@ footer#connect .copyright{
       setTimeout(reportHeight, 1500);
     })();
   </script>
+<style>
+#captCocktail[hidden],#captPlayer[hidden],#captStandby[hidden]{display:none!important}
+.capt-deck{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px;padding:clamp(22px,4vw,48px);border:1px solid rgba(244,241,0,.3);border-radius:28px;background:radial-gradient(circle at 15% 20%,rgba(129,46,255,.24),transparent 30rem),linear-gradient(135deg,#141629,#090a12);box-shadow:0 24px 65px rgba(0,0,0,.35)}
+.capt-brand{text-align:center;min-width:0}.capt-brand img{width:100%;max-height:360px;object-fit:contain;filter:drop-shadow(0 10px 28px rgba(129,46,255,.28))}.capt-brand h2{font-size:clamp(2.4rem,5vw,4.8rem);margin:12px 0}.capt-brand p,.capt-content p{color:#bcc0cf;line-height:1.65}.capt-brand .btn{margin-top:16px}
+.capt-content{min-width:0}.capt-content h3{font:clamp(2rem,4vw,3.3rem)/1 Impact,sans-serif;text-transform:uppercase;margin:12px 0;overflow-wrap:anywhere}
+.capt-recipe{padding:20px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(0,0,0,.2)}.capt-recipe h4{color:var(--yellow);text-transform:uppercase;margin:0 0 12px}.capt-recipe ul{padding-left:20px;margin-bottom:22px}.capt-recipe li{padding:5px 0;color:#e5e7ee}.capt-recipe p{white-space:pre-line;margin-bottom:0}
+.capt-screen{aspect-ratio:16/9;margin-top:22px;overflow:hidden;border:2px solid #424354;border-radius:16px;background:radial-gradient(circle,#292442,#080910);box-shadow:0 0 28px rgba(129,46,255,.17)}.capt-screen iframe{display:block;width:100%;height:100%;border:0}#captStandby{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}#captStandby strong{color:var(--yellow);font:clamp(1.6rem,3vw,2.6rem)/1 Impact,sans-serif;text-transform:uppercase}#captStandby p{font-size:.85rem;max-width:380px}
+@media(max-width:700px){.capt-deck{grid-template-columns:minmax(0,1fr);gap:24px;padding:20px 16px}.capt-brand img{max-height:250px}.capt-recipe{padding:16px}.capt-brand h2{font-size:2.8rem}.capt-brand .btn{max-width:100%}.capt-screen{margin-top:18px}}
+</style><script>
+window.JNC_COCKTAIL_READY.then(()=>{
+const d=window.JNC_COCKTAIL_CONTENT?.captCocktail;if(!d||d.enabled===false)return;
+const get=id=>document.getElementById(id);
+get('captCocktail').hidden=false;
+const image='assets/images/shot-of-the-week/capt-cocktail-derek-v1.png';
+get('captArt').src=location.protocol==='file:'?image:'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/'+image;
+get('captRecipeName').textContent=d.name||'The Captain’s next pour';
+get('captRecipeIntro').textContent=d.intro||'Derek brings his own brand of cocktail chaos to the JNC Lounge.';
+get('captRecipeMethod').textContent=d.method||'Recipe details coming soon.';
+(d.ingredients||[]).forEach(value=>{const li=document.createElement('li');li.textContent=typeof value==='string'?value:[value.amount,value.name].filter(Boolean).join(' ');get('captRecipeIngredients').append(li)});
+let id='';try{const raw=String(d.videoUrl||'').trim();if(/^[\w-]{11}$/.test(raw))id=raw;else{const u=new URL(raw);if(u.hostname==='youtu.be')id=u.pathname.slice(1).split('/')[0];else if(/(^|\.)youtube\.com$/.test(u.hostname))id=u.searchParams.get('v')||u.pathname.split('/')[2]||''}}catch{}
+if(/^[\w-]{11}$/.test(id)){const seconds=v=>{const parts=String(v||'').split(':').map(Number);return parts.some(x=>!Number.isFinite(x)||x<0)?0:Math.floor(parts.reduce((a,b)=>a*60+b,0))};const start=seconds(d.startTime),end=seconds(d.endTime),p=new URLSearchParams({playsinline:'1',rel:'0'});if(start)p.set('start',start);if(end>start)p.set('end',end);get('captPlayer').src='https://www.youtube-nocookie.com/embed/'+id+'?'+p;get('captPlayer').hidden=false;get('captStandby').hidden=true}
+}).catch(()=>{});
+</script>
 </body>
 </html>
