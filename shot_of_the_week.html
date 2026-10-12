@@ -1119,7 +1119,7 @@ footer#connect .copyright{
 
 <section class="section dark" id="captCocktail" hidden>
 <div class="wrap"><div class="capt-deck">
-<div class="capt-brand"><img id="captArt" alt="Derek as Capt. Cocktail, wearing a captain’s hat and plaid shirt"><div class="eyebrow">Derek is behind the bar</div><h2 class="capt-logo-heading"><img id="captLogo" alt="CAPT. COCKTAIL — DEREK" width="1536" height="1024"></h2><p>Good spirits. Questionable navigation. A fresh pour from the Captain.</p><a class="capt-sponsor-button" href="bottle-sponsorship.html">Sponsor a Bottle ↗</a></div>
+<div class="capt-brand"><h2 class="capt-logo-heading"><img id="captLogo" alt="Derek in his captain’s hat and plaid shirt above the CAPT. COCKTAIL logo" width="1392" height="1130"></h2><p>Good spirits. Questionable navigation. A fresh pour from the Captain.</p><a class="capt-sponsor-button" href="bottle-sponsorship.html">Sponsor a Bottle ↗</a></div>
 <div class="capt-content"><div class="eyebrow">The Captain’s recipe</div><h3 id="captRecipeName"></h3><p id="captRecipeIntro"></p><div class="capt-recipe"><h4>Ingredients</h4><ul id="captRecipeIngredients"></ul><h4>Make it with the Captain</h4><p id="captRecipeMethod"></p></div><div class="capt-screen"><iframe id="captPlayer" title="Capt. Cocktail video segment" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen hidden></iframe><div id="captStandby"><strong>The Captain’s on deck</strong><p>Video segment coming soon. Grab the recipe and check back after the show.</p></div></div></div>
 </div></div></section>
       <section class="section navy" id="archive">
@@ -1856,9 +1856,7 @@ const d=window.JNC_COCKTAIL_CONTENT?.captCocktail;if(!d||d.enabled===false)retur
 const get=id=>document.getElementById(id);
 get('captCocktail').hidden=false;
 const fallback=document.createElement('img');fallback.id='captFallbackImage';fallback.alt=d.placeholderAlt||'A freshly mixed cocktail from the Captain’s bar';const fallbackPath=d.placeholderImage||'assets/images/shot-of-the-week/capt-cocktail-placeholder-v1.png';fallback.src=location.protocol==='file:'?fallbackPath:(fallbackPath.startsWith('assets/')?'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/'+fallbackPath:fallbackPath);get('captStandby').prepend(fallback);
-const image='assets/images/shot-of-the-week/capt-cocktail-derek-v1.png';
-get('captArt').src=location.protocol==='file:'?image:'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/'+image;
-const logo='assets/images/shot-of-the-week/capt-cocktail-derek-logo-v1.png';
+const logo='assets/images/shot-of-the-week/capt-cocktail-derek-badge-v2.png';
 get('captLogo').src=location.protocol==='file:'?logo:'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/'+logo;
 get('captRecipeName').textContent=d.name||'The Captain’s next pour';
 get('captRecipeIntro').textContent=d.intro||'Derek brings his own brand of cocktail chaos to the JNC Lounge.';
