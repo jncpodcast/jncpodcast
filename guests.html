@@ -145,6 +145,130 @@
     }
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   </style>
+<!-- TEMPORARY JNC MONSTER BASH SKIN: expires Friday Oct 30, 2026, midnight Eastern.
+     Set enabled to false below to restore the regular design immediately. -->
+<script>
+(function(){
+  'use strict';
+  const enabled=true;
+  const endsAt='2026-10-30T00:00:00-04:00';
+  if(!enabled||Date.now()>=Date.parse(endsAt))return;
+  const root=document.documentElement;
+  root.classList.add('jnc-monster-bash');
+  const style=document.createElement('style');
+  style.id='jnc-monster-bash-skin';
+  style.textContent=`
+html.jnc-monster-bash{
+ --yellow:#b8f52e;--purple:#a35bff;--cyan:#b8f52e;--blue:#8150ce;
+ --pink:#bd7bff;--navy:#210e38;--navy-2:#361753;
+ --ink:#0d0913;--ink-2:#180e23;--panel:#20142d;--panel-2:#2b1b3b;
+ --muted:#c2b7ce;--line:rgba(179,113,245,.25)
+}
+.jnc-monster-bash body{
+ background:radial-gradient(ellipse at 8% 5%,rgba(139,60,202,.28),transparent 42rem),
+ radial-gradient(ellipse at 94% 55%,rgba(142,195,36,.09),transparent 38rem),#0d0913
+}
+.jnc-monster-bash .site-header{
+ background:linear-gradient(110deg,rgba(30,12,47,.97),rgba(12,10,16,.96));
+ border-bottom-color:rgba(184,245,46,.3)
+}
+.jnc-monster-bash .universe-gate{
+ background:radial-gradient(ellipse at 50% 35%,rgba(130,51,184,.42),transparent 65%),
+ linear-gradient(180deg,#08070c,#221030 65%,#080b06)
+}
+.jnc-monster-bash .universe-gate::after{
+ background-image:linear-gradient(rgba(184,245,46,.22) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(163,91,255,.3) 1px,transparent 1px)
+}
+.jnc-monster-bash .universe-panel{
+ border-color:rgba(184,245,46,.45);
+ box-shadow:0 0 0 5px rgba(163,91,255,.08),0 0 65px rgba(124,48,184,.3)
+}
+.jnc-monster-bash .universe-title{ text-shadow:3px 3px 0 #34154e,0 0 30px rgba(163,91,255,.22)}
+.jnc-monster-bash .universe-title span{color:#b8f52e}
+.jnc-monster-bash .universe-enter,
+.jnc-monster-bash .btn-primary,
+.jnc-monster-bash .capt-sponsor-button{
+ background:#b8f52e;color:#101508;border-color:#b8f52e;
+ box-shadow:0 5px 0 #506b1c,0 0 24px rgba(184,245,46,.15)
+}
+.jnc-monster-bash .universe-enter:hover,
+.jnc-monster-bash .btn-primary:hover{background:#d1ff75;color:#101508}
+.jnc-monster-bash .hero{position:relative;background:radial-gradient(ellipse at 80% 40%,rgba(120,44,175,.18),transparent 65%)}
+.jnc-monster-bash .hero h1{color:#f4eadd;text-shadow:3px 4px 0 #3b1954}
+.jnc-monster-bash .hero h1 .outline{-webkit-text-stroke-color:#b8f52e}
+.jnc-monster-bash .hero h1 .chaos{color:#b8f52e;text-shadow:3px 4px 0 #3b1954,0 0 25px rgba(184,245,46,.12)}
+.jnc-monster-bash .hero-frame{
+ border-color:#9062bb;background:#170d21;
+ box-shadow:0 0 0 3px #24112f,0 0 0 5px rgba(184,245,46,.45),0 18px 65px rgba(85,29,130,.42)
+}
+.jnc-monster-bash .hero-sticker{background:#b8f52e;color:#111709;border-color:#3b1d53}
+.jnc-monster-bash .hero-image-wrap{background:#130c1c}
+.jnc-monster-bash .hero-image-wrap img{object-fit:contain}
+.jnc-monster-bash .live-pill{border-color:rgba(184,245,46,.4);background:rgba(34,19,45,.85);color:#d5ff89}
+.jnc-monster-bash .next-show{background:linear-gradient(120deg,#271637,#17111e);border-color:rgba(184,245,46,.3)}
+.jnc-monster-bash .episode-bar{background:#b8f52e;color:#101508}
+.jnc-monster-bash .section.dark{background:linear-gradient(145deg,#100b18,#190f23)}
+.jnc-monster-bash .section h2{ text-shadow:2px 3px 0 rgba(91,37,130,.6)}
+.jnc-monster-bash .support-card,.jnc-monster-bash .capt-deck{
+ border-color:rgba(167,94,227,.4);box-shadow:0 12px 45px rgba(0,0,0,.3),inset 0 1px 0 rgba(184,245,46,.07)
+}
+.jnc-monster-bash .mobile-dock,.jnc-monster-bash .mobile-nav{
+ background:rgba(22,12,31,.97);border-color:rgba(184,245,46,.3)
+}
+.jnc-monster-bash .eyebrow{color:#b8f52e}
+.jnc-monster-bash a:focus-visible,.jnc-monster-bash button:focus-visible{
+ outline:3px solid #d1ff75;outline-offset:4px
+}
+.jnc-monster-bash .monster-marquee{
+ display:block;margin:0 0 12px;color:#b8f52e;font:800 .7rem/1.4 ui-monospace,monospace;
+ letter-spacing:.15em;text-transform:uppercase
+}
+@media(max-width:700px){
+ .jnc-monster-bash .monster-marquee{font-size:.58rem;letter-spacing:.08em;margin-bottom:5px}
+}
+`;
+  document.head.append(style);
+  const changes=[];
+  let hero=null,originalHero=null,expiryTimer;
+  function text(selector,value){const el=document.querySelector(selector);if(el){changes.push([el,el.innerHTML]);el.textContent=value}}
+  function restore(){
+    root.classList.remove('jnc-monster-bash');style.remove();
+    changes.forEach(([el,html])=>{el.innerHTML=html});
+    document.querySelectorAll('[data-monster-decoration]').forEach(el=>el.remove());
+    if(hero&&originalHero){hero.src=originalHero.src;hero.alt=originalHero.alt}
+    clearTimeout(expiryTimer);
+  }
+  function scheduleExpiry(){
+    const left=Date.parse(endsAt)-Date.now();
+    if(left<=0){restore();return}
+    expiryTimer=setTimeout(scheduleExpiry,Math.min(left,2147483647));
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    text('.universe-signal','A JNC creature feature • Limited engagement');
+    text('#universeTitle','JNC Monster Bash Spooktacular');
+    text('#universeCopy','Step into the haunted lounge. Killer tunes, wicked cocktails, and monstrous JNC mayhem await.');
+    text('#universeEnter','Enter if you dare ▶');
+    text('#universeHint','Tap to enter the Spooktacular');
+    const copy=document.querySelector('.hero-copy');
+    if(copy){
+      const label=document.createElement('div');label.className='monster-marquee';
+      label.dataset.monsterDecoration='true';label.textContent='Now showing • JNC Monster Bash Spooktacular';
+      const heading=copy.querySelector('h1');copy.insertBefore(label,heading||copy.firstChild);
+    }
+    hero=document.querySelector('.hero-image-wrap img');
+    if(hero){
+      originalHero={src:hero.src,alt:hero.alt};
+      const imagePath='assets/images/jnc-hero-spooktacular.jpg';
+      const url=location.protocol==='file:'?imagePath:'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/'+imagePath;
+      const probe=new Image();
+      probe.onload=function(){if(root.classList.contains('jnc-monster-bash')){hero.src=url;hero.alt='JNC Monster Bash Spooktacular — the Jams N Cocktails Halloween special'}};
+      probe.src=url;
+    }
+    scheduleExpiry();
+  },{once:true});
+})();
+</script>
 </head>
 <body>
   <header class="site-header">
@@ -431,7 +555,7 @@
           <a href="index.html#subscribe">Newsletter</a>
           <a href="https://www.patreon.com/jncpodcast" target="_blank" rel="noopener">Patreon</a>
           <a href="mailto:jnctvlive@gmail.com">Contact</a>
-          <a href="mailto:jnctvlive@gmail.com?subject=JNC%20Sponsorship%20Inquiry">Sponsor JNC</a>
+          <a href="keg-sponsorship.html">Sponsor JNC</a>
         </div>
       </div>
 
