@@ -1042,6 +1042,8 @@ html.jnc-monster-bash{
 .jnc-monster-bash .universe-enter:hover,
 .jnc-monster-bash .btn-primary:hover{background:#d1ff75;color:#101508}
 .jnc-monster-bash .hero{position:relative;background:radial-gradient(ellipse at 80% 40%,rgba(120,44,175,.18),transparent 65%)}
+.jnc-monster-bash #featured{isolation:isolate}
+.jnc-monster-bash #featured::before{z-index:-1;background:linear-gradient(180deg,rgba(13,9,19,.38),rgba(13,9,19,.78)),var(--monster-cocktail-moon) left top/cover no-repeat;opacity:.8}
 .jnc-monster-bash .hero h1{color:#f4eadd;text-shadow:3px 4px 0 #3b1954}
 .jnc-monster-bash .hero h1 .outline{-webkit-text-stroke-color:#b8f52e}
 .jnc-monster-bash .hero h1 .chaos{color:#b8f52e;text-shadow:3px 4px 0 #3b1954,0 0 25px rgba(184,245,46,.12)}
@@ -1076,11 +1078,15 @@ html.jnc-monster-bash{
 }
 `;
   document.head.append(style);
+  const moonPath='assets/images/jnc-spooktacular-cocktail-moon.png';
+  const moonUrl=location.protocol==='file:'?moonPath:'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/'+moonPath;
+  root.style.setProperty('--monster-cocktail-moon','url("'+moonUrl+'")');
   const changes=[];
   let hero=null,originalHero=null,expiryTimer;
   function text(selector,value){const el=document.querySelector(selector);if(el){changes.push([el,el.innerHTML]);el.textContent=value}}
   function restore(){
     root.classList.remove('jnc-monster-bash');style.remove();
+    root.style.removeProperty('--monster-cocktail-moon');
     changes.forEach(([el,html])=>{el.innerHTML=html});
     document.querySelectorAll('[data-monster-decoration]').forEach(el=>el.remove());
     if(hero&&originalHero){hero.src=originalHero.src;hero.alt=originalHero.alt}
