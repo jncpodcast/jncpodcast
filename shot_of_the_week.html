@@ -1194,7 +1194,7 @@ html.jnc-monster-bash{
               <p class="method" id="featuredCocktailMethod">Pour the white wine and Campari into a wine glass or double rocks glass. Fill the glass about three-quarters full with ice, top with chilled club soda, and stir gently. Garnish with two orange wheels.</p>
 
               <div class="actions">
-                <a class="button" data-cocktail-video-link href="https://www.youtube.com/jamsncocktailspodcast?sub_confirmation=1" target="_blank" rel="noopener">Visit JNC on YouTube</a>
+                <a class="button" data-cocktail-video-link href="https://www.youtube.com/jamsncocktailspodcast" target="_blank" rel="noopener">Watch on YouTube</a>
                 <a class="button secondary" href="#archive">Browse Recipes</a>
               </div>
             </article>
@@ -1209,43 +1209,6 @@ html.jnc-monster-bash{
         </div>
       </section>
 
-      <section class="section dark" id="behind">
-        <div class="wrap">
-          <div class="section-head">
-            <div>
-              <div class="eyebrow">More Than a Recipe</div>
-              <h2>Behind the Drink</h2>
-            </div>
-            <p id="featuredCocktailBehindIntro">The Bicicletta segment is still being mixed. Until the video arrives, get to know the drink and the easygoing aperitivo spirit behind it.</p>
-          </div>
-
-          <div class="behind-grid">
-            <div class="video-card">
-              <iframe id="cocktailVideoPlayer" hidden title="The featured cocktail segment on Jams 'N' Cocktails" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              <div class="video-placeholder" id="cocktailVideoPlaceholder" role="img" aria-label="The Jams 'N' Cocktails crew in the JNC Lounge">
-                <div class="video-placeholder-copy">
-                  <strong>Video Coming Soon</strong>
-                  <span id="cocktailVideoPlaceholderText">The Bicicletta segment will appear here after this week’s show.</span>
-                </div>
-              </div>
-            </div>
-
-            <article class="story-card">
-              <blockquote id="featuredCocktailQuote">“Bittersweet, bubbly, and built for the ride.”</blockquote>
-              <div id="featuredCocktailStory">
-                <p>The Bicicletta combines dry white wine and Campari, then stretches everything with chilled club soda for a bright red aperitivo that stays crisp, refreshing, and easy to sip.</p>
-                <p>Served over plenty of ice with two orange wheels, it brings bold citrus and herbal bitterness without weighing down the evening—the perfect kind of drink for a long, relaxed stop at the JNC bar.</p>
-              </div>
-              <div class="episode-meta" id="featuredCocktailPills">
-                <span class="pill">Italian Aperitivo</span>
-                <span class="pill">Wine Cocktail</span>
-                <span class="pill">The Bicicletta</span>
-              </div>
-              <span class="text-link video-coming">Video segment coming soon</span>
-            </article>
-          </div>
-        </div>
-      </section>
 
 <section class="section dark" id="captCocktail" hidden>
 <div class="wrap"><div class="capt-deck">
@@ -1621,8 +1584,6 @@ html.jnc-monster-bash{
   <script>
     window.JNC_COCKTAIL_READY.then(() => {
       const content = window.JNC_COCKTAIL_CONTENT;
-      const player = document.getElementById('cocktailVideoPlayer');
-      const placeholder = document.getElementById('cocktailVideoPlaceholder');
       const assetBase = 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/';
       const toAssetUrl = value => String(value || '').startsWith('assets/') ? assetBase + String(value).slice(7) : String(value || '');
       const escapeText = value => String(value || '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
@@ -1652,9 +1613,6 @@ html.jnc-monster-bash{
         setText('featuredCocktailFlavor', featured.flavor);
         setText('featuredCocktailPrep', featured.prepTime);
         setText('featuredCocktailServe', featured.serve);
-        setText('featuredCocktailBehindIntro', featured.behindIntro);
-        setText('cocktailVideoPlaceholderText', `${featured.name} will appear here after this week’s show.`);
-        setText('featuredCocktailQuote', `“${String(featured.quote || '').replace(/^[“"]|[”"]$/g, '')}”`);
 
         const ingredients = document.getElementById('featuredCocktailIngredients');
         if (ingredients && Array.isArray(featured.ingredients) && featured.ingredients.length) {
@@ -1667,27 +1625,6 @@ html.jnc-monster-bash{
             amount.textContent = ingredient.amount || '';
             item.append(name, amount);
             ingredients.append(item);
-          });
-        }
-
-        const story = document.getElementById('featuredCocktailStory');
-        if (story && Array.isArray(featured.story) && featured.story.length) {
-          story.replaceChildren();
-          featured.story.forEach(paragraph => {
-            const item = document.createElement('p');
-            item.textContent = paragraph;
-            story.append(item);
-          });
-        }
-
-        const pills = document.getElementById('featuredCocktailPills');
-        if (pills && Array.isArray(featured.pills) && featured.pills.length) {
-          pills.replaceChildren();
-          featured.pills.forEach(value => {
-            const pill = document.createElement('span');
-            pill.className = 'pill';
-            pill.textContent = value;
-            pills.append(pill);
           });
         }
       }
@@ -1708,11 +1645,7 @@ html.jnc-monster-bash{
         });
       }
 
-      if (!content || !player || !content.videoUrl) {
-        if (player) { player.hidden = true; player.removeAttribute('src'); }
-        if (placeholder) { placeholder.hidden = false; placeholder.style.display = ''; }
-        return featuredImageReady;
-      }
+      if (!content?.videoUrl) return featuredImageReady;
 
       const parseTime = value => {
         if (typeof value === 'number' && Number.isFinite(value)) return Math.max(0, Math.floor(value));
@@ -1727,7 +1660,7 @@ html.jnc-monster-bash{
         try {
           const url = new URL(raw);
           if (url.hostname === 'youtu.be') return url.pathname.split('/').filter(Boolean)[0] || '';
-          if (url.hostname.includes('youtube.com')) {
+          if (/(^|\.)youtube\.com$/.test(url.hostname)) {
             const pathParts = url.pathname.split('/').filter(Boolean);
             if (pathParts[0] === 'embed' || pathParts[0] === 'shorts' || pathParts[0] === 'live') return pathParts[1] || '';
             return url.searchParams.get('v') || '';
@@ -1737,22 +1670,17 @@ html.jnc-monster-bash{
       };
 
       const videoId = getVideoId(content.videoUrl);
-      if (!videoId) return featuredImageReady;
-      const start = parseTime(content.startTime);
-      const end = parseTime(content.endTime);
-      const params = new URLSearchParams({ playsinline: '1', rel: '0' });
-      if (start > 0) params.set('start', String(start));
-      if (end > start) params.set('end', String(end));
-      player.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${params}`;
-      player.hidden = false;
-      player.style.display = 'block';
-      if (placeholder) {
-        placeholder.hidden = true;
-        placeholder.style.display = 'none';
-      }
-
-      const watchUrl = `https://youtu.be/${encodeURIComponent(videoId)}${start > 0 ? `?t=${start}` : ''}`;
-      document.querySelectorAll('[data-cocktail-video-link]').forEach(link => { link.href = watchUrl; });
+      if (!/^[\w-]{11}$/.test(videoId)) return featuredImageReady;
+      const start = Math.floor(parseTime(content.startTime));
+      const end = Math.floor(parseTime(content.endTime));
+      const watchUrl = new URL('https://www.youtube.com/watch');
+      watchUrl.searchParams.set('v', videoId);
+      if (start > 0) watchUrl.searchParams.set('t', `${start}s`);
+      // YouTube applies an end time in its player URL.
+      const destination = end > start
+        ? new URL(`https://www.youtube.com/embed/${videoId}?start=${start}&end=${end}`)
+        : watchUrl;
+      document.querySelectorAll('[data-cocktail-video-link]').forEach(link => { link.href = destination.href; });
       return featuredImageReady;
     }).catch(error => {
       console.error('JNC cocktail video could not be initialized:', error);
