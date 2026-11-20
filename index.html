@@ -519,6 +519,12 @@
       transform:scale(1.02);
       filter:saturate(1.13) contrast(1.06);
     }
+    .hero-image-wrap .hero-slide-incoming{position:absolute;inset:0}
+    .hero-slideshow-toggle{
+      position:absolute;z-index:1;bottom:8px;right:8px;min-height:44px;
+      padding:6px 12px;border:1px solid #fff8;border-radius:999px;
+      background:#080910;color:white;cursor:pointer;font-size:.75rem;
+    }
     .hero-image-wrap::after{
       content:"";
       position:absolute;inset:0;
@@ -2720,5 +2726,109 @@ html.jnc-monster-bash{
       }
     })();
   </script>
+<script>
+  (() => {
+    const frame = document.querySelector('.hero-image-wrap');
+    if (!frame || document.documentElement.classList.contains('jnc-monster-bash')) return;
+
+    const imageBase = location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname)
+      ? 'assets/images/'
+      : 'https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/';
+    const photos = [
+      ['jnc-hero-brad-1.jpg', 'Brad raises a glass beside the JNC microphone'],
+      ['jnc-hero-brad-2.jpg', 'Brad mixes a cocktail behind the bar'],
+      ['jnc-hero-brad-3.jpg', 'Brad sits at the microphone with an acoustic guitar'],
+      ['jnc-hero-brad-4.jpg', 'Brad gestures while speaking into the microphone'],
+      ['jnc-hero-brad-5.jpg', 'Brad holds up a gold record in the JNC studio']
+    ];
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    let current = frame.querySelector('img');
+    let queue = [];
+    let paused = motion.matches;
+    let timer;
+    let advancing = false;
+    let preloaded;
+
+    function shuffle(last) {
+      const order = [...photos];
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+      if (order[0][0] === last) order.push(order.shift());
+      return order;
+    }
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'hero-slideshow-toggle';
+    toggle.hidden = true;
+    frame.append(toggle);
+
+    function loadPhoto([file, alt]) {
+      const image = new Image(941, 941);
+      image.alt = alt;
+      image.dataset.photo = file;
+      image.src = imageBase + file;
+      return { file, ready: image.decode().then(() => image, () => null) };
+    }
+
+    function schedule() {
+      clearTimeout(timer);
+      toggle.textContent = paused ? 'Play slideshow' : 'Pause slideshow';
+      if (paused || document.hidden || advancing) return;
+      if (!queue.length) queue = shuffle(current.dataset.photo);
+      if (preloaded?.file !== queue[0][0]) preloaded = loadPhoto(queue[0]);
+      timer = setTimeout(() => advance(), 5000);
+    }
+
+    async function advance(first = false) {
+      if (advancing) return;
+      advancing = true;
+      const last = current.dataset.photo;
+      if (!queue.length) queue = shuffle(last);
+      while (queue.length) {
+        const [file, alt] = queue.shift();
+        const pending = preloaded?.file === file ? preloaded : loadPhoto([file, alt]);
+        preloaded = undefined;
+        const next = await pending.ready;
+        if (!next) continue;
+        if (!first && (paused || document.hidden)) {
+          queue.unshift([file, alt]);
+          break;
+        }
+        if (!first && !motion.matches) {
+          next.className = 'hero-slide-incoming';
+          next.setAttribute('aria-hidden', 'true');
+          frame.insertBefore(next, toggle);
+          if (next.animate) {
+            await next.animate([{ opacity: 0 }, { opacity: 1 }], {
+              duration: 550, easing: 'ease-out'
+            }).finished;
+          }
+        }
+        next.classList.remove('hero-slide-incoming');
+        next.removeAttribute('aria-hidden');
+        current.replaceWith(next);
+        current = next;
+        toggle.hidden = false;
+        break;
+      }
+      advancing = false;
+      schedule();
+    }
+
+    toggle.addEventListener('click', () => {
+      paused = !paused;
+      schedule();
+    });
+    document.addEventListener('visibilitychange', schedule);
+    motion.addEventListener('change', () => {
+      paused = motion.matches;
+      schedule();
+    });
+    advance(true);
+  })();
+</script>
 </body>
 </html>
