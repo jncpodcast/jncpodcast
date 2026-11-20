@@ -2742,6 +2742,8 @@ html.jnc-monster-bash{
     let timer;
     let advancing = false;
     let preloaded;
+    const holdMs = 5000;
+    const fadeMs = 1250;
 
     function shuffle(last) {
       const order = [...photos];
@@ -2766,7 +2768,7 @@ html.jnc-monster-bash{
       if (motion.matches || document.hidden || advancing) return;
       if (!queue.length) queue = shuffle(current.dataset.photo);
       if (preloaded?.file !== queue[0][0]) preloaded = loadPhoto(queue[0]);
-      timer = setTimeout(() => advance(), 5000);
+      timer = setTimeout(() => advance(), holdMs);
     }
 
     async function advance(first = false) {
@@ -2784,16 +2786,21 @@ html.jnc-monster-bash{
           queue.unshift([file, alt]);
           break;
         }
+        if (!motion.matches && next.animate) {
+          next.animate([{ scale: 1.13 }, { scale: 1 }], {
+            duration: holdMs + fadeMs * (first ? 1 : 2),
+            easing: 'ease-out',
+            fill: 'both'
+          });
+        }
         if (!first && !motion.matches) {
           next.className = 'hero-slide-incoming';
           next.setAttribute('aria-hidden', 'true');
           frame.append(next);
           if (next.animate) {
-            await next.animate([
-              { opacity: 0, scale: 1.12 },
-              { opacity: 1, scale: 1 }
-            ], {
-              duration: 1250, easing: 'cubic-bezier(.22,.61,.36,1)'
+            await next.animate([{ opacity: 0 }, { opacity: 1 }], {
+              duration: fadeMs,
+              easing: 'ease-out'
             }).finished;
           }
         }
