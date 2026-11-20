@@ -520,11 +520,6 @@
       filter:saturate(1.13) contrast(1.06);
     }
     .hero-image-wrap .hero-slide-incoming{position:absolute;inset:0}
-    .hero-slideshow-toggle{
-      position:absolute;z-index:1;bottom:8px;right:8px;min-height:44px;
-      padding:6px 12px;border:1px solid #fff8;border-radius:999px;
-      background:#080910;color:white;cursor:pointer;font-size:.75rem;
-    }
     .hero-image-wrap::after{
       content:"";
       position:absolute;inset:0;
@@ -2744,7 +2739,6 @@ html.jnc-monster-bash{
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     let current = frame.querySelector('img');
     let queue = [];
-    let paused = motion.matches;
     let timer;
     let advancing = false;
     let preloaded;
@@ -2759,12 +2753,6 @@ html.jnc-monster-bash{
       return order;
     }
 
-    const toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'hero-slideshow-toggle';
-    toggle.hidden = true;
-    frame.append(toggle);
-
     function loadPhoto([file, alt]) {
       const image = new Image(941, 941);
       image.alt = alt;
@@ -2775,8 +2763,7 @@ html.jnc-monster-bash{
 
     function schedule() {
       clearTimeout(timer);
-      toggle.textContent = paused ? 'Play slideshow' : 'Pause slideshow';
-      if (paused || document.hidden || advancing) return;
+      if (motion.matches || document.hidden || advancing) return;
       if (!queue.length) queue = shuffle(current.dataset.photo);
       if (preloaded?.file !== queue[0][0]) preloaded = loadPhoto(queue[0]);
       timer = setTimeout(() => advance(), 5000);
@@ -2793,17 +2780,20 @@ html.jnc-monster-bash{
         preloaded = undefined;
         const next = await pending.ready;
         if (!next) continue;
-        if (!first && (paused || document.hidden)) {
+        if (!first && (motion.matches || document.hidden)) {
           queue.unshift([file, alt]);
           break;
         }
         if (!first && !motion.matches) {
           next.className = 'hero-slide-incoming';
           next.setAttribute('aria-hidden', 'true');
-          frame.insertBefore(next, toggle);
+          frame.append(next);
           if (next.animate) {
-            await next.animate([{ opacity: 0 }, { opacity: 1 }], {
-              duration: 550, easing: 'ease-out'
+            await next.animate([
+              { opacity: 0, scale: 1.12 },
+              { opacity: 1, scale: 1 }
+            ], {
+              duration: 1250, easing: 'cubic-bezier(.22,.61,.36,1)'
             }).finished;
           }
         }
@@ -2811,22 +2801,14 @@ html.jnc-monster-bash{
         next.removeAttribute('aria-hidden');
         current.replaceWith(next);
         current = next;
-        toggle.hidden = false;
         break;
       }
       advancing = false;
       schedule();
     }
 
-    toggle.addEventListener('click', () => {
-      paused = !paused;
-      schedule();
-    });
     document.addEventListener('visibilitychange', schedule);
-    motion.addEventListener('change', () => {
-      paused = motion.matches;
-      schedule();
-    });
+    motion.addEventListener('change', schedule);
     advance(true);
   })();
 </script>
