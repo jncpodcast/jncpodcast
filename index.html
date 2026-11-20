@@ -1965,7 +1965,6 @@ html.jnc-monster-bash{
         <div class="hero-media reveal">
           <div class="hero-frame">
             <div class="hero-image-wrap">
-              <img src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/jnc-crew-hero.jpg" alt="The Jams 'N' Cocktails crew charging through an explosive music-and-cocktails scene" width="1024" height="1024" decoding="async" fetchpriority="high">
             </div>
             <div class="hero-sticker">Live<br>Every<br>Wednesday</div>
           </div>
@@ -2766,7 +2765,7 @@ html.jnc-monster-bash{
     function schedule() {
       clearTimeout(timer);
       if (motion.matches || document.hidden || advancing) return;
-      if (!queue.length) queue = shuffle(current.dataset.photo);
+      if (!queue.length) queue = shuffle(current?.dataset.photo);
       if (preloaded?.file !== queue[0][0]) preloaded = loadPhoto(queue[0]);
       timer = setTimeout(() => advance(), holdMs);
     }
@@ -2774,7 +2773,7 @@ html.jnc-monster-bash{
     async function advance(first = false) {
       if (advancing) return;
       advancing = true;
-      const last = current.dataset.photo;
+      const last = current?.dataset.photo;
       if (!queue.length) queue = shuffle(last);
       while (queue.length) {
         const [file, alt] = queue.shift();
@@ -2793,7 +2792,7 @@ html.jnc-monster-bash{
             fill: 'both'
           });
         }
-        if (!first && !motion.matches) {
+        if (current && !first && !motion.matches) {
           next.className = 'hero-slide-incoming';
           next.setAttribute('aria-hidden', 'true');
           frame.append(next);
@@ -2806,7 +2805,8 @@ html.jnc-monster-bash{
         }
         next.classList.remove('hero-slide-incoming');
         next.removeAttribute('aria-hidden');
-        current.replaceWith(next);
+        if (current) current.replaceWith(next);
+        else frame.append(next);
         current = next;
         break;
       }
