@@ -256,11 +256,13 @@
       filter: drop-shadow(0 28px 40px rgba(0,0,0,.55));
     }
     .poster-wrap:hover { transform: rotate(-.2deg) translateY(-6px); }
-    .poster-wrap img {
+    .poster-wrap img, .poster-wrap iframe {
       width: 100%;
       border: 10px solid #e9e7d7;
       box-shadow: 0 0 0 1px rgba(255,255,255,.14), var(--shadow);
     }
+    .poster-wrap iframe { display: block; aspect-ratio: 16 / 9; background: #080910; }
+    .poster-wrap [hidden], .actions .button[hidden] { display: none; }
 
     .tape {
       position: absolute;
@@ -644,7 +646,7 @@
       .hero { padding-top: 58px; }
       .hero-heading { margin-bottom: 28px; }
       .hero-heading p { font-size: 16px; }
-      .poster-wrap img { border-width: 6px; }
+      .poster-wrap img, .poster-wrap iframe { border-width: 6px; }
       .recipe-card { padding: 28px 24px; border-radius: 22px; }
       .quick-facts { grid-template-columns: 1fr 1fr; }
       .fact:nth-child(2) { border-right: 0; }
@@ -1174,6 +1176,7 @@ html.jnc-monster-bash{
               <span class="tape one" aria-hidden="true"></span>
               <span class="tape two" aria-hidden="true"></span>
               <img id="featuredCocktailImage" src="https://pub-8e6b2ea3995b4e388da2a7f4b7057ada.r2.dev/assets/images/shot-of-the-week/bicicletta-cocktail-of-the-week.jpg" alt="The Bicicletta Cocktail of the Week recipe card" />
+              <iframe id="featuredCocktailPlayer" hidden title="Cocktail of the Week video" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
             </div>
 
             <article class="recipe-card">
@@ -1194,7 +1197,8 @@ html.jnc-monster-bash{
               <p class="method" id="featuredCocktailMethod">Pour the white wine and Campari into a wine glass or double rocks glass. Fill the glass about three-quarters full with ice, top with chilled club soda, and stir gently. Garnish with two orange wheels.</p>
 
               <div class="actions">
-                <a class="button" data-cocktail-video-link href="https://www.youtube.com/jamsncocktailspodcast" target="_blank" rel="noopener">Watch on YouTube</a>
+                <a class="button" data-cocktail-video-link href="https://www.youtube.com/jamsncocktailspodcast" target="_blank" rel="noopener">Watch Video</a>
+                <button class="button" id="featuredCocktailVideoToggle" type="button" aria-controls="featuredCocktailPlayer" aria-expanded="false" hidden>Watch Video</button>
                 <a class="button secondary" href="#archive">Browse Recipes</a>
               </div>
             </article>
@@ -1673,14 +1677,28 @@ html.jnc-monster-bash{
       if (!/^[\w-]{11}$/.test(videoId)) return featuredImageReady;
       const start = Math.floor(parseTime(content.startTime));
       const end = Math.floor(parseTime(content.endTime));
-      const watchUrl = new URL('https://www.youtube.com/watch');
-      watchUrl.searchParams.set('v', videoId);
-      if (start > 0) watchUrl.searchParams.set('t', `${start}s`);
-      // YouTube applies an end time in its player URL.
-      const destination = end > start
-        ? new URL(`https://www.youtube.com/embed/${videoId}?start=${start}&end=${end}`)
-        : watchUrl;
-      document.querySelectorAll('[data-cocktail-video-link]').forEach(link => { link.href = destination.href; });
+      const player = document.getElementById('featuredCocktailPlayer');
+      const artwork = document.getElementById('featuredCocktailImage');
+      const toggle = document.getElementById('featuredCocktailVideoToggle');
+      const fallback = document.querySelector('[data-cocktail-video-link]');
+      const params = new URLSearchParams({ autoplay: '1', playsinline: '1' });
+      if (start > 0) params.set('start', String(start));
+      if (end > start) params.set('end', String(end));
+      fallback.hidden = true;
+      toggle.hidden = false;
+      toggle.addEventListener('click', () => {
+        const showVideo = player.hidden;
+        player.hidden = !showVideo;
+        artwork.hidden = showVideo;
+        toggle.textContent = showVideo ? 'Show Recipe Artwork' : 'Watch Video';
+        toggle.setAttribute('aria-expanded', String(showVideo));
+        if (showVideo) {
+          player.src = `https://www.youtube-nocookie.com/embed/${videoId}?${params}`;
+          player.scrollIntoView({ block: 'nearest' });
+        } else {
+          player.removeAttribute('src');
+        }
+      });
       return featuredImageReady;
     }).catch(error => {
       console.error('JNC cocktail video could not be initialized:', error);
