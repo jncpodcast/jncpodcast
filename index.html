@@ -1972,7 +1972,7 @@ html.jnc-monster-bash{
             <div class="calendar-box">W</div>
             <div>
               <strong>Next live show</strong>
-              <small>Wednesday • 8 PM Eastern</small>
+              <small id="nextShowSchedule">Wednesday, Jan 6 • 8 PM Eastern</small>
             </div>
             <div class="countdown" id="countdown">Calculating…</div>
           </div>
@@ -2648,34 +2648,56 @@ html.jnc-monster-bash{
 
       const countdown = document.getElementById('countdown');
       const liveText = document.getElementById('watchLiveText');
+      const nextShowSchedule = document.getElementById('nextShowSchedule');
+      const firstShowDay = Date.UTC(2027, 0, 6);
+      const dayMs = 86400000;
+      const showWeeks = 10;
+      const cycleWeeks = showWeeks + 3;
+      const showDateFormat = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'UTC', weekday: 'long', month: 'short', day: 'numeric'
+      });
 
       function easternParts(date = new Date()) {
         const parts = new Intl.DateTimeFormat('en-US', {
           timeZone:'America/New_York',
           weekday:'short', year:'numeric', month:'2-digit', day:'2-digit',
-          hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+          hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23'
         }).formatToParts(date);
         return Object.fromEntries(parts.filter(p => p.type !== 'literal').map(p => [p.type,p.value]));
       }
 
       function updateCountdown() {
-        const p = easternParts();
-        const weekdays = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        const dayIndex = weekdays.indexOf(p.weekday);
-        const nowPseudo = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second);
+        const now = new Date();
+        const p = easternParts(now);
+        const today = Date.UTC(+p.year, +p.month - 1, +p.day);
+        const daysSinceFirstShow = (today - firstShowDay) / dayMs;
+        const week = Math.floor(daysSinceFirstShow / 7);
         const hour = +p.hour;
-        const isLive = dayIndex === 3 && hour >= 20 && hour < 23;
+        const isLive = week >= 0 && week % cycleWeeks < showWeeks
+          && daysSinceFirstShow % 7 === 0 && hour >= 20 && hour < 23;
 
         if (isLive) {
+          nextShowSchedule.textContent = `${showDateFormat.format(today)} • 8 PM Eastern`;
           countdown.textContent = 'LIVE NOW';
           liveText.textContent = 'Live Now';
           return;
         }
 
-        let daysAhead = (3 - dayIndex + 7) % 7;
-        if (daysAhead === 0 && hour >= 20) daysAhead = 7;
-        const targetPseudo = Date.UTC(+p.year, +p.month - 1, +p.day + daysAhead, 20, 0, 0);
-        let diff = Math.max(0, targetPseudo - nowPseudo);
+        const isBeforeTonight = daysSinceFirstShow % 7 === 0 && hour < 20;
+        let nextWeek = Math.max(0, week + (isBeforeTonight ? 0 : 1));
+        const cycleWeek = nextWeek % cycleWeeks;
+        if (cycleWeek >= showWeeks) nextWeek += cycleWeeks - cycleWeek;
+
+        const showDay = firstShowDay + nextWeek * 7 * dayMs;
+        const eveningUtc = showDay + 20 * 3600000;
+        // Read the Eastern offset on the show date so the countdown spans DST correctly.
+        const easternHour = Number(easternParts(new Date(eveningUtc)).hour);
+        const target = eveningUtc + (20 - easternHour) * 3600000;
+        nextShowSchedule.textContent = `${showDateFormat.format(showDay)} • 8 PM Eastern`;
+        displayCountdown(Math.max(0, target - now.getTime()));
+      }
+
+      function displayCountdown(diff) {
         const days = Math.floor(diff / 86400000); diff %= 86400000;
         const hours = Math.floor(diff / 3600000); diff %= 3600000;
         const mins = Math.floor(diff / 60000);
